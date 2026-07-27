@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Magyar. TODO: Abschnitt `requirements` fehlt noch. */
-const hu: LocaleDictionary = {
+/** Magyar. */
+const hu: Dictionary = {
   nav: {
     home: 'Kezdőlap',
     services: 'Szolgáltatások',
@@ -689,7 +689,87 @@ const hu: LocaleDictionary = {
       fileType: 'PDF-, JPG- és PNG-fájlok engedélyezettek.',
       tooLarge: 'A fájl túl nagy. Legfeljebb 8 MB engedélyezett.',
       tooMany: 'Kérjük, legfeljebb 5 bizonyítványt töltsön fel.',
+      country: 'Kérjük, válasszon országot.',
+      confirmations: 'Kérjük, erősítse meg valamennyi pontot.',
     },
+    uploadLabels: {
+      cv: 'Önéletrajz',
+      languageCertificate: 'Nyelvvizsga-bizonyítvány',
+      schoolCertificate: 'Iskolai végzettség',
+      vocationalCertificate: 'Szakmai végzettség',
+      degree: 'Felsőfokú végzettség',
+      residencePermit: 'Tartózkodási engedély',
+      workPermit: 'Munkavállalási jogosultság igazolása',
+      other: 'Egyéb bizonyítványok',
+    },
+    uploadHint: 'PDF, JPG vagy PNG – fájlonként legfeljebb 8 MB.',
+    criminalRecordNotice:
+      'Az erkölcsi bizonyítványt vagy azzal egyenértékű dokumentumot szándékosan nem kérjük a jelentkezéssel együtt. Csak akkor kérjük be, ha konkrét megbízáshoz szükséges.',
+    uploadBackendNotice:
+      'Megjegyzés: a dokumentumok biztonságos továbbítását még be kell állítani ezen a kiszolgálón. Addig hibát jelzünk vissza ahelyett, hogy sikeres beküldést színlelnénk.',
+    confirmationsTitle: 'Megerősítések',
+    confirmations: [
+      'Elolvastam a kiválasztott megbízási országra vonatkozó feltételeket.',
+      'Rendelkezem a szükséges munkavállalási engedéllyel, vagy be fogom nyújtani a megfelelő igazolást.',
+      'Az adataim és dokumentumaim hiánytalanok és a valóságnak megfelelnek.',
+      'Tudomásul veszem, hogy minden jelentkezést egyedileg bírálnak el, és nincs automatikus felvétel vagy megbízási garancia.',
+    ],
+    privacyLinkText: 'Adatvédelmi tájékoztató elolvasása',
+  },
+
+  requirements: {
+    metaTitle: 'Feltételek tolmácsok és fordítók számára',
+    metaDescription:
+      'Nyelvi és iskolai feltételek tolmácsolási és fordítási megbízásokhoz – megbízási országok szerinti bontásban, az illetékes hivatalos szervekre való hivatkozással.',
+    h1: 'Feltételek megbízási országonként',
+    lead:
+      'Hogy mely igazolások relevánsak, az a megbízási országtól és a megbízótól függ. Az alábbi áttekintés az ott szokásos megnevezéseket sorolja fel. Egy végzettség elismeréséről kizárólag az illetékes hivatalos szervek döntenek.',
+    countryLabel: 'A lakóhely országa, illetve a tervezett megbízási ország',
+    countryPlaceholder: 'Kérjük, válasszon',
+    countryHint: 'A feltételek országonként eltérnek.',
+    panelTitle: 'Feltételek a következő országban végzett megbízásokhoz: {country}',
+    separationNotice:
+      'Fontos: az iskolai végzettség, a felsőoktatási felvételi jogosultság vagy a diploma nem jelent automatikusan C1 szintű nyelvtudás-igazolást. A nyelvi és az iskolai képesítést külön vizsgáljuk.',
+    languageTitle: 'A. Nyelvi képesítés',
+    languageLead: 'Legalább az alábbi igazolások egyike:',
+    languageItems: [
+      'Elismert nyelvvizsga-bizonyítvány a Közös Európai Referenciakeret szerinti C1 vagy C2 szinten',
+      'Az adott országban elismert, egyenértékű nyelvi igazolás',
+      'Az érintett munkanyelven szerzett felsőfokú végzettség, amennyiben nyelvi igazolásként elfogadható',
+      'Egyéb hitelt érdemlő igazolás legalább C1 szintű nyelvtudásról',
+    ],
+    educationTitle: 'B. Iskolai vagy szakmai képesítés',
+    educationLead:
+      'A megbízástól és a megbízótól függően legalább egy megfelelő igazolás, például:',
+    educationItems: [
+      'Felsőoktatási felvételi jogosultság',
+      'Befejezett szakképzés',
+      'Előkészítő évfolyam bizonyítványa vagy azzal egyenértékű',
+      'Felsőfokú végzettség',
+      'Tolmács- vagy fordítóképzés',
+      'Külföldön szerzett, összehasonlítható végzettség',
+    ],
+    certLabel: 'Az országban elterjedt nyelvvizsga-bizonyítványok',
+    entranceLabel: 'Felsőoktatási felvételi jogosultság',
+    vocationalLabel: 'Szakmai végzettség',
+    higherLabel: 'Felsőfokú végzettség',
+    criminalLabel: 'Erkölcsi bizonyítvány',
+    legalTitle: 'Jogi feltételek',
+    legalItems: [
+      'Munkavállalási jogosultság a megbízási országban',
+      'Érvényes tartózkodási okmány, amennyiben szükséges',
+      'Erkölcsi bizonyítvány, amennyiben a konkrét megbízás megköveteli',
+    ],
+    clientTitle: 'A megbízó további követelményei',
+    clientText:
+      'A hatóságok, bíróságok és nemzetközi szervezetek olykor saját követelményeket támasztanak, például biztonsági ellenőrzést, titoktartási nyilatkozatot vagy különleges szakismereteket. Ezekről a megbízás előtt tájékoztatjuk.',
+    individualNotice:
+      'Összehasonlítható igazolás – egyedi vizsgálat szükséges. Ez az áttekintés nem helyettesíti a hivatalos elismerési döntést.',
+    reviewPending:
+      'Az ehhez az országhoz tartozó adatok szakmai ellenőrzése még folyamatban van. A megadott megnevezések kizárólag tájékoztatásul szolgálnak.',
+    sourcesLabel: 'Hivatalos információforrások',
+    fullRequirementsLink: 'Az ország összes feltételének megtekintése',
+    backToApply: 'Vissza a jelentkezéshez',
   },
 
   contact: {

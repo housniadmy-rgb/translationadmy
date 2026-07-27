@@ -66,35 +66,17 @@ describe('Übersetzungen', () => {
 
   const germanKeys = keyPaths(german).sort();
 
-  /**
-   * Sprachfassungen, denen die zuletzt ergänzten Abschnitte noch fehlen
-   * (`apply`-Erweiterung und `requirements`). Sie fallen zur Laufzeit sichtbar
-   * auf Deutsch zurück – siehe getDictionary().
-   *
-   * Diese Liste ist bewusst fest hinterlegt: Wird eine Fassung vervollständigt
-   * oder entsteht anderswo eine neue Lücke, schlägt der Test darunter fehl und
-   * erzwingt eine Aktualisierung. Der Rückstand kann so nicht in Vergessenheit
-   * geraten und auch nicht unbemerkt wachsen.
-   */
-  const KNOWN_INCOMPLETE: string[] = [
-    'es', 'el', 'bg', 'ro', 'pl', 'hu', 'hr', 'mt', 'lt', 'lv', 'et', 'fi', 'nl',
-  ];
-
-  const COMPLETE_LOCALES = LOCALES.filter((locale) => !KNOWN_INCOMPLETE.includes(locale));
-
-  it('die Liste der unvollständigen Fassungen stimmt mit dem Stand überein', () => {
-    const actual = LOCALES.filter((locale) => {
+  it('alle Sprachfassungen sind vollständig', () => {
+    // Kein Abschnitt darf mehr auf die deutsche Fassung zurückfallen.
+    const incomplete = LOCALES.filter((locale) => {
       const keys = keyPaths(dictionaries[locale]!);
       return germanKeys.some((key) => !keys.includes(key));
-    }).sort();
+    });
 
-    expect(
-      actual,
-      'Bitte KNOWN_INCOMPLETE aktualisieren – der Übersetzungsstand hat sich geändert.',
-    ).toEqual([...KNOWN_INCOMPLETE].sort());
+    expect(incomplete, `unvollständige Fassungen: ${incomplete.join(', ')}`).toEqual([]);
   });
 
-  it.each(COMPLETE_LOCALES)('%s hat dieselbe Struktur wie die deutsche Fassung', (locale: Locale) => {
+  it.each(LOCALES)('%s hat dieselbe Struktur wie die deutsche Fassung', (locale: Locale) => {
     const dictionary = dictionaries[locale];
     expect(dictionary).toBeDefined();
     const keys = keyPaths(dictionary!).sort();

@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Español. TODO: Abschnitt `requirements` fehlt noch. */
-const es: LocaleDictionary = {
+/** Español. */
+const es: Dictionary = {
   nav: {
     home: 'Inicio',
     services: 'Servicios',
@@ -689,7 +689,87 @@ const es: LocaleDictionary = {
       fileType: 'Se admiten archivos PDF, JPG y PNG.',
       tooLarge: 'El archivo es demasiado grande. El máximo son 8 MB.',
       tooMany: 'Adjunte como máximo 5 certificados.',
+      country: 'Seleccione un país.',
+      confirmations: 'Confirme todos los puntos.',
     },
+    uploadLabels: {
+      cv: 'Currículum',
+      languageCertificate: 'Certificado de idioma',
+      schoolCertificate: 'Título escolar',
+      vocationalCertificate: 'Título profesional',
+      degree: 'Título universitario',
+      residencePermit: 'Permiso de residencia',
+      workPermit: 'Acreditación del derecho a trabajar',
+      other: 'Otros certificados',
+    },
+    uploadHint: 'PDF, JPG o PNG: máximo 8 MB por archivo.',
+    criminalRecordNotice:
+      'El certificado de antecedentes penales o documento equivalente no se adjunta deliberadamente con la candidatura. Solo lo solicitamos cuando resulta necesario para un servicio concreto.',
+    uploadBackendNotice:
+      'Aviso: la transmisión segura de los documentos aún debe configurarse en este servidor. Hasta entonces le comunicamos un error en lugar de simular un envío correcto.',
+    confirmationsTitle: 'Confirmaciones',
+    confirmations: [
+      'He leído los requisitos del país de actuación seleccionado.',
+      'Dispongo de la autorización de trabajo necesaria o presentaré la acreditación correspondiente.',
+      'Mis datos y documentos son completos y veraces.',
+      'Sé que cada candidatura se valora individualmente y que no existe admisión automática ni garantía de servicios.',
+    ],
+    privacyLinkText: 'Leer la política de privacidad',
+  },
+
+  requirements: {
+    metaTitle: 'Requisitos para intérpretes y traductores',
+    metaDescription:
+      'Requisitos lingüísticos y formativos para trabajar como intérprete o traductor, desglosados por país de actuación y con remisión a los organismos oficiales competentes.',
+    h1: 'Requisitos por país de actuación',
+    lead:
+      'Qué acreditaciones son pertinentes depende del país de actuación y del cliente. Este resumen indica las denominaciones habituales allí. La decisión sobre el reconocimiento de un título corresponde exclusivamente a los organismos oficiales competentes.',
+    countryLabel: 'País de residencia o país de actuación previsto',
+    countryPlaceholder: 'Seleccione',
+    countryHint: 'Los requisitos difieren según el país.',
+    panelTitle: 'Requisitos para servicios en {country}',
+    separationNotice:
+      'Importante: un título escolar, una acreditación de acceso a la universidad o un título universitario no constituye automáticamente una prueba de competencia lingüística de nivel C1. La cualificación lingüística y la formativa se valoran por separado.',
+    languageTitle: 'A. Cualificación lingüística',
+    languageLead: 'Al menos una de las siguientes acreditaciones:',
+    languageItems: [
+      'Un certificado de idioma reconocido de nivel C1 o C2 según el Marco Común Europeo de Referencia',
+      'Una acreditación lingüística equivalente reconocida en el país correspondiente',
+      'Una titulación cursada en la lengua de trabajo en cuestión, siempre que pueda admitirse como prueba lingüística',
+      'Otra acreditación verificable de competencia lingüística de nivel C1 como mínimo',
+    ],
+    educationTitle: 'B. Cualificación escolar o profesional',
+    educationLead:
+      'Según el servicio y el cliente, al menos una acreditación adecuada, por ejemplo:',
+    educationItems: [
+      'Acreditación de acceso a la universidad',
+      'Formación profesional finalizada',
+      'Certificado de curso preparatorio o equivalente',
+      'Título universitario',
+      'Formación en interpretación o traducción',
+      'Título extranjero comparable',
+    ],
+    certLabel: 'Certificados de idioma habituales en el país',
+    entranceLabel: 'Acreditación de acceso a la universidad',
+    vocationalLabel: 'Título profesional',
+    higherLabel: 'Título universitario',
+    criminalLabel: 'Certificado de antecedentes penales',
+    legalTitle: 'Requisitos legales',
+    legalItems: [
+      'Derecho a trabajar en el país de actuación',
+      'Documento de residencia válido, cuando sea necesario',
+      'Certificado de antecedentes penales, cuando lo exija el servicio concreto',
+    ],
+    clientTitle: 'Requisitos adicionales del cliente',
+    clientText:
+      'Las autoridades, los juzgados y las organizaciones internacionales establecen en ocasiones requisitos propios, como habilitaciones de seguridad, compromisos de confidencialidad o conocimientos especializados. Se los comunicamos antes de un servicio.',
+    individualNotice:
+      'Acreditación comparable: se requiere una valoración individual. Este resumen no sustituye a una resolución oficial de reconocimiento.',
+    reviewPending:
+      'La revisión técnica de los datos de este país aún está pendiente. Las denominaciones indicadas sirven únicamente de orientación.',
+    sourcesLabel: 'Fuentes de información oficiales',
+    fullRequirementsLink: 'Ver todos los requisitos de este país',
+    backToApply: 'Volver a la candidatura',
   },
 
   contact: {

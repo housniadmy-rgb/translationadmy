@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Suomi. TODO: Abschnitt `requirements` fehlt noch. */
-const fi: LocaleDictionary = {
+/** Suomi. */
+const fi: Dictionary = {
   nav: {
     home: 'Etusivu',
     services: 'Palvelut',
@@ -689,7 +689,87 @@ const fi: LocaleDictionary = {
       fileType: 'Sallittuja ovat PDF-, JPG- ja PNG-tiedostot.',
       tooLarge: 'Tiedosto on liian suuri. Enimmäiskoko on 8 Mt.',
       tooMany: 'Ladatkaa enintään 5 todistusta.',
+      country: 'Valitkaa maa.',
+      confirmations: 'Vahvistakaa kaikki kohdat.',
     },
+    uploadLabels: {
+      cv: 'Ansioluettelo',
+      languageCertificate: 'Kielitodistus',
+      schoolCertificate: 'Koulutodistus',
+      vocationalCertificate: 'Ammatillinen tutkinto',
+      degree: 'Korkeakoulututkinto',
+      residencePermit: 'Oleskelulupa',
+      workPermit: 'Todistus työnteko-oikeudesta',
+      other: 'Muut todistukset',
+    },
+    uploadHint: 'PDF, JPG tai PNG – enintään 8 Mt tiedostoa kohti.',
+    criminalRecordNotice:
+      'Rikosrekisteriotetta tai vastaavaa asiakirjaa ei tarkoituksella liitetä hakemukseen. Pyydämme sen vasta silloin, kun se on tarpeen konkreettista toimeksiantoa varten.',
+    uploadBackendNotice:
+      'Huomio: asiakirjojen suojattu lähetys on vielä määritettävä tällä palvelimella. Siihen asti ilmoitamme teille virheestä sen sijaan, että teeskentelisimme onnistunutta lähetystä.',
+    confirmationsTitle: 'Vahvistukset',
+    confirmations: [
+      'Olen lukenut valitun toimeksiantomaan edellytykset.',
+      'Minulla on tarvittava työnteko-oikeus tai toimitan siitä vastaavan todistuksen.',
+      'Tietoni ja asiakirjani ovat täydelliset ja totuudenmukaiset.',
+      'Tiedän, että jokainen hakemus arvioidaan erikseen eikä automaattista hyväksyntää tai takuuta toimeksiannoista ole.',
+    ],
+    privacyLinkText: 'Lue tietosuojaseloste',
+  },
+
+  requirements: {
+    metaTitle: 'Edellytykset tulkeille ja kääntäjille',
+    metaDescription:
+      'Kieli- ja koulutusedellytykset tulkkaus- ja käännöstoimeksiannoille – maakohtaisesti eriteltynä ja viittauksin toimivaltaisiin viranomaisiin.',
+    h1: 'Edellytykset toimeksiantomaan mukaan',
+    lead:
+      'Se, mitkä todistukset ovat merkityksellisiä, riippuu toimeksiantomaasta ja toimeksiantajasta. Alla oleva katsaus kertoo siellä käytetyt nimitykset. Tutkinnon tunnustamisesta päättävät yksinomaan toimivaltaiset viranomaiset.',
+    countryLabel: 'Asuinmaa tai suunniteltu toimeksiantomaa',
+    countryPlaceholder: 'Valitkaa',
+    countryHint: 'Edellytykset vaihtelevat maittain.',
+    panelTitle: 'Edellytykset toimeksiannoille maassa {country}',
+    separationNotice:
+      'Tärkeää: koulutodistus, korkeakoulukelpoisuus tai korkeakoulututkinto ei ole automaattisesti osoitus C1-tason kielitaidosta. Kieli- ja koulutusedellytykset arvioidaan erikseen.',
+    languageTitle: 'A. Kielitaito',
+    languageLead: 'Vähintään yksi seuraavista todistuksista:',
+    languageItems: [
+      'Tunnustettu kielitodistus tasolla C1 tai C2 eurooppalaisen viitekehyksen mukaisesti',
+      'Kyseisessä maassa tunnustettu vastaava kielitodistus',
+      'Suoritettu tutkinto kyseisellä työkielellä, mikäli se voidaan hyväksyä kielitodistukseksi',
+      'Muu todennettava osoitus vähintään C1-tason kielitaidosta',
+    ],
+    educationTitle: 'B. Koulutus tai ammatillinen pätevyys',
+    educationLead:
+      'Toimeksiannosta ja toimeksiantajasta riippuen vähintään yksi soveltuva todistus, esimerkiksi:',
+    educationItems: [
+      'Korkeakoulukelpoisuus',
+      'Suoritettu ammatillinen koulutus',
+      'Valmentavan vuoden todistus tai vastaava',
+      'Korkeakoulututkinto',
+      'Tulkin tai kääntäjän koulutus',
+      'Vastaava ulkomailla suoritettu tutkinto',
+    ],
+    certLabel: 'Maassa yleiset kielitodistukset',
+    entranceLabel: 'Korkeakoulukelpoisuus',
+    vocationalLabel: 'Ammatillinen tutkinto',
+    higherLabel: 'Korkeakoulututkinto',
+    criminalLabel: 'Rikosrekisteriote',
+    legalTitle: 'Oikeudelliset edellytykset',
+    legalItems: [
+      'Työnteko-oikeus toimeksiantomaassa',
+      'Voimassa oleva oleskeluasiakirja, mikäli sitä vaaditaan',
+      'Rikosrekisteriote, mikäli konkreettinen toimeksianto sitä edellyttää',
+    ],
+    clientTitle: 'Toimeksiantajan lisävaatimukset',
+    clientText:
+      'Viranomaiset, tuomioistuimet ja kansainväliset organisaatiot asettavat toisinaan omia vaatimuksiaan, kuten turvallisuusselvityksiä, salassapitositoumuksia tai erityisosaamista. Kerromme niistä ennen toimeksiantoa.',
+    individualNotice:
+      'Vastaava todistus – yksilöllinen arviointi tarpeen. Tämä katsaus ei korvaa virallista tunnustamispäätöstä.',
+    reviewPending:
+      'Tämän maan tietojen asiantuntija-arviointi on vielä kesken. Mainitut nimitykset ovat vain suuntaa antavia.',
+    sourcesLabel: 'Viralliset tietolähteet',
+    fullRequirementsLink: 'Katso tämän maan kaikki edellytykset',
+    backToApply: 'Takaisin hakemukseen',
   },
 
   contact: {

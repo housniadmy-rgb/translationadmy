@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Lietuvių. TODO: Abschnitt `requirements` fehlt noch. */
-const lt: LocaleDictionary = {
+/** Lietuvių. */
+const lt: Dictionary = {
   nav: {
     home: 'Pradžia',
     services: 'Paslaugos',
@@ -689,7 +689,87 @@ const lt: LocaleDictionary = {
       fileType: 'Leidžiami PDF, JPG ir PNG failai.',
       tooLarge: 'Failas per didelis. Leidžiama ne daugiau kaip 8 MB.',
       tooMany: 'Įkelkite ne daugiau kaip 5 pažymėjimus.',
+      country: 'Pasirinkite šalį.',
+      confirmations: 'Patvirtinkite visus punktus.',
     },
+    uploadLabels: {
+      cv: 'Gyvenimo aprašymas',
+      languageCertificate: 'Kalbos pažymėjimas',
+      schoolCertificate: 'Mokyklos baigimo dokumentas',
+      vocationalCertificate: 'Profesinė kvalifikacija',
+      degree: 'Aukštojo mokslo diplomas',
+      residencePermit: 'Leidimas gyventi',
+      workPermit: 'Teisės dirbti patvirtinimas',
+      other: 'Kiti pažymėjimai',
+    },
+    uploadHint: 'PDF, JPG arba PNG – ne daugiau kaip 8 MB vienam failui.',
+    criminalRecordNotice:
+      'Pažyma apie teistumą ar lygiavertis dokumentas sąmoningai neteikiamas kartu su paraiška. Jo prašome tik tada, kai jis būtinas konkrečiam užsakymui.',
+    uploadBackendNotice:
+      'Pastaba: saugų dokumentų perdavimą šiame serveryje dar reikia sukonfigūruoti. Iki tol pranešame apie klaidą, o ne apsimetame, kad pateikimas pavyko.',
+    confirmationsTitle: 'Patvirtinimai',
+    confirmations: [
+      'Perskaičiau pasirinktos užsakymo šalies reikalavimus.',
+      'Turiu reikiamą leidimą dirbti arba pateiksiu atitinkamą dokumentą.',
+      'Mano duomenys ir dokumentai yra išsamūs ir teisingi.',
+      'Žinau, kad kiekviena paraiška vertinama individualiai ir kad nėra automatinio priėmimo ar užsakymų garantijos.',
+    ],
+    privacyLinkText: 'Skaityti privatumo politiką',
+  },
+
+  requirements: {
+    metaTitle: 'Reikalavimai vertėjams žodžiu ir raštu',
+    metaDescription:
+      'Kalbiniai ir išsilavinimo reikalavimai vertimo užsakymams – pagal užsakymo šalis, su nuoroda į kompetentingas oficialias institucijas.',
+    h1: 'Reikalavimai pagal užsakymo šalį',
+    lead:
+      'Kokie dokumentai svarbūs, priklauso nuo užsakymo šalies ir užsakovo. Toliau pateikiamoje apžvalgoje nurodyti ten įprasti pavadinimai. Ar kvalifikacija pripažįstama, sprendžia tik kompetentingos oficialios institucijos.',
+    countryLabel: 'Gyvenamosios vietos šalis arba numatoma užsakymo šalis',
+    countryPlaceholder: 'Pasirinkite',
+    countryHint: 'Reikalavimai kiekvienoje šalyje skiriasi.',
+    panelTitle: 'Reikalavimai užsakymams šalyje: {country}',
+    separationNotice:
+      'Svarbu: mokyklos baigimo dokumentas, teisė stoti į aukštąją mokyklą ar aukštojo mokslo diplomas savaime nėra C1 lygio kalbos mokėjimo įrodymas. Kalbinė ir išsilavinimo kvalifikacija vertinamos atskirai.',
+    languageTitle: 'A. Kalbinė kvalifikacija',
+    languageLead: 'Bent vienas iš šių dokumentų:',
+    languageItems: [
+      'Pripažintas kalbos pažymėjimas C1 arba C2 lygiu pagal Bendruosius Europos kalbų metmenis',
+      'Atitinkamoje šalyje pripažintas lygiavertis kalbos dokumentas',
+      'Baigtos studijos atitinkama darbo kalba, jei jos gali būti pripažintos kalbos įrodymu',
+      'Kitas patikrinamas įrodymas apie bent C1 lygio kalbos mokėjimą',
+    ],
+    educationTitle: 'B. Mokyklinė arba profesinė kvalifikacija',
+    educationLead:
+      'Priklausomai nuo užsakymo ir užsakovo bent vienas tinkamas dokumentas, pavyzdžiui:',
+    educationItems: [
+      'Teisė stoti į aukštąją mokyklą',
+      'Baigtas profesinis mokymas',
+      'Parengiamųjų kursų pažymėjimas arba lygiavertis',
+      'Aukštojo mokslo diplomas',
+      'Vertėjo žodžiu ar raštu išsilavinimas',
+      'Panaši užsienyje įgyta kvalifikacija',
+    ],
+    certLabel: 'Šalyje paplitę kalbos pažymėjimai',
+    entranceLabel: 'Teisė stoti į aukštąją mokyklą',
+    vocationalLabel: 'Profesinė kvalifikacija',
+    higherLabel: 'Aukštojo mokslo diplomas',
+    criminalLabel: 'Pažyma apie teistumą',
+    legalTitle: 'Teisiniai reikalavimai',
+    legalItems: [
+      'Teisė dirbti užsakymo šalyje',
+      'Galiojantis dokumentas dėl gyvenimo šalyje, jei reikalingas',
+      'Pažyma apie teistumą, jei to reikalauja konkretus užsakymas',
+    ],
+    clientTitle: 'Papildomi užsakovo reikalavimai',
+    clientText:
+      'Institucijos, teismai ir tarptautinės organizacijos kartais kelia savus reikalavimus, pavyzdžiui, saugumo patikrinimus, konfidencialumo pasižadėjimus ar specialiąsias žinias. Apie juos pranešame prieš užsakymą.',
+    individualNotice:
+      'Panašus dokumentas – reikalingas individualus vertinimas. Ši apžvalga nepakeičia oficialaus sprendimo dėl pripažinimo.',
+    reviewPending:
+      'Šios šalies duomenų dalykinė patikra dar nebaigta. Nurodyti pavadinimai skirti tik orientacijai.',
+    sourcesLabel: 'Oficialūs informacijos šaltiniai',
+    fullRequirementsLink: 'Žiūrėti visus šios šalies reikalavimus',
+    backToApply: 'Grįžti į paraišką',
   },
 
   contact: {

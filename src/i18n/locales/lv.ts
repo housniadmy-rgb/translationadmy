@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Latviešu. TODO: Abschnitt `requirements` fehlt noch. */
-const lv: LocaleDictionary = {
+/** Latviešu. */
+const lv: Dictionary = {
   nav: {
     home: 'Sākums',
     services: 'Pakalpojumi',
@@ -689,7 +689,87 @@ const lv: LocaleDictionary = {
       fileType: 'Atļauti PDF, JPG un PNG faili.',
       tooLarge: 'Fails ir pārāk liels. Atļauti ne vairāk kā 8 MB.',
       tooMany: 'Lūdzu, augšupielādējiet ne vairāk kā 5 sertifikātus.',
+      country: 'Lūdzu, izvēlieties valsti.',
+      confirmations: 'Lūdzu, apstipriniet visus punktus.',
     },
+    uploadLabels: {
+      cv: 'CV',
+      languageCertificate: 'Valodas sertifikāts',
+      schoolCertificate: 'Vidējās izglītības dokuments',
+      vocationalCertificate: 'Profesionālā kvalifikācija',
+      degree: 'Augstākās izglītības diploms',
+      residencePermit: 'Uzturēšanās atļauja',
+      workPermit: 'Apliecinājums par tiesībām strādāt',
+      other: 'Citi sertifikāti',
+    },
+    uploadHint: 'PDF, JPG vai PNG – ne vairāk kā 8 MB katrai datnei.',
+    criminalRecordNotice:
+      'Izziņa no Sodu reģistra vai līdzvērtīgs dokuments apzināti netiek pievienots pieteikumam. Mēs to pieprasām tikai tad, kad tas nepieciešams konkrētam uzdevumam.',
+    uploadBackendNotice:
+      'Piezīme: dokumentu drošu nosūtīšanu šajā serverī vēl nepieciešams iestatīt. Līdz tam mēs ziņojam par kļūdu, nevis izliekamies, ka nosūtīšana izdevusies.',
+    confirmationsTitle: 'Apstiprinājumi',
+    confirmations: [
+      'Esmu izlasījis prasības izvēlētajai uzdevuma valstij.',
+      'Man ir nepieciešamā darba atļauja vai arī iesniegšu attiecīgu apliecinājumu.',
+      'Mani dati un dokumenti ir pilnīgi un patiesi.',
+      'Apzinos, ka katrs pieteikums tiek izvērtēts individuāli un ka nav automātiskas uzņemšanas vai uzdevumu garantijas.',
+    ],
+    privacyLinkText: 'Lasīt privātuma politiku',
+  },
+
+  requirements: {
+    metaTitle: 'Prasības mutiskajiem un rakstiskajiem tulkiem',
+    metaDescription:
+      'Valodas un izglītības prasības tulkošanas uzdevumiem – sadalījumā pa uzdevuma valstīm, ar atsauci uz kompetentajām oficiālajām iestādēm.',
+    h1: 'Prasības pēc uzdevuma valsts',
+    lead:
+      'Kuri dokumenti ir būtiski, atkarīgs no uzdevuma valsts un pasūtītāja. Zemāk redzamajā pārskatā norādīti tur ierastie apzīmējumi. Par kvalifikācijas atzīšanu lemj vienīgi kompetentās oficiālās iestādes.',
+    countryLabel: 'Dzīvesvietas valsts vai paredzētā uzdevuma valsts',
+    countryPlaceholder: 'Lūdzu, izvēlieties',
+    countryHint: 'Prasības dažādās valstīs atšķiras.',
+    panelTitle: 'Prasības uzdevumiem valstī: {country}',
+    separationNotice:
+      'Svarīgi: vidējās izglītības dokuments, tiesības uzsākt augstskolas studijas vai augstākās izglītības diploms nav automātisks apliecinājums par valodas prasmi C1 līmenī. Valodas un izglītības kvalifikāciju vērtē atsevišķi.',
+    languageTitle: 'A. Valodas kvalifikācija',
+    languageLead: 'Vismaz viens no šiem apliecinājumiem:',
+    languageItems: [
+      'Atzīts valodas sertifikāts C1 vai C2 līmenī saskaņā ar Eiropas kopīgajām pamatnostādnēm valodu apguvē',
+      'Attiecīgajā valstī atzīts līdzvērtīgs valodas apliecinājums',
+      'Pabeigtas studijas attiecīgajā darba valodā, ja tās var atzīt par valodas apliecinājumu',
+      'Cits pārbaudāms apliecinājums par valodas prasmi vismaz C1 līmenī',
+    ],
+    educationTitle: 'B. Izglītības vai profesionālā kvalifikācija',
+    educationLead:
+      'Atkarībā no uzdevuma un pasūtītāja vismaz viens piemērots apliecinājums, piemēram:',
+    educationItems: [
+      'Tiesības uzsākt augstskolas studijas',
+      'Pabeigta profesionālā izglītība',
+      'Sagatavošanas gada apliecība vai līdzvērtīga',
+      'Augstākās izglītības diploms',
+      'Mutiskā vai rakstiskā tulka izglītība',
+      'Salīdzināma ārvalstīs iegūta izglītība',
+    ],
+    certLabel: 'Valstī izplatītie valodas sertifikāti',
+    entranceLabel: 'Tiesības uzsākt augstskolas studijas',
+    vocationalLabel: 'Profesionālā kvalifikācija',
+    higherLabel: 'Augstākās izglītības diploms',
+    criminalLabel: 'Izziņa no Sodu reģistra',
+    legalTitle: 'Juridiskās prasības',
+    legalItems: [
+      'Tiesības strādāt uzdevuma valstī',
+      'Derīgs uzturēšanās dokuments, ja nepieciešams',
+      'Izziņa no Sodu reģistra, ja to prasa konkrētais uzdevums',
+    ],
+    clientTitle: 'Pasūtītāja papildu prasības',
+    clientText:
+      'Iestādes, tiesas un starptautiskas organizācijas dažkārt izvirza savas prasības, piemēram, drošības pārbaudes, konfidencialitātes apliecinājumus vai īpašas nozares zināšanas. Par tām informējam pirms uzdevuma.',
+    individualNotice:
+      'Salīdzināms apliecinājums – nepieciešams individuāls izvērtējums. Šis pārskats neaizstāj oficiālu lēmumu par atzīšanu.',
+    reviewPending:
+      'Šīs valsts datu profesionālā pārbaude vēl nav pabeigta. Norādītie apzīmējumi kalpo vienīgi orientācijai.',
+    sourcesLabel: 'Oficiālie informācijas avoti',
+    fullRequirementsLink: 'Skatīt visas šīs valsts prasības',
+    backToApply: 'Atpakaļ uz pieteikumu',
   },
 
   contact: {

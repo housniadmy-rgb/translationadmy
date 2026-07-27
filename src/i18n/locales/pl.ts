@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Polski. TODO: Abschnitt `requirements` fehlt noch. */
-const pl: LocaleDictionary = {
+/** Polski. */
+const pl: Dictionary = {
   nav: {
     home: 'Start',
     services: 'Usługi',
@@ -689,7 +689,87 @@ const pl: LocaleDictionary = {
       fileType: 'Dopuszczalne są pliki PDF, JPG i PNG.',
       tooLarge: 'Plik jest za duży. Maksimum to 8 MB.',
       tooMany: 'Prosimy przesłać maksymalnie 5 certyfikatów.',
+      country: 'Prosimy wybrać kraj.',
+      confirmations: 'Prosimy potwierdzić wszystkie punkty.',
     },
+    uploadLabels: {
+      cv: 'Życiorys',
+      languageCertificate: 'Certyfikat językowy',
+      schoolCertificate: 'Świadectwo szkolne',
+      vocationalCertificate: 'Dyplom zawodowy',
+      degree: 'Dyplom ukończenia studiów',
+      residencePermit: 'Dokument pobytowy',
+      workPermit: 'Potwierdzenie prawa do pracy',
+      other: 'Inne certyfikaty',
+    },
+    uploadHint: 'PDF, JPG lub PNG – maksymalnie 8 MB na plik.',
+    criminalRecordNotice:
+      'Zaświadczenie o niekaralności lub dokument równoważny celowo nie jest przesyłany wraz ze zgłoszeniem. Prosimy o nie dopiero wtedy, gdy jest wymagane do konkretnego zlecenia.',
+    uploadBackendNotice:
+      'Uwaga: bezpieczne przesyłanie dokumentów wymaga jeszcze konfiguracji na tym serwerze. Do tego czasu zgłaszamy błąd, zamiast pozorować udane wysłanie.',
+    confirmationsTitle: 'Potwierdzenia',
+    confirmations: [
+      'Zapoznałem się z wymaganiami dla wybranego kraju realizacji zleceń.',
+      'Posiadam wymagane zezwolenie na pracę lub przedłożę odpowiedni dokument.',
+      'Moje dane i dokumenty są kompletne i zgodne z prawdą.',
+      'Wiem, że każde zgłoszenie jest rozpatrywane indywidualnie i że nie ma automatycznego przyjęcia ani gwarancji zleceń.',
+    ],
+    privacyLinkText: 'Przeczytaj politykę prywatności',
+  },
+
+  requirements: {
+    metaTitle: 'Wymagania dla tłumaczy ustnych i pisemnych',
+    metaDescription:
+      'Wymagania językowe i wykształcenie przy zleceniach tłumaczeniowych – w podziale na kraje realizacji, z odesłaniem do właściwych organów urzędowych.',
+    h1: 'Wymagania według kraju realizacji zleceń',
+    lead:
+      'To, które dokumenty mają znaczenie, zależy od kraju realizacji i od zleceniodawcy. Poniższe zestawienie podaje przyjęte tam nazwy. O uznaniu wykształcenia decydują wyłącznie właściwe organy urzędowe.',
+    countryLabel: 'Kraj zamieszkania lub przewidywany kraj realizacji zleceń',
+    countryPlaceholder: 'Prosimy wybrać',
+    countryHint: 'Wymagania różnią się w zależności od kraju.',
+    panelTitle: 'Wymagania przy zleceniach w kraju: {country}',
+    separationNotice:
+      'Ważne: świadectwo szkolne, uprawnienie do podjęcia studiów ani dyplom ukończenia studiów nie są automatycznie potwierdzeniem znajomości języka na poziomie C1. Kwalifikacje językowe i wykształcenie ocenia się oddzielnie.',
+    languageTitle: 'A. Kwalifikacje językowe',
+    languageLead: 'Co najmniej jeden z poniższych dokumentów:',
+    languageItems: [
+      'Uznany certyfikat językowy na poziomie C1 lub C2 według Europejskiego Systemu Opisu Kształcenia Językowego',
+      'Równoważne potwierdzenie znajomości języka uznawane w danym kraju',
+      'Ukończone studia w danym języku roboczym, o ile mogą zostać uznane za potwierdzenie znajomości języka',
+      'Inne wiarygodne potwierdzenie znajomości języka co najmniej na poziomie C1',
+    ],
+    educationTitle: 'B. Kwalifikacje szkolne lub zawodowe',
+    educationLead:
+      'W zależności od zlecenia i zleceniodawcy co najmniej jeden odpowiedni dokument, na przykład:',
+    educationItems: [
+      'Uprawnienie do podjęcia studiów wyższych',
+      'Ukończone kształcenie zawodowe',
+      'Świadectwo kursu przygotowawczego lub równoważne',
+      'Dyplom ukończenia studiów',
+      'Wykształcenie w zakresie tłumaczeń ustnych lub pisemnych',
+      'Porównywalne wykształcenie uzyskane za granicą',
+    ],
+    certLabel: 'Certyfikaty językowe rozpowszechnione w danym kraju',
+    entranceLabel: 'Uprawnienie do podjęcia studiów wyższych',
+    vocationalLabel: 'Dyplom zawodowy',
+    higherLabel: 'Dyplom ukończenia studiów',
+    criminalLabel: 'Zaświadczenie o niekaralności',
+    legalTitle: 'Wymagania prawne',
+    legalItems: [
+      'Prawo do pracy w kraju realizacji zleceń',
+      'Ważny dokument pobytowy, jeśli jest wymagany',
+      'Zaświadczenie o niekaralności, jeśli wymaga tego konkretne zlecenie',
+    ],
+    clientTitle: 'Dodatkowe wymagania zleceniodawcy',
+    clientText:
+      'Urzędy, sądy i organizacje międzynarodowe stawiają niekiedy własne wymagania, takie jak poświadczenia bezpieczeństwa, oświadczenia o poufności lub wiedza specjalistyczna. Informujemy o nich przed zleceniem.',
+    individualNotice:
+      'Dokument porównywalny – wymagana jest indywidualna ocena. To zestawienie nie zastępuje urzędowej decyzji o uznaniu.',
+    reviewPending:
+      'Merytoryczna weryfikacja danych dla tego kraju jeszcze trwa. Podane nazwy służą wyłącznie orientacji.',
+    sourcesLabel: 'Oficjalne źródła informacji',
+    fullRequirementsLink: 'Zobacz wszystkie wymagania dla tego kraju',
+    backToApply: 'Powrót do zgłoszenia',
   },
 
   contact: {

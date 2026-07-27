@@ -1,15 +1,13 @@
 import type { PageId } from './config';
 
 /**
- * Übergangstyp für Sprachfassungen, in denen der Abschnitt `requirements`
- * (länderabhängige Voraussetzungen) noch nicht übersetzt ist.
+ * Nachsichtiger Typ für den Fall, dass eine Sprachfassung vorübergehend
+ * unvollständig ist – etwa während ein neuer Abschnitt übersetzt wird.
  *
- * Fehlt der Abschnitt, ergänzt getDictionary() ihn sichtbar aus dem Deutschen
- * und gibt beim Build eine Warnung aus. tests/i18n.test.ts führt die
- * betroffenen Sprachen auf, damit der Rückstand nicht in Vergessenheit gerät.
- *
- * Sobald alle Fassungen vollständig sind, kann dieser Typ entfallen und alle
- * Dateien annotieren wieder direkt `Dictionary`.
+ * Derzeit nutzt ihn keine Datei: Alle 17 Fassungen sind vollständig und
+ * annotieren `Dictionary`, damit TypeScript fehlende Schlüssel meldet.
+ * getDictionary() ergänzt Lücken zusätzlich zur Laufzeit aus dem Deutschen
+ * und warnt beim Build, falls doch einmal eine entsteht.
  */
 export type LocaleDictionary = {
   [Section in keyof Dictionary]?: Partial<Dictionary[Section]>;

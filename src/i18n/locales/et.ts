@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Eesti. TODO: Abschnitt `requirements` fehlt noch. */
-const et: LocaleDictionary = {
+/** Eesti. */
+const et: Dictionary = {
   nav: {
     home: 'Avaleht',
     services: 'Teenused',
@@ -689,7 +689,87 @@ const et: LocaleDictionary = {
       fileType: 'Lubatud on PDF-, JPG- ja PNG-failid.',
       tooLarge: 'Fail on liiga suur. Lubatud on kuni 8 MB.',
       tooMany: 'Palun laadige üles kuni 5 tunnistust.',
+      country: 'Palun valige riik.',
+      confirmations: 'Palun kinnitage kõik punktid.',
     },
+    uploadLabels: {
+      cv: 'CV',
+      languageCertificate: 'Keeletunnistus',
+      schoolCertificate: 'Kooliharidust tõendav dokument',
+      vocationalCertificate: 'Kutsekvalifikatsioon',
+      degree: 'Kõrgharidusdiplom',
+      residencePermit: 'Elamisluba',
+      workPermit: 'Töötamisõiguse tõend',
+      other: 'Muud tunnistused',
+    },
+    uploadHint: 'PDF, JPG või PNG – kuni 8 MB faili kohta.',
+    criminalRecordNotice:
+      'Karistusregistri teadet või sellega võrreldavat dokumenti teadlikult ei laadita avaldusega kaasa. Küsime seda alles siis, kui see on konkreetse töö jaoks vajalik.',
+    uploadBackendNotice:
+      'Märkus: dokumentide turvaline edastamine tuleb selles serveris veel seadistada. Seni teatame teile veast, selle asemel et teeselda edukat esitamist.',
+    confirmationsTitle: 'Kinnitused',
+    confirmations: [
+      'Olen lugenud valitud sihtriigi nõudeid.',
+      'Mul on vajalik tööluba või esitan vastava tõendi.',
+      'Minu andmed ja dokumendid on täielikud ja tõesed.',
+      'Olen teadlik, et iga avaldust hinnatakse eraldi ning automaatset vastuvõtmist ega tööde garantiid ei ole.',
+    ],
+    privacyLinkText: 'Loe privaatsusteadet',
+  },
+
+  requirements: {
+    metaTitle: 'Nõuded suulistele ja kirjalikele tõlkijatele',
+    metaDescription:
+      'Keele- ja haridusnõuded tõlketöödeks – riikide kaupa, viidetega pädevatele ametiasutustele.',
+    h1: 'Nõuded sihtriigi kaupa',
+    lead:
+      'Millised dokumendid on asjakohased, sõltub sihtriigist ja tellijast. Alljärgnev ülevaade nimetab seal tavapärased nimetused. Kvalifikatsiooni tunnustamise üle otsustavad ainuüksi pädevad ametiasutused.',
+    countryLabel: 'Elukohariik või kavandatav sihtriik',
+    countryPlaceholder: 'Palun valige',
+    countryHint: 'Nõuded on riigiti erinevad.',
+    panelTitle: 'Nõuded töödeks riigis {country}',
+    separationNotice:
+      'Oluline: kooliharidust tõendav dokument, kõrgkooli sisseastumisõigus või kõrgharidusdiplom ei ole automaatselt tõend C1-taseme keeleoskuse kohta. Keele- ja haridusalast kvalifikatsiooni hinnatakse eraldi.',
+    languageTitle: 'A. Keelealane kvalifikatsioon',
+    languageLead: 'Vähemalt üks järgmistest tõenditest:',
+    languageItems: [
+      'Tunnustatud keeletunnistus tasemel C1 või C2 Euroopa keeleõppe raamdokumendi järgi',
+      'Asjaomases riigis tunnustatud samaväärne keeletõend',
+      'Lõpetatud õpingud vastavas töökeeles, kui neid saab keeletõendina aktsepteerida',
+      'Muu kontrollitav tõend vähemalt C1-taseme keeleoskuse kohta',
+    ],
+    educationTitle: 'B. Kooli- või kutsekvalifikatsioon',
+    educationLead:
+      'Olenevalt tööst ja tellijast vähemalt üks sobiv tõend, näiteks:',
+    educationItems: [
+      'Kõrgkooli sisseastumisõigus',
+      'Lõpetatud kutseõpe',
+      'Ettevalmistusaasta tunnistus või sellega võrreldav',
+      'Kõrgharidusdiplom',
+      'Suulise või kirjaliku tõlkija väljaõpe',
+      'Võrreldav välismaal omandatud haridus',
+    ],
+    certLabel: 'Riigis levinud keeletunnistused',
+    entranceLabel: 'Kõrgkooli sisseastumisõigus',
+    vocationalLabel: 'Kutsekvalifikatsioon',
+    higherLabel: 'Kõrgharidusdiplom',
+    criminalLabel: 'Karistusregistri teade',
+    legalTitle: 'Õiguslikud nõuded',
+    legalItems: [
+      'Töötamisõigus sihtriigis',
+      'Kehtiv elamisdokument, kui see on nõutav',
+      'Karistusregistri teade, kui konkreetne töö seda nõuab',
+    ],
+    clientTitle: 'Tellija täiendavad nõuded',
+    clientText:
+      'Ametiasutused, kohtud ja rahvusvahelised organisatsioonid esitavad mõnikord oma nõudeid, näiteks julgeolekukontroll, konfidentsiaalsusdeklaratsioon või eriteadmised. Teavitame teid neist enne tööd.',
+    individualNotice:
+      'Võrreldav tõend – vajalik on individuaalne hindamine. See ülevaade ei asenda ametlikku tunnustamisotsust.',
+    reviewPending:
+      'Selle riigi andmete erialane kontroll on veel pooleli. Nimetatud tähistused on üksnes orienteerumiseks.',
+    sourcesLabel: 'Ametlikud teabeallikad',
+    fullRequirementsLink: 'Vaata selle riigi kõiki nõudeid',
+    backToApply: 'Tagasi avalduse juurde',
   },
 
   contact: {

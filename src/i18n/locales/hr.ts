@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Hrvatski. TODO: Abschnitt `requirements` fehlt noch. */
-const hr: LocaleDictionary = {
+/** Hrvatski. */
+const hr: Dictionary = {
   nav: {
     home: 'Početna',
     services: 'Usluge',
@@ -689,7 +689,87 @@ const hr: LocaleDictionary = {
       fileType: 'Dopuštene su datoteke PDF, JPG i PNG.',
       tooLarge: 'Datoteka je prevelika. Dopušteno je najviše 8 MB.',
       tooMany: 'Priložite najviše 5 potvrda.',
+      country: 'Odaberite državu.',
+      confirmations: 'Potvrdite sve točke.',
     },
+    uploadLabels: {
+      cv: 'Životopis',
+      languageCertificate: 'Jezična potvrda',
+      schoolCertificate: 'Svjedodžba o završenom srednjoškolskom obrazovanju',
+      vocationalCertificate: 'Strukovna kvalifikacija',
+      degree: 'Visokoškolska diploma',
+      residencePermit: 'Dozvola boravka',
+      workPermit: 'Dokaz o pravu na rad',
+      other: 'Ostale potvrde',
+    },
+    uploadHint: 'PDF, JPG ili PNG – najviše 8 MB po datoteci.',
+    criminalRecordNotice:
+      'Uvjerenje o nekažnjavanju ili istovrijedan dokument namjerno se ne prilaže uz prijavu. Tražimo ga tek kada je potreban za konkretan angažman.',
+    uploadBackendNotice:
+      'Napomena: sigurno slanje dokumenata na ovom poslužitelju tek treba postaviti. Do tada vam javljamo pogrešku umjesto da lažno prikažemo uspješno slanje.',
+    confirmationsTitle: 'Potvrde',
+    confirmations: [
+      'Pročitao sam uvjete za odabranu državu angažmana.',
+      'Raspolažem potrebnom dozvolom za rad ili ću priložiti odgovarajući dokaz.',
+      'Moji su podaci i dokumenti potpuni i istiniti.',
+      'Svjestan sam da se svaka prijava razmatra pojedinačno i da ne postoji automatski prijem ni jamstvo angažmana.',
+    ],
+    privacyLinkText: 'Pročitajte izjavu o zaštiti podataka',
+  },
+
+  requirements: {
+    metaTitle: 'Uvjeti za usmene i pisane prevoditelje',
+    metaDescription:
+      'Jezični i obrazovni uvjeti za angažmane usmenog i pisanog prevođenja – po državama angažmana, uz upućivanje na nadležna službena tijela.',
+    h1: 'Uvjeti prema državi angažmana',
+    lead:
+      'Koji su dokazi relevantni ovisi o državi angažmana i o naručitelju. Pregled u nastavku navodi ondje uobičajene nazive. O priznavanju kvalifikacije odlučuju isključivo nadležna službena tijela.',
+    countryLabel: 'Država prebivališta odnosno predviđena država angažmana',
+    countryPlaceholder: 'Odaberite',
+    countryHint: 'Uvjeti se razlikuju od države do države.',
+    panelTitle: 'Uvjeti za angažmane u državi: {country}',
+    separationNotice:
+      'Važno: svjedodžba o završenom srednjoškolskom obrazovanju, potvrda o pravu upisa na visoko učilište ili visokoškolska diploma nisu automatski dokaz jezične razine C1. Jezična i obrazovna kvalifikacija razmatraju se odvojeno.',
+    languageTitle: 'A. Jezična kvalifikacija',
+    languageLead: 'Najmanje jedan od sljedećih dokaza:',
+    languageItems: [
+      'Priznata jezična potvrda na razini C1 ili C2 prema Zajedničkom europskom referentnom okviru',
+      'Istovrijedan jezični dokaz priznat u dotičnoj državi',
+      'Završen studij na dotičnom radnom jeziku, ako se može prihvatiti kao jezični dokaz',
+      'Drugi provjerljiv dokaz o poznavanju jezika najmanje na razini C1',
+    ],
+    educationTitle: 'B. Školska ili strukovna kvalifikacija',
+    educationLead:
+      'Ovisno o angažmanu i naručitelju najmanje jedan prikladan dokaz, primjerice:',
+    educationItems: [
+      'Pravo upisa na visoko učilište',
+      'Završeno strukovno obrazovanje',
+      'Svjedodžba pripremne godine ili istovrijedna',
+      'Visokoškolska diploma',
+      'Obrazovanje za usmenog ili pisanog prevoditelja',
+      'Usporediva inozemna obrazovna kvalifikacija',
+    ],
+    certLabel: 'Jezične potvrde uobičajene u državi',
+    entranceLabel: 'Pravo upisa na visoko učilište',
+    vocationalLabel: 'Strukovna kvalifikacija',
+    higherLabel: 'Visokoškolska diploma',
+    criminalLabel: 'Uvjerenje o nekažnjavanju',
+    legalTitle: 'Pravni uvjeti',
+    legalItems: [
+      'Pravo na rad u državi angažmana',
+      'Valjani dokument o boravku, ako je potreban',
+      'Uvjerenje o nekažnjavanju, ako ga konkretan angažman zahtijeva',
+    ],
+    clientTitle: 'Dodatni zahtjevi naručitelja',
+    clientText:
+      'Tijela, sudovi i međunarodne organizacije ponekad postavljaju vlastite zahtjeve, primjerice sigurnosne provjere, izjave o povjerljivosti ili posebna stručna znanja. O njima vas obavještavamo prije angažmana.',
+    individualNotice:
+      'Usporediv dokaz – potrebna je pojedinačna procjena. Ovaj pregled ne zamjenjuje službenu odluku o priznavanju.',
+    reviewPending:
+      'Stručna provjera podataka za ovu državu još je u tijeku. Navedeni nazivi služe isključivo za orijentaciju.',
+    sourcesLabel: 'Službeni izvori informacija',
+    fullRequirementsLink: 'Pogledajte sve uvjete za ovu državu',
+    backToApply: 'Natrag na prijavu',
   },
 
   contact: {

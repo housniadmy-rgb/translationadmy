@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Română. TODO: Abschnitt `requirements` fehlt noch. */
-const ro: LocaleDictionary = {
+/** Română. */
+const ro: Dictionary = {
   nav: {
     home: 'Acasă',
     services: 'Servicii',
@@ -689,7 +689,87 @@ const ro: LocaleDictionary = {
       fileType: 'Sunt acceptate fișiere PDF, JPG și PNG.',
       tooLarge: 'Fișierul este prea mare. Limita este de 8 MB.',
       tooMany: 'Încărcați cel mult 5 certificate.',
+      country: 'Selectați o țară.',
+      confirmations: 'Confirmați toate punctele.',
     },
+    uploadLabels: {
+      cv: 'CV',
+      languageCertificate: 'Certificat lingvistic',
+      schoolCertificate: 'Diplomă de studii liceale',
+      vocationalCertificate: 'Calificare profesională',
+      degree: 'Diplomă universitară',
+      residencePermit: 'Permis de ședere',
+      workPermit: 'Dovada dreptului de a munci',
+      other: 'Alte certificate',
+    },
+    uploadHint: 'PDF, JPG sau PNG – maximum 8 MB per fișier.',
+    criminalRecordNotice:
+      'Certificatul de cazier judiciar sau documentul echivalent nu se încarcă în mod deliberat odată cu candidatura. Îl solicităm doar atunci când este necesar pentru o misiune concretă.',
+    uploadBackendNotice:
+      'Notă: transmiterea securizată a documentelor urmează să fie configurată pe acest server. Până atunci vă semnalăm o eroare în loc să simulăm o trimitere reușită.',
+    confirmationsTitle: 'Confirmări',
+    confirmations: [
+      'Am citit cerințele pentru țara de misiune selectată.',
+      'Dispun de autorizația de muncă necesară sau voi prezenta dovada corespunzătoare.',
+      'Datele și documentele mele sunt complete și conforme cu realitatea.',
+      'Știu că fiecare candidatură este evaluată individual și că nu există admitere automată sau garanție a misiunilor.',
+    ],
+    privacyLinkText: 'Citiți politica de confidențialitate',
+  },
+
+  requirements: {
+    metaTitle: 'Cerințe pentru interpreți și traducători',
+    metaDescription:
+      'Cerințe lingvistice și de studii pentru misiuni de interpretariat și traducere – detaliate pe țări, cu trimitere la autoritățile oficiale competente.',
+    h1: 'Cerințe în funcție de țara misiunii',
+    lead:
+      'Documentele relevante depind de țara misiunii și de beneficiar. Prezentarea de mai jos indică denumirile uzuale de acolo. Recunoașterea unui titlu este decisă exclusiv de autoritățile oficiale competente.',
+    countryLabel: 'Țara de reședință sau țara de misiune avută în vedere',
+    countryPlaceholder: 'Selectați',
+    countryHint: 'Cerințele diferă de la o țară la alta.',
+    panelTitle: 'Cerințe pentru misiuni în {country}',
+    separationNotice:
+      'Important: o diplomă de studii liceale, un act de acces la învățământul superior sau o diplomă universitară nu constituie automat o dovadă a competențelor lingvistice de nivel C1. Calificarea lingvistică și cea de studii se evaluează separat.',
+    languageTitle: 'A. Calificare lingvistică',
+    languageLead: 'Cel puțin unul dintre următoarele documente:',
+    languageItems: [
+      'Un certificat lingvistic recunoscut de nivel C1 sau C2 conform Cadrului european comun de referință',
+      'Un document lingvistic echivalent recunoscut în țara respectivă',
+      'Studii absolvite în limba de lucru respectivă, dacă pot fi acceptate ca dovadă lingvistică',
+      'Alt document verificabil privind competențe lingvistice de cel puțin nivel C1',
+    ],
+    educationTitle: 'B. Calificare școlară sau profesională',
+    educationLead:
+      'În funcție de misiune și de beneficiar, cel puțin un document adecvat, de exemplu:',
+    educationItems: [
+      'Act de acces la învățământul superior',
+      'Formare profesională absolvită',
+      'Certificat de an pregătitor sau echivalent',
+      'Diplomă universitară',
+      'Formare în interpretariat sau traducere',
+      'Titlu de studii străin comparabil',
+    ],
+    certLabel: 'Certificate lingvistice uzuale în țară',
+    entranceLabel: 'Act de acces la învățământul superior',
+    vocationalLabel: 'Calificare profesională',
+    higherLabel: 'Diplomă universitară',
+    criminalLabel: 'Certificat de cazier judiciar',
+    legalTitle: 'Cerințe legale',
+    legalItems: [
+      'Dreptul de a munci în țara misiunii',
+      'Document de ședere valabil, dacă este necesar',
+      'Certificat de cazier judiciar, dacă misiunea concretă îl impune',
+    ],
+    clientTitle: 'Cerințe suplimentare ale beneficiarului',
+    clientText:
+      'Autoritățile, instanțele și organizațiile internaționale stabilesc uneori cerințe proprii, precum verificări de securitate, declarații de confidențialitate sau cunoștințe de specialitate. Vi le comunicăm înaintea misiunii.',
+    individualNotice:
+      'Document comparabil – este necesară o evaluare individuală. Această prezentare nu înlocuiește o decizie oficială de recunoaștere.',
+    reviewPending:
+      'Verificarea de specialitate a informațiilor privind această țară este încă în curs. Denumirile indicate servesc exclusiv orientării.',
+    sourcesLabel: 'Surse oficiale de informare',
+    fullRequirementsLink: 'Vedeți toate cerințele pentru această țară',
+    backToApply: 'Înapoi la candidatură',
   },
 
   contact: {

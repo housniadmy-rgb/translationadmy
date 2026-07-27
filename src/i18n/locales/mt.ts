@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Malti. TODO: Abschnitt `requirements` fehlt noch. */
-const mt: LocaleDictionary = {
+/** Malti. */
+const mt: Dictionary = {
   nav: {
     home: 'Paġna ewlenija',
     services: 'Servizzi',
@@ -689,7 +689,87 @@ const mt: LocaleDictionary = {
       fileType: 'Huma permessi fajls PDF, JPG u PNG.',
       tooLarge: 'Il-fajl huwa kbir wisq. Huma permessi massimu ta’ 8 MB.',
       tooMany: 'Jekk jogħġbok tella’ mhux aktar minn 5 ċertifikati.',
+      country: 'Jekk jogħġbok agħżel pajjiż.',
+      confirmations: 'Jekk jogħġbok ikkonferma l-punti kollha.',
     },
+    uploadLabels: {
+      cv: 'CV',
+      languageCertificate: 'Ċertifikat tal-lingwa',
+      schoolCertificate: 'Kwalifika skolastika',
+      vocationalCertificate: 'Kwalifika vokazzjonali',
+      degree: 'Grad universitarju',
+      residencePermit: 'Permess ta’ residenza',
+      workPermit: 'Prova tad-dritt li taħdem',
+      other: 'Ċertifikati oħra',
+    },
+    uploadHint: 'PDF, JPG jew PNG – massimu ta’ 8 MB għal kull fajl.',
+    criminalRecordNotice:
+      'Iċ-ċertifikat tal-kondotta jew dokument komparabbli deliberatament ma jintbagħatx mal-applikazzjoni. Nitolbuh biss meta jkun meħtieġ għal inkarigu konkret.',
+    uploadBackendNotice:
+      'Nota: it-trażmissjoni sigura tad-dokumenti għad trid tiġi kkonfigurata fuq dan is-server. Sa dakinhar nirrappurtawlek żball minflok ma nagħtu l-impressjoni ta’ sottomissjoni b’suċċess.',
+    confirmationsTitle: 'Konfermi',
+    confirmations: [
+      'Qrajt ir-rekwiżiti għall-pajjiż tal-inkarigu magħżul.',
+      'Għandi l-permess meħtieġ biex naħdem jew se nippreżenta l-prova korrispondenti.',
+      'Id-dettalji u d-dokumenti tiegħi huma kompluti u veri.',
+      'Naf li kull applikazzjoni tiġi vvalutata individwalment u li ma hemm l-ebda aċċettazzjoni awtomatika jew garanzija ta’ inkarigi.',
+    ],
+    privacyLinkText: 'Aqra l-politika ta’ privatezza',
+  },
+
+  requirements: {
+    metaTitle: 'Rekwiżiti għall-interpreti u t-tradutturi',
+    metaDescription:
+      'Rekwiżiti lingwistiċi u edukattivi għal inkarigi ta’ interpretazzjoni u traduzzjoni – imqassma skont il-pajjiż tal-inkarigu, b’riferiment għall-awtoritajiet uffiċjali kompetenti.',
+    h1: 'Rekwiżiti skont il-pajjiż tal-inkarigu',
+    lead:
+      'Liema dokumenti huma rilevanti jiddependi mill-pajjiż tal-inkarigu u mill-klijent. Il-ħarsa ġenerali t’hawn taħt telenka d-denominazzjonijiet komuni hemmhekk. Jekk kwalifika tiġix rikonoxxuta jiddeċiduh biss l-awtoritajiet uffiċjali kompetenti.',
+    countryLabel: 'Pajjiż ta’ residenza jew pajjiż tal-inkarigu previst',
+    countryPlaceholder: 'Jekk jogħġbok agħżel',
+    countryHint: 'Ir-rekwiżiti jvarjaw minn pajjiż għal ieħor.',
+    panelTitle: 'Rekwiżiti għal inkarigi f’{country}',
+    separationNotice:
+      'Importanti: kwalifika skolastika, dritt ta’ aċċess għall-edukazzjoni għolja jew grad universitarju mhumiex awtomatikament prova ta’ ħiliet lingwistiċi fil-livell C1. Il-kwalifika lingwistika u dik edukattiva jiġu evalwati separatament.',
+    languageTitle: 'A. Kwalifika lingwistika',
+    languageLead: 'Mill-inqas waħda mill-provi li ġejjin:',
+    languageItems: [
+      'Ċertifikat tal-lingwa rikonoxxut fil-livell C1 jew C2 skont il-Qafas Komuni Ewropew ta’ Riferiment',
+      'Prova lingwistika ekwivalenti rikonoxxuta fil-pajjiż ikkonċernat',
+      'Studju mitmum fil-lingwa tax-xogħol ikkonċernata, sakemm jista’ jiġi aċċettat bħala prova lingwistika',
+      'Prova oħra verifikabbli ta’ ħiliet lingwistiċi mill-inqas fil-livell C1',
+    ],
+    educationTitle: 'B. Kwalifika skolastika jew vokazzjonali',
+    educationLead:
+      'Skont l-inkarigu u l-klijent, mill-inqas prova waħda adegwata, pereżempju:',
+    educationItems: [
+      'Dritt ta’ aċċess għall-edukazzjoni għolja',
+      'Taħriġ vokazzjonali mitmum',
+      'Ċertifikat ta’ sena preparatorja jew ekwivalenti',
+      'Grad universitarju',
+      'Taħriġ fl-interpretazzjoni jew fit-traduzzjoni',
+      'Kwalifika barranija komparabbli',
+    ],
+    certLabel: 'Ċertifikati tal-lingwa komuni fil-pajjiż',
+    entranceLabel: 'Dritt ta’ aċċess għall-edukazzjoni għolja',
+    vocationalLabel: 'Kwalifika vokazzjonali',
+    higherLabel: 'Grad universitarju',
+    criminalLabel: 'Ċertifikat tal-kondotta',
+    legalTitle: 'Rekwiżiti legali',
+    legalItems: [
+      'Dritt li taħdem fil-pajjiż tal-inkarigu',
+      'Dokument ta’ residenza validu, fejn meħtieġ',
+      'Ċertifikat tal-kondotta, fejn l-inkarigu konkret jitolbu',
+    ],
+    clientTitle: 'Rekwiżiti addizzjonali tal-klijent',
+    clientText:
+      'L-awtoritajiet, il-qrati u l-organizzazzjonijiet internazzjonali xi kultant jistabbilixxu rekwiżiti tagħhom, bħal verifiki ta’ sigurtà, dikjarazzjonijiet ta’ kunfidenzjalità jew għarfien speċjalizzat. Ninfurmawk dwarhom qabel inkarigu.',
+    individualNotice:
+      'Prova komparabbli – hija meħtieġa valutazzjoni individwali. Din il-ħarsa ġenerali ma tissostitwixxix deċiżjoni uffiċjali ta’ rikonoxximent.',
+    reviewPending:
+      'Il-verifika professjonali tal-informazzjoni għal dan il-pajjiż għadha pendenti. Id-denominazzjonijiet imsemmija jservu biss ta’ gwida.',
+    sourcesLabel: 'Sorsi uffiċjali ta’ informazzjoni',
+    fullRequirementsLink: 'Ara r-rekwiżiti kollha għal dan il-pajjiż',
+    backToApply: 'Lura għall-applikazzjoni',
   },
 
   contact: {

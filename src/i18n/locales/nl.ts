@@ -1,7 +1,7 @@
-import type { LocaleDictionary } from '../types';
+import type { Dictionary } from '../types';
 
-/** Nederlands. TODO: Abschnitt `requirements` fehlt noch. */
-const nl: LocaleDictionary = {
+/** Nederlands. */
+const nl: Dictionary = {
   nav: {
     home: 'Home',
     services: 'Diensten',
@@ -689,7 +689,87 @@ const nl: LocaleDictionary = {
       fileType: 'Toegestaan zijn PDF-, JPG- en PNG-bestanden.',
       tooLarge: 'Het bestand is te groot. Maximaal 8 MB is toegestaan.',
       tooMany: 'Upload maximaal 5 certificaten.',
+      country: 'Kies een land.',
+      confirmations: 'Bevestig alle punten.',
     },
+    uploadLabels: {
+      cv: 'Curriculum vitae',
+      languageCertificate: 'Taalcertificaat',
+      schoolCertificate: 'Schooldiploma',
+      vocationalCertificate: 'Beroepsdiploma',
+      degree: 'Hogeronderwijsdiploma',
+      residencePermit: 'Verblijfsdocument',
+      workPermit: 'Bewijs van arbeidsgerechtigdheid',
+      other: 'Overige certificaten',
+    },
+    uploadHint: 'PDF, JPG of PNG – maximaal 8 MB per bestand.',
+    criminalRecordNotice:
+      'Een Verklaring Omtrent het Gedrag of vergelijkbaar document wordt bewust niet met de sollicitatie meegestuurd. Wij vragen die pas op wanneer die voor een concrete opdracht nodig is.',
+    uploadBackendNotice:
+      'Let op: de beveiligde verzending van documenten moet op deze server nog worden ingericht. Tot die tijd melden wij een fout in plaats van een geslaagde verzending voor te wenden.',
+    confirmationsTitle: 'Bevestigingen',
+    confirmations: [
+      'Ik heb de voorwaarden voor het gekozen inzetland gelezen.',
+      'Ik beschik over de vereiste werkvergunning of zal het bijbehorende bewijs overleggen.',
+      'Mijn gegevens en documenten zijn volledig en naar waarheid ingevuld.',
+      'Ik weet dat elke sollicitatie individueel wordt beoordeeld en dat er geen automatische toelating of garantie op opdrachten bestaat.',
+    ],
+    privacyLinkText: 'Lees de privacyverklaring',
+  },
+
+  requirements: {
+    metaTitle: 'Voorwaarden voor tolken en vertalers',
+    metaDescription:
+      'Taalkundige en opleidingsvoorwaarden voor tolk- en vertaalopdrachten – uitgesplitst per inzetland, met verwijzing naar de bevoegde officiële instanties.',
+    h1: 'Voorwaarden per inzetland',
+    lead:
+      'Welke bewijsstukken relevant zijn, hangt af van het inzetland en van de opdrachtgever. Het overzicht hieronder noemt de daar gebruikelijke benamingen. Of een diploma wordt erkend, bepalen uitsluitend de bevoegde officiële instanties.',
+    countryLabel: 'Land van verblijf of beoogd inzetland',
+    countryPlaceholder: 'Maak een keuze',
+    countryHint: 'De voorwaarden verschillen per land.',
+    panelTitle: 'Voorwaarden voor opdrachten in {country}',
+    separationNotice:
+      'Belangrijk: een schooldiploma, een toelatingsbewijs voor het hoger onderwijs of een universitair diploma is niet automatisch een bewijs van taalvaardigheid op C1-niveau. Taalkundige en opleidingskwalificatie worden afzonderlijk beoordeeld.',
+    languageTitle: 'A. Taalkundige kwalificatie',
+    languageLead: 'Ten minste een van de volgende bewijsstukken:',
+    languageItems: [
+      'Een erkend taalcertificaat op niveau C1 of C2 volgens het Europees Referentiekader',
+      'Een in het betreffende land erkend gelijkwaardig taalbewijs',
+      'Een afgeronde opleiding in de betreffende werktaal, voor zover die als taalbewijs kan worden aanvaard',
+      'Een ander verifieerbaar bewijs van taalvaardigheid op ten minste C1-niveau',
+    ],
+    educationTitle: 'B. School- of beroepskwalificatie',
+    educationLead:
+      'Afhankelijk van de opdracht en de opdrachtgever ten minste één passend bewijsstuk, bijvoorbeeld:',
+    educationItems: [
+      'Toelatingsbewijs voor het hoger onderwijs',
+      'Afgeronde beroepsopleiding',
+      'Diploma van een voorbereidend jaar of vergelijkbaar',
+      'Hogeronderwijsdiploma',
+      'Tolk- of vertaalopleiding',
+      'Vergelijkbaar in het buitenland behaald diploma',
+    ],
+    certLabel: 'In het land gangbare taalcertificaten',
+    entranceLabel: 'Toelatingsbewijs voor het hoger onderwijs',
+    vocationalLabel: 'Beroepsdiploma',
+    higherLabel: 'Hogeronderwijsdiploma',
+    criminalLabel: 'Verklaring omtrent het gedrag',
+    legalTitle: 'Juridische voorwaarden',
+    legalItems: [
+      'Recht om te werken in het inzetland',
+      'Geldig verblijfsdocument, indien vereist',
+      'Verklaring omtrent het gedrag, indien de concrete opdracht dat verlangt',
+    ],
+    clientTitle: 'Aanvullende eisen van de opdrachtgever',
+    clientText:
+      'Overheden, rechtbanken en internationale organisaties stellen soms eigen eisen, zoals veiligheidsonderzoeken, geheimhoudingsverklaringen of specifieke vakkennis. Wij informeren u daarover vóór een opdracht.',
+    individualNotice:
+      'Vergelijkbaar bewijsstuk – individuele beoordeling vereist. Dit overzicht vervangt geen officieel erkenningsbesluit.',
+    reviewPending:
+      'De inhoudelijke toetsing van de gegevens voor dit land moet nog plaatsvinden. De genoemde benamingen dienen uitsluitend ter oriëntatie.',
+    sourcesLabel: 'Officiële informatiebronnen',
+    fullRequirementsLink: 'Bekijk alle voorwaarden voor dit land',
+    backToApply: 'Terug naar de sollicitatie',
   },
 
   contact: {
