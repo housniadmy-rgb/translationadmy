@@ -99,18 +99,43 @@ und kein Passwort**.
 Ablauf: Formular → `POST /api/apply` → Prüfung → E-Mail an das Büro mit allen
 Angaben und Anhängen → Eingangsbestätigung an die bewerbende Person.
 
-### SMTP einrichten
+### SMTP mit TLS einrichten
 
-Datei- und E-Mail-Versand brauchen einen Server; rein statisches Hosting genügt
-dafür nicht. Konfiguration über Umgebungsvariablen (siehe `.env.example`):
+Bewerbungen **und** Kontaktanfragen laufen über denselben Mailer und verlassen
+den Server ausschließlich verschlüsselt. Rein statisches Hosting genügt dafür
+nicht – die beiden API-Routen brauchen einen Server.
+
+Konfiguration ausschließlich über Umgebungsvariablen, siehe `.env.example`.
+Zugangsdaten gehören nie ins Repository; `.env` steht in `.gitignore`.
 
 ```
-SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SMTP_SECURE, MAIL_FROM
+SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, MAIL_FROM
+optional: SMTP_SECURE, SMTP_ALLOW_SELF_SIGNED
 ```
 
-Ist SMTP nicht konfiguriert, meldet das Formular offen, dass der Versand noch
-eingerichtet werden muss, und verweist auf die E-Mail-Adresse. So geht keine
-Bewerbung stillschweigend verloren.
+Zwei Betriebsarten, beide verschlüsselt:
+
+| Port | Verfahren | Verhalten |
+| ---- | --------- | --------- |
+| 587 (Standard) | STARTTLS | Verbindung wird nach dem Handshake auf TLS hochgestuft. `requireTLS` bricht den Versand ab, falls der Server kein STARTTLS anbietet. |
+| 465 | SMTPS | Verbindung ist von der ersten Sekunde an verschlüsselt. |
+
+In beiden Fällen gilt: mindestens TLS 1.2, und Serverzertifikate werden
+geprüft. `SMTP_ALLOW_SELF_SIGNED` schaltet diese Prüfung ab und gehört
+ausschließlich in Testumgebungen – die Verbindung wäre sonst zwar
+verschlüsselt, aber nicht gegen einen Man-in-the-Middle geschützt.
+
+### Konfiguration prüfen
+
+```bash
+npm run smtp:check    # Verbindung, TLS und Anmeldung testen – ohne Versand
+npm run smtp:test     # zusätzlich eine Testmail an MAIL_FROM senden
+node scripts/check-smtp.mjs --send you@example.de   # an andere Adresse
+```
+
+Ist SMTP nicht konfiguriert, melden beide Formulare offen einen Fehler und
+verweisen auf die E-Mail-Adresse. So geht keine Anfrage stillschweigend
+verloren und niemand hält sich fälschlich für angenommen.
 
 ### Grenzen der Uploads
 
@@ -139,12 +164,17 @@ src/
     index.astro             Sprachweiche
     404.astro
     api/apply.ts            Bewerbungs-Endpunkt (läuft zur Laufzeit)
+    api/contact.ts          Kontakt-Endpunkt (läuft zur Laufzeit)
   server/applications/      Fachlogik der Bewerbungen
     types.ts                Datenmodell und Upload-Grenzen
     validate.ts             Prüfung der Formulardaten
     store.ts                Ablage (austauschbar)
-    mailer.ts               Versand (austauschbar)
+    mailer.ts               TLS-gesicherter Versand (austauschbar)
     service.ts              Ablauf: aufnehmen → benachrichtigen → bestätigen
+  server/contact/
+    service.ts              Prüfung und Versand von Kontaktanfragen
+scripts/
+  check-smtp.mjs            Prüft SMTP-Verbindung und sendet eine Testmail
 ```
 
 Eine einzige Route (`[...path].astro`) erzeugt sämtliche Sprachfassungen aus der

@@ -13,7 +13,9 @@
     "check": "astro check",
     "test": "vitest run",
     "test:watch": "vitest",
-    "verify": "astro check && astro build && vitest run"
+    "verify": "astro check && astro build && vitest run",
+    "smtp:check": "node scripts/check-smtp.mjs",
+    "smtp:test": "node scripts/check-smtp.mjs --send"
   },
   "dependencies": {
     "@astrojs/node": "^9.5.5",
