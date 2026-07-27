@@ -1,0 +1,33 @@
+---
+import { ICON_PATHS, type IconName } from './icons';
+
+interface Props {
+  name: IconName;
+  size?: number | string;
+  class?: string;
+  /** Nur setzen, wenn das Icon allein eine Bedeutung trägt (sonst dekorativ). */
+  title?: string;
+}
+
+const { name, size = 24, class: className, title } = Astro.props;
+const isDecorative = !title;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden={isDecorative ? 'true' : undefined}
+  role={isDecorative ? undefined : 'img'}
+  focusable="false"
+>
+  {title && <title>{title}</title>}
+  <Fragment set:html={ICON_PATHS[name]} />
+</svg>

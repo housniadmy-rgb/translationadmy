@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomePage from '../sections/HomePage.astro';
+import ServicesPage from '../sections/ServicesPage.astro';
+import ExpertisePage from '../sections/ExpertisePage.astro';
+import AuthoritiesPage from '../sections/AuthoritiesPage.astro';
+import BusinessPage from '../sections/BusinessPage.astro';
+import CoveragePage from '../sections/CoveragePage.astro';
+import LanguagesPage from '../sections/LanguagesPage.astro';
+import AboutPage from '../sections/AboutPage.astro';
+import CareersPage from '../sections/CareersPage.astro';
+import ApplyPage from '../sections/ApplyPage.astro';
+import RequirementsPage from '../sections/RequirementsPage.astro';
+import ContactPage from '../sections/ContactPage.astro';
+import ImprintPage from '../sections/ImprintPage.astro';
+import PrivacyPage from '../sections/PrivacyPage.astro';
+
+import {
+  allRoutes,
+  getDictionary,
+  localizedPath,
+  type Locale,
+  type PageId,
+} from '../i18n';
+
+/**
+ * Eine einzige Route erzeugt alle Sprachfassungen aller Seiten.
+ * Der Pfad kommt aus der zentralen Slug-Tabelle, dadurch bleiben
+ * lokalisierte URLs und Navigation immer synchron.
+ */
+export function getStaticPaths() {
+  return allRoutes().map(({ locale, page }) => ({
+    // localizedPath liefert "/de/leistungen/" – als Parameter ohne Slashes.
+    params: { path: localizedPath(locale, page).replace(/^\/|\/$/g, '') },
+    props: { locale, page },
+  }));
+}
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+}
+
+const { locale, page } = Astro.props;
+const t = getDictionary(locale);
+
+// Meta-Titel und -Beschreibung kommen je Seite aus der Sprachdatei.
+const meta: Record<PageId, { title: string; description: string }> = {
+  home: { title: t.home.metaTitle, description: t.home.metaDescription },
+  services: { title: t.services.metaTitle, description: t.services.metaDescription },
+  expertise: { title: t.expertise.metaTitle, description: t.expertise.metaDescription },
+  authorities: { title: t.authorities.metaTitle, description: t.authorities.metaDescription },
+  business: { title: t.business.metaTitle, description: t.business.metaDescription },
+  coverage: { title: t.coverage.metaTitle, description: t.coverage.metaDescription },
+  languages: { title: t.languages.metaTitle, description: t.languages.metaDescription },
+  about: { title: t.about.metaTitle, description: t.about.metaDescription },
+  careers: { title: t.careers.metaTitle, description: t.careers.metaDescription },
+  apply: { title: t.apply.metaTitle, description: t.apply.metaDescription },
+  requirements: {
+    title: t.requirements.metaTitle,
+    description: t.requirements.metaDescription,
+  },
+  contact: { title: t.contact.metaTitle, description: t.contact.metaDescription },
+  imprint: { title: t.imprint.metaTitle, description: t.imprint.metaDescription },
+  privacy: { title: t.privacy.metaTitle, description: t.privacy.metaDescription },
+};
+
+const { title, description } = meta[page];
+---
+
+<Layout locale={locale} page={page} title={title} description={description}>
+  {page === 'home' && <HomePage locale={locale} />}
+  {page === 'services' && <ServicesPage locale={locale} />}
+  {page === 'expertise' && <ExpertisePage locale={locale} />}
+  {page === 'authorities' && <AuthoritiesPage locale={locale} />}
+  {page === 'business' && <BusinessPage locale={locale} />}
+  {page === 'coverage' && <CoveragePage locale={locale} />}
+  {page === 'languages' && <LanguagesPage locale={locale} />}
+  {page === 'about' && <AboutPage locale={locale} />}
+  {page === 'careers' && <CareersPage locale={locale} />}
+  {page === 'apply' && <ApplyPage locale={locale} />}
+  {page === 'requirements' && <RequirementsPage locale={locale} />}
+  {page === 'contact' && <ContactPage locale={locale} />}
+  {page === 'imprint' && <ImprintPage locale={locale} />}
+  {page === 'privacy' && <PrivacyPage locale={locale} />}
+</Layout>

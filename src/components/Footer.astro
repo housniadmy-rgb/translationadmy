@@ -1,0 +1,145 @@
+---
+import Logo from './Logo.astro';
+import { SITE, CONTACT, ADDRESS } from '../consts';
+import {
+  AVAILABLE_LOCALES,
+  FOOTER_NAV,
+  LOCALE_NAMES,
+  LOCALE_TAGS,
+  format,
+  getDictionary,
+  localizedPath,
+  type Locale,
+  type PageId,
+} from '../i18n';
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+}
+
+const { locale, page } = Astro.props;
+const t = getDictionary(locale);
+const year = 2026;
+
+const columns = [
+  { heading: t.footer.servicesHeading, items: FOOTER_NAV.services },
+  { heading: t.footer.companyHeading, items: FOOTER_NAV.company },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href={localizedPath(locale, 'home')}>
+          <Logo class="logo-mark" variant="light" />
+          <span class="logo-text">
+            <span class="logo-name">{SITE.name}</span>
+            <span class="logo-sub">Dolmetschen &amp; Übersetzen</span>
+          </span>
+        </a>
+        <p class="footer-tagline">{t.footer.tagline}</p>
+      </div>
+
+      {
+        columns.map((column) => (
+          <nav aria-label={column.heading}>
+            <h2>{column.heading}</h2>
+            <ul class="footer-links">
+              {column.items.map((id) => (
+                <li>
+                  <a href={localizedPath(locale, id)}>{t.nav[id]}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+
+      <div>
+        <h2>{t.footer.contactHeading}</h2>
+        <ul class="footer-contact">
+          <li>
+            <span class="label">{t.ui.phone}</span>
+            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+          </li>
+          <li>
+            <span class="label">{t.ui.mobile}</span>
+            <a href={CONTACT.mobileHref}>{CONTACT.mobile}</a>
+          </li>
+          <li>
+            <span class="label">{t.ui.fax}</span>
+            <span>{CONTACT.fax}</span>
+          </li>
+          <li>
+            <span class="label">{t.ui.email}</span>
+            <a href={CONTACT.emailHref}>{CONTACT.email}</a>
+          </li>
+          <li>
+            <span class="label">{t.ui.postalAddress}</span>
+            <address>
+              {SITE.legalName}<br />
+              {ADDRESS.street}<br />
+              {ADDRESS.postalCode}&nbsp;{ADDRESS.city}
+            </address>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <nav aria-label={t.footer.languageHeading}>
+      <h2 class="visually-hidden">{t.footer.languageHeading}</h2>
+
+      {/* Zahl kommt aus den tatsächlich vorhandenen Sprachdateien. */}
+      <p class="footer-languages-note">
+        {format(t.ui.websiteLanguages, { count: AVAILABLE_LOCALES.length })}
+      </p>
+
+      <ul class="footer-languages">
+        {
+          AVAILABLE_LOCALES.map((code) => (
+            <li>
+              <a
+                href={localizedPath(code, page)}
+                hreflang={LOCALE_TAGS[code]}
+                lang={LOCALE_TAGS[code]}
+                title={LOCALE_NAMES[code]}
+                aria-current={code === locale ? 'true' : undefined}
+                rel="alternate"
+              >
+                {code}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="footer-bottom">
+      <p>&copy; {year} {SITE.legalName}. {t.footer.copyright}</p>
+
+      {/*
+        Impressum und Datenschutz sind Pflichtangaben und müssen von jeder
+        Seite aus mit einem Klick erreichbar sein – daher hier hervorgehoben.
+      */}
+      <nav class="footer-legal" aria-label={t.footer.legalHeading}>
+        <ul class="footer-legal-links">
+          {
+            FOOTER_NAV.legal.map((id) => (
+              <li>
+                <a
+                  href={localizedPath(locale, id)}
+                  class={id === 'imprint' || id === 'privacy' ? 'is-legal' : undefined}
+                  aria-current={id === page ? 'page' : undefined}
+                >
+                  {t.nav[id]}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>

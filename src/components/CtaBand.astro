@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+import { CONTACT } from '../consts';
+import { getDictionary, localizedPath, type Locale, type PageId } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  text: string;
+  button?: string;
+  /** Zielseite des Hauptbuttons – standardmäßig die Kontaktseite. */
+  target?: PageId;
+}
+
+const { locale, title, text, button, target = 'contact' } = Astro.props;
+const t = getDictionary(locale);
+---
+
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div class="btn-group">
+        <a class="btn btn-accent" href={localizedPath(locale, target)}>
+          {button ?? t.ui.requestQuote}
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a class="btn btn-ghost-light" href={CONTACT.phoneHref}>
+          <Icon name="phone" size={18} />
+          {CONTACT.phone}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

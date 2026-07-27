@@ -1,0 +1,54 @@
+---
+import { SITE_URL } from '../consts';
+import {
+  absoluteUrl,
+  getDictionary,
+  localizedPath,
+  type Locale,
+  type PageId,
+} from '../i18n';
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+  title: string;
+  lead: string;
+}
+
+const { locale, page, title, lead } = Astro.props;
+const t = getDictionary(locale);
+const siteUrl = Astro.site?.href ?? SITE_URL;
+
+const trail = [
+  { name: t.ui.home, href: localizedPath(locale, 'home'), url: absoluteUrl(siteUrl, locale, 'home') },
+  { name: t.nav[page], href: localizedPath(locale, page), url: absoluteUrl(siteUrl, locale, page) },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: trail.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
+---
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    <nav class="breadcrumbs" aria-label={t.ui.breadcrumb}>
+      <ol>
+        <li><a href={trail[0]!.href}>{trail[0]!.name}</a></li>
+        <li class="sep" aria-hidden="true">/</li>
+        <li aria-current="page">{trail[1]!.name}</li>
+      </ol>
+    </nav>
+
+    <h1>{title}</h1>
+    <p class="lead">{lead}</p>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} is:inline />

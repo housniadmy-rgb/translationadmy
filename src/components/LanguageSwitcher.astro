@@ -1,0 +1,179 @@
+---
+import Icon from './Icon.astro';
+import {
+  AVAILABLE_LOCALES,
+  LOCALE_NAMES,
+  LOCALE_TAGS,
+  getDictionary,
+  localizedPath,
+  type Locale,
+  type PageId,
+} from '../i18n';
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+}
+
+const { locale, page } = Astro.props;
+const t = getDictionary(locale);
+
+// Entscheidend: der Wechsel zeigt auf dieselbe Unterseite in der Zielsprache.
+const options = AVAILABLE_LOCALES.map((code) => ({
+  code,
+  name: LOCALE_NAMES[code],
+  tag: LOCALE_TAGS[code],
+  href: localizedPath(code, page),
+  isCurrent: code === locale,
+}));
+---
+
+<div class="lang-switcher" data-lang-switcher>
+  <button
+    type="button"
+    class="lang-button"
+    aria-expanded="false"
+    aria-controls="language-menu"
+    aria-label={`${t.ui.languageSwitcherHint} – ${t.ui.currentLanguage}: ${LOCALE_NAMES[locale]}`}
+    data-lang-toggle
+  >
+    <Icon name="globe" />
+    <span class="lang-code">{locale}</span>
+    <span class="lang-label">{LOCALE_NAMES[locale]}</span>
+    <Icon name="chevron-down" class="lang-caret" />
+  </button>
+
+  <ul class="lang-menu" id="language-menu" hidden data-lang-menu>
+    {
+      options.map((option) => (
+        <li>
+          <a
+            href={option.href}
+            hreflang={option.tag}
+            lang={option.tag}
+            aria-current={option.isCurrent ? 'true' : undefined}
+            rel="alternate"
+          >
+            <span>{option.name}</span>
+            <span class="lang-tag">{option.code}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  /*
+    Zugängliches Dropdown.
+
+    Bewusst NICHT enthalten: ein focusout-Handler, der bei fehlendem Fokus
+    schließt. Er war die Ursache dafür, dass das Menü bei Layout-Shifts,
+    Scrollen oder Re-Rendering verschwand – sobald der Fokus kurzzeitig auf
+    <body> zurückfiel, galt das fälschlich als "verlassen".
+
+    Geschlossen wird nur noch durch: Auswahl einer Sprache, Klick außerhalb,
+    Escape oder erneuten Klick auf den Schalter. Scrollen und Resize lassen
+    das Menü ausdrücklich offen.
+  */
+  (() => {
+    const roots = document.querySelectorAll<HTMLElement>('[data-lang-switcher]');
+
+    roots.forEach((root) => {
+      // Schutz vor doppelter Registrierung, falls das Skript erneut ausgeführt wird.
+      if (root.dataset.langReady === 'true') return;
+      root.dataset.langReady = 'true';
+
+      const toggle = root.querySelector<HTMLButtonElement>('[data-lang-toggle]');
+      const menu = root.querySelector<HTMLElement>('[data-lang-menu]');
+      if (!toggle || !menu) return;
+
+      const options = Array.from(menu.querySelectorAll<HTMLAnchorElement>('a[href]'));
+
+      const isOpen = () => !menu.hidden;
+
+      const open = () => {
+        if (isOpen()) return;
+        menu.hidden = false;
+        toggle.setAttribute('aria-expanded', 'true');
+      };
+
+      const close = (returnFocus = false) => {
+        if (!isOpen()) return;
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        if (returnFocus) toggle.focus();
+      };
+
+      toggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        isOpen() ? close() : open();
+      });
+
+      /*
+        Außenklick über pointerdown statt click: Ein click-Ereignis kann
+        innerhalb beginnen und außerhalb enden (Textauswahl, Drag), was
+        fälschlich als Außenklick gewertet würde. composedPath() erfasst
+        zudem verschachtelte Ziele zuverlässig.
+      */
+      document.addEventListener(
+        'pointerdown',
+        (event) => {
+          if (!isOpen()) return;
+          const path = event.composedPath();
+          if (path.includes(root)) return;
+          close();
+        },
+        { passive: true },
+      );
+
+      // Tastaturbedienung: Escape schließt, Pfeiltasten navigieren.
+      root.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          if (isOpen()) {
+            event.preventDefault();
+            close(true);
+          }
+          return;
+        }
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          if (!isOpen()) {
+            open();
+            options[0]?.focus();
+            return;
+          }
+          const current = options.indexOf(document.activeElement as HTMLAnchorElement);
+          const step = event.key === 'ArrowDown' ? 1 : -1;
+          const next = current === -1 ? 0 : (current + step + options.length) % options.length;
+          options[next]?.focus();
+          return;
+        }
+
+        if (event.key === 'Home' && isOpen()) {
+          event.preventDefault();
+          options[0]?.focus();
+          return;
+        }
+
+        if (event.key === 'End' && isOpen()) {
+          event.preventDefault();
+          options[options.length - 1]?.focus();
+        }
+      });
+
+      /*
+        Nur beim Verlassen des gesamten Schalters per Tastatur schließen –
+        und ausschließlich dann, wenn der Fokus wirklich auf ein anderes
+        Element gewandert ist, nicht wenn er auf <body> zurückfällt.
+      */
+      root.addEventListener('focusout', (event) => {
+        const next = event.relatedTarget as Node | null;
+        if (next === null) return; // Fokus ging verloren, nicht weitergereicht
+        if (root.contains(next)) return;
+        close();
+      });
+    });
+  })();
+</script>

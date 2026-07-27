@@ -1,0 +1,280 @@
+---
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../components/icons';
+import HeroIllustration from '../components/HeroIllustration.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { CONTACT } from '../consts';
+import { FEATURED_LANGUAGES } from '../data/languages';
+import { getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const serviceIcons: IconName[] = [
+  'speech',
+  'conference',
+  'certificate',
+  'scales',
+  'accompany',
+  'document',
+];
+
+const expertiseIcons: IconName[] = [
+  'health',
+  'balance',
+  'migration',
+  'government',
+  'briefcase',
+  'gear',
+];
+
+const audienceIcons: IconName[] = ['government', 'police', 'building', 'briefcase'];
+const valueIcons: IconName[] = ['check', 'balance', 'lock', 'clock'];
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="kicker">{t.home.heroKicker}</p>
+      <h1>{t.home.heroTitle}</h1>
+      <p class="hero-lead">{t.home.heroLead}</p>
+
+      <ul class="hero-badges">
+        {
+          t.home.heroBadges.map((badge) => (
+            <li>
+              <Icon name="check" />
+              {badge}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="btn-group">
+        <a class="btn btn-accent" href={localizedPath(locale, 'contact')}>
+          {t.home.heroPrimary}
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a class="btn btn-ghost-light" href={localizedPath(locale, 'services')}>
+          {t.home.heroSecondary}
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <HeroIllustration />
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="container stats-grid">
+    <div class="stat">
+      <span class="stat-value">{t.home.statLanguages}</span>
+      <span class="stat-label">{t.home.statLanguagesLabel}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">{t.home.statYears}</span>
+      <span class="stat-label">{t.home.statYearsLabel}</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">{t.home.statCoverage}</span>
+      <span class="stat-label">{t.home.statCoverageLabel}</span>
+    </div>
+  </div>
+</div>
+
+<!-- Leistungen -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="kicker">{t.nav.services}</p>
+      <h2>{t.home.servicesTitle}</h2>
+      <p class="lead">{t.home.servicesLead}</p>
+    </div>
+
+    <div class="grid grid-3">
+      {
+        t.services.items.map((item, index) => (
+          <article class="card card-interactive">
+            <span class="card-icon">
+              <Icon name={serviceIcons[index] ?? 'speech'} />
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="btn-group mt-xl">
+      <a class="btn btn-secondary" href={localizedPath(locale, 'services')}>
+        {t.home.servicesCta}
+        <Icon name="arrow-right" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Zielgruppen -->
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <p class="kicker">{t.nav.authorities}</p>
+      <h2>{t.home.audienceTitle}</h2>
+      <p class="lead">{t.home.audienceLead}</p>
+    </div>
+
+    <ul class="audience-list">
+      {
+        t.authorities.audience.slice(0, 8).map((item, index) => (
+          <li class="audience-item">
+            <Icon name={audienceIcons[index % audienceIcons.length] ?? 'building'} />
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="btn-group mt-xl">
+      <a class="btn btn-secondary" href={localizedPath(locale, 'authorities')}>
+        {t.home.audienceCta}
+        <Icon name="arrow-right" size={18} />
+      </a>
+      <a class="btn btn-secondary" href={localizedPath(locale, 'business')}>
+        {t.nav.business}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Fachgebiete -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <p class="kicker">{t.nav.expertise}</p>
+      <h2>{t.home.expertiseTitle}</h2>
+      <p class="lead">{t.home.expertiseLead}</p>
+    </div>
+
+    <div class="grid grid-3">
+      {
+        t.expertise.items.map((item, index) => (
+          <article class="card card-accent">
+            <span class="card-icon">
+              <Icon name={expertiseIcons[index] ?? 'gear'} />
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Sprachen -->
+<section class="section section-muted">
+  <div class="container">
+    <div class="section-header">
+      <p class="kicker">{t.nav.languages}</p>
+      <h2>{t.home.languagesTitle}</h2>
+      <p class="lead">{t.home.languagesLead}</p>
+    </div>
+
+    <ul class="chip-list">
+      {FEATURED_LANGUAGES.map((language) => <li class="chip chip-brand">{language}</li>)}
+    </ul>
+
+    <div class="btn-group mt-xl">
+      <a class="btn btn-secondary" href={localizedPath(locale, 'languages')}>
+        {t.home.languagesCta}
+        <Icon name="arrow-right" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Ablauf -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t.home.processTitle}</h2>
+      <p class="lead">{t.home.processLead}</p>
+    </div>
+
+    <ol class="steps">
+      {
+        t.home.process.map((step, index) => (
+          <li class="step">
+            <span class="step-number">{index + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- Grundsätze -->
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t.home.valuesTitle}</h2>
+      <p class="lead">{t.home.valuesLead}</p>
+    </div>
+
+    <div class="grid grid-4">
+      {
+        t.authorities.principles.map((item, index) => (
+          <article class="card">
+            <span class="card-icon">
+              <Icon name={valueIcons[index] ?? 'check'} />
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="contact-tiles grid grid-3 mt-2xl">
+      <a class="contact-tile" href={CONTACT.phoneHref}>
+        <Icon name="phone" />
+        <span>
+          <span class="contact-tile-label">{t.ui.phone}</span>
+          <span class="contact-tile-value">{CONTACT.phone}</span>
+        </span>
+      </a>
+      <a class="contact-tile" href={CONTACT.mobileHref}>
+        <Icon name="mobile" />
+        <span>
+          <span class="contact-tile-label">{t.ui.mobile}</span>
+          <span class="contact-tile-value">{CONTACT.mobile}</span>
+        </span>
+      </a>
+      <a class="contact-tile" href={CONTACT.emailHref}>
+        <Icon name="mail" />
+        <span>
+          <span class="contact-tile-label">{t.ui.email}</span>
+          <span class="contact-tile-value">{CONTACT.email}</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<CtaBand
+  locale={locale}
+  title={t.home.ctaTitle}
+  text={t.home.ctaText}
+  button={t.home.ctaButton}
+/>

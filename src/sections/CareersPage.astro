@@ -1,0 +1,114 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { IconName } from '../components/icons';
+import { CONTACT } from '../consts';
+import { getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const benefitIcons: IconName[] = [
+  'clock',
+  'europe',
+  'handshake',
+  'users',
+  'gear',
+  'speech',
+  'lock',
+];
+---
+
+<PageHero locale={locale} page="careers" title={t.careers.h1} lead={t.careers.lead} />
+
+<!-- Direkter Einstieg in die Bewerbung -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2">
+      <article class="card">
+        <span class="card-icon">
+          <Icon name="certificate" />
+        </span>
+        <h2>{t.careers.requirementsTitle}</h2>
+        <ul class="card-list">
+          {t.careers.requirements.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+
+      <article class="card card-accent">
+        <span class="card-icon">
+          <Icon name="handshake" />
+        </span>
+        <h2>{t.careers.offerTitle}</h2>
+        <ul class="card-list">
+          {t.careers.offer.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+    </div>
+
+    <div class="btn-group mt-2xl">
+      <a class="btn btn-accent btn-lg" href={localizedPath(locale, 'apply')}>
+        {t.ui.applyCta}
+        <Icon name="arrow-right" size={18} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Warum mit Translation Admy zusammenarbeiten? -->
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <p class="kicker">{t.nav.careers}</p>
+      <h2>{t.careers.networkTitle}</h2>
+      <p class="lead">{t.careers.networkLead}</p>
+    </div>
+
+    <div class="grid grid-3">
+      {
+        t.careers.benefits.map((benefit, index) => (
+          <article class="card">
+            <span class="card-icon">
+              <Icon name={benefitIcons[index] ?? 'check'} />
+            </span>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <div class="notice">
+      <h3>{t.careers.applyTitle}</h3>
+      <p>{t.careers.applyText}</p>
+      <div class="btn-group mt-lg">
+        <a class="btn btn-primary" href={localizedPath(locale, 'apply')}>
+          {t.ui.applyCta}
+        </a>
+        <a class="btn btn-secondary" href={CONTACT.emailHref}>
+          <Icon name="mail" size={18} />
+          {CONTACT.email}
+        </a>
+      </div>
+    </div>
+
+    <p class="lead text-center mt-2xl">{t.careers.closing}</p>
+  </div>
+</section>
+
+<CtaBand
+  locale={locale}
+  title={t.careers.ctaTitle}
+  text={t.careers.ctaText}
+  button={t.ui.applyCta}
+  target="apply"
+/>

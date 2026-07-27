@@ -1,0 +1,64 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { IconName } from '../components/icons';
+import { getDictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const icons: IconName[] = ['handshake', 'presentation', 'industry', 'users', 'document', 'gear'];
+---
+
+<PageHero locale={locale} page="business" title={t.business.h1} lead={t.business.lead} />
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      {
+        t.business.items.map((item, index) => (
+          <article class="card card-interactive">
+            <span class="card-icon">
+              <Icon name={icons[index] ?? 'briefcase'} />
+            </span>
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t.business.processTitle}</h2>
+      <p class="lead">{t.business.processLead}</p>
+    </div>
+
+    <ol class="steps">
+      {
+        t.business.process.map((step, index) => (
+          <li class="step">
+            <span class="step-number">{index + 1}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<CtaBand
+  locale={locale}
+  title={t.business.ctaTitle}
+  text={t.business.ctaText}
+  button={t.ui.requestQuote}
+/>

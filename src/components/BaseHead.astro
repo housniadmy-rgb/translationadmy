@@ -1,0 +1,156 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+import { SITE_URL, SITE, CONTACT, ADDRESS } from '../consts';
+import {
+  DEFAULT_LOCALE,
+  LOCALE_TAGS,
+  absoluteUrl,
+  getAlternates,
+  getXDefault,
+  localizedPath,
+  type Locale,
+  type PageId,
+} from '../i18n';
+import { LANGUAGE_COUNT } from '../data/languages';
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+  title: string;
+  description: string;
+  /** Bei rechtlichen Seiten sinnvoll: aus dem Index heraushalten. */
+  noindex?: boolean;
+}
+
+const { locale, page, title, description, noindex = false } = Astro.props;
+
+const siteUrl = Astro.site?.href ?? SITE_URL;
+const canonical = absoluteUrl(siteUrl, locale, page);
+const alternates = getAlternates(siteUrl, page);
+const xDefault = getXDefault(siteUrl, page);
+
+// Der Seitentitel trägt den Markennamen, die Startseite bekommt einen Claim.
+const fullTitle =
+  page === 'home' ? `${SITE.name} – ${title}` : `${title} | ${SITE.name}`;
+
+const ogImage = new URL('/og-image.svg', siteUrl).href;
+
+/**
+ * Strukturierte Daten. Nur belegbare Angaben: Name, Anschrift, Kontaktdaten,
+ * Sprachen und Leistungsart. Keine erfundenen Bewertungen, Preise oder Kunden.
+ */
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${siteUrl.replace(/\/$/, '')}/#organization`,
+  name: SITE.name,
+  legalName: SITE.legalName,
+  url: absoluteUrl(siteUrl, DEFAULT_LOCALE, 'home'),
+  description,
+  telephone: CONTACT.phoneHref.replace('tel:', ''),
+  faxNumber: CONTACT.fax,
+  email: CONTACT.email,
+  founder: { '@type': 'Person', name: 'Housni Admy' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: ADDRESS.street,
+    postalCode: ADDRESS.postalCode,
+    addressLocality: ADDRESS.city,
+    addressRegion: ADDRESS.region,
+    addressCountry: ADDRESS.countryCode,
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Deutschland' },
+    { '@type': 'Place', name: 'Europa' },
+  ],
+  serviceType: [
+    'Dolmetschen',
+    'Konsekutivdolmetschen',
+    'Konferenzdolmetschen',
+    'Beglaubigte Übersetzungen',
+    'Fachübersetzungen',
+  ],
+  knowsLanguage: LANGUAGE_COUNT,
+  availableLanguage: alternates.map((alt) => alt.hreflang),
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl.replace(/\/$/, '')}/#website`,
+  url: siteUrl,
+  name: SITE.name,
+  inLanguage: alternates.map((alt) => alt.hreflang),
+  publisher: { '@id': `${siteUrl.replace(/\/$/, '')}/#organization` },
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{noindex && <meta name="robots" content="noindex, follow" />}
+{!noindex && <meta name="robots" content="index, follow, max-image-preview:large" />}
+
+{/* hreflang: jede Sprachfassung derselben Unterseite */}
+{
+  alternates.map((alt) => (
+    <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={xDefault} />
+
+{/* Open Graph */}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={LOCALE_TAGS[locale].replace('-', '_')} />
+{
+  alternates
+    .filter((alt) => alt.locale !== locale)
+    .map((alt) => (
+      <meta property="og:locale:alternate" content={alt.hreflang.replace('-', '_')} />
+    ))
+}
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{/* Favicons und Farben */}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0f2c47" />
+
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+{/* Strukturierte Daten */}
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} is:inline />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} is:inline />
+
+{/*
+  Sprachpräferenz merken – ohne Cookie, ohne Tracking.
+  Speichert ausschließlich den Sprachcode im localStorage und leitet nur
+  von der Sprachweiche (/) aus weiter, niemals innerhalb einer Sprachfassung.
+*/}
+<script is:inline define:vars={{ currentLocale: locale, homePath: localizedPath(locale, 'home') }}>
+  try {
+    localStorage.setItem('ta-lang', currentLocale);
+  } catch (error) {
+    /* Privater Modus o. Ä. – Sprachwahl bleibt dann einfach ungespeichert. */
+    void error;
+    void homePath;
+  }
+</script>

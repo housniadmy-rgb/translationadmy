@@ -1,0 +1,48 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { IconName } from '../components/icons';
+import { getDictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const icons: IconName[] = ['health', 'balance', 'migration', 'government', 'briefcase', 'gear'];
+---
+
+<PageHero locale={locale} page="expertise" title={t.expertise.h1} lead={t.expertise.lead} />
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2">
+      {
+        t.expertise.items.map((item, index) => (
+          <article class="card card-accent card-interactive">
+            <span class="card-icon">
+              <Icon name={icons[index] ?? 'gear'} />
+            </span>
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+            <ul class="card-list">
+              {item.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="notice mt-2xl">
+      <h3>{t.expertise.noteTitle}</h3>
+      <p>{t.expertise.noteText}</p>
+    </div>
+  </div>
+</section>
+
+<CtaBand locale={locale} title={t.home.ctaTitle} text={t.home.ctaText} button={t.home.ctaButton} />

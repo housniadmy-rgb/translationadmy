@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { DEFAULT_LOCALE, getDictionary, localizedPath } from '../i18n';
+
+/**
+ * Eine gemeinsame 404-Seite auf Deutsch (Hauptfassung).
+ * Statische Hoster liefern nur eine einzige Fehlerseite aus, deshalb
+ * ist sie bewusst nicht pro Sprache dupliziert – aber aus dem Index
+ * ausgenommen und mit Wegen zurück in alle Bereiche versehen.
+ */
+const locale = DEFAULT_LOCALE;
+const t = getDictionary(locale);
+---
+
+<Layout
+  locale={locale}
+  page="home"
+  title={t.notFound.metaTitle}
+  description={t.notFound.metaDescription}
+  noindex
+>
+  <section class="section">
+    <div class="container container-narrow text-center">
+      <p class="kicker">404</p>
+      <h1>{t.notFound.h1}</h1>
+      <p class="lead mt-lg">{t.notFound.text}</p>
+
+      <div class="btn-group mt-xl" style="justify-content: center;">
+        <a class="btn btn-primary" href={localizedPath(locale, 'home')}>
+          {t.notFound.cta}
+          <Icon name="arrow-right" size={18} />
+        </a>
+        <a class="btn btn-secondary" href={localizedPath(locale, 'contact')}>
+          {t.nav.contact}
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

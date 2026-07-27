@@ -1,0 +1,346 @@
+---
+import Icon from '../components/Icon.astro';
+import { COUNTRY_REQUIREMENTS } from '../data/countries';
+import { LOCALE_TAGS, getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** true auf der eigenen Voraussetzungsseite: alle Länder offen untereinander. */
+  expanded?: boolean;
+}
+
+const { locale, expanded = false } = Astro.props;
+const t = getDictionary(locale);
+const r = t.requirements;
+
+/**
+ * Ländernamen in der Seitensprache; die Reihenfolge folgt der Sortierung
+ * dieser Sprache, damit die Auswahl vertraut wirkt.
+ */
+const regionNames = new Intl.DisplayNames([LOCALE_TAGS[locale]], { type: 'region' });
+
+const countries = COUNTRY_REQUIREMENTS.map((entry) => ({
+  ...entry,
+  name: regionNames.of(entry.code) ?? entry.code,
+})).sort((a, b) => a.name.localeCompare(b.name, LOCALE_TAGS[locale]));
+
+const requirementsPath = localizedPath(locale, 'requirements');
+---
+
+<div class="country-requirements" data-country-requirements>
+  {
+    !expanded && (
+      <div class="field">
+        <label for="ap-country-select">{r.countryLabel} *</label>
+        <select id="ap-country-select" name="assignmentCountry" required data-country-select>
+          <option value="">{r.countryPlaceholder}</option>
+          {countries.map((entry) => (
+            <option value={entry.code}>{entry.name}</option>
+          ))}
+        </select>
+        <p class="form-note">{r.countryHint}</p>
+        <p class="field-error" data-error-for="assignmentCountry" />
+      </div>
+    )
+  }
+
+  {/* Trennung von Sprach- und Bildungsnachweis gilt für alle Länder. */}
+  <p class="notice notice-important mt-lg">
+    <Icon name="shield" size={18} />
+    <span>{r.separationNotice}</span>
+  </p>
+
+  {
+    countries.map((entry) => (
+      <section
+        class="country-panel"
+        data-country-panel={entry.code}
+        hidden={!expanded}
+        aria-live={expanded ? undefined : 'polite'}
+      >
+        <h3 class="country-panel-title">
+          {expanded ? entry.name : r.panelTitle.replace('{country}', entry.name)}
+        </h3>
+
+        {/* Solange keine fachliche Prüfung vorliegt, wird das offen benannt. */}
+        {entry.reviewStatus === 'needs-review' && (
+          <p class="review-pending">
+            <Icon name="clock" size={16} />
+            <span>{r.reviewPending}</span>
+          </p>
+        )}
+
+        <div class="requirement-grid">
+          <div class="requirement-block">
+            <h4>{r.languageTitle}</h4>
+            <p class="requirement-lead">{r.languageLead}</p>
+            <ul class="card-list">
+              {r.languageItems.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+
+            <p class="requirement-label">{r.certLabel}</p>
+            {/* Zertifikatsnamen bleiben in der Originalbezeichnung. */}
+            <ul class="original-names">
+              {entry.languageCertificates.map((name) => (
+                <li lang="und">{name}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="requirement-block">
+            <h4>{r.educationTitle}</h4>
+            <p class="requirement-lead">{r.educationLead}</p>
+            <ul class="card-list">
+              {r.educationItems.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+
+            <dl class="original-list">
+              <dt>{r.entranceLabel}</dt>
+              <dd>
+                <ul class="original-names">
+                  {entry.entranceQualification.map((name) => (
+                    <li lang="und">{name}</li>
+                  ))}
+                </ul>
+              </dd>
+
+              <dt>{r.vocationalLabel}</dt>
+              <dd>
+                <ul class="original-names">
+                  {entry.vocationalQualification.map((name) => (
+                    <li lang="und">{name}</li>
+                  ))}
+                </ul>
+              </dd>
+
+              <dt>{r.higherLabel}</dt>
+              <dd>
+                <ul class="original-names">
+                  {entry.higherEducation.map((name) => (
+                    <li lang="und">{name}</li>
+                  ))}
+                </ul>
+              </dd>
+            </dl>
+          </div>
+
+          <div class="requirement-block">
+            <h4>{r.legalTitle}</h4>
+            <ul class="card-list">
+              {r.legalItems.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+
+            <p class="requirement-label">{r.criminalLabel}</p>
+            <ul class="original-names">
+              {entry.criminalRecord.map((name) => (
+                <li lang="und">{name}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="requirement-block">
+            <h4>{r.clientTitle}</h4>
+            <p class="requirement-lead">{r.clientText}</p>
+
+            {expanded && (
+              <>
+                <p class="requirement-label">{r.sourcesLabel}</p>
+                <ul class="source-list">
+                  {entry.sources.map((source) => (
+                    <li>
+                      <a href={source.url} rel="noopener noreferrer external" target="_blank">
+                        {source.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Kein Ergebnis dieser Übersicht ist eine Anerkennungsentscheidung. */}
+        <p class="notice notice-important mt-lg">
+          <Icon name="balance" size={18} />
+          <span>{r.individualNotice}</span>
+        </p>
+
+        {!expanded && (
+          <p class="mt-md">
+            <a href={`${requirementsPath}#${entry.code}`} class="requirement-link">
+              {r.fullRequirementsLink}
+              <Icon name="arrow-right" size={16} />
+            </a>
+          </p>
+        )}
+      </section>
+    ))
+  }
+</div>
+
+{
+  !expanded && (
+    <script>
+      // Blendet ohne Neuladen genau den Block des gewählten Landes ein.
+      document
+        .querySelectorAll<HTMLElement>('[data-country-requirements]')
+        .forEach((root) => {
+          const select = root.querySelector<HTMLSelectElement>('[data-country-select]');
+          const panels = root.querySelectorAll<HTMLElement>('[data-country-panel]');
+          if (!select) return;
+
+          const update = () => {
+            panels.forEach((panel) => {
+              panel.hidden = panel.dataset.countryPanel !== select.value;
+            });
+          };
+
+          select.addEventListener('change', update);
+          // Beim Zurücknavigieren stellt der Browser die Auswahl wieder her.
+          update();
+        });
+    </script>
+  )
+}
+
+<style>
+  .country-panel[hidden] {
+    display: none;
+  }
+
+  .country-panel {
+    margin-top: var(--space-xl);
+    padding: var(--space-xl);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  .country-panel-title {
+    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+    line-height: 1.3;
+    margin-bottom: var(--space-md);
+  }
+
+  .review-pending {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-lg);
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .review-pending svg {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: var(--accent);
+  }
+
+  .requirement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--space-xl);
+  }
+
+  .requirement-block {
+    min-width: 0;
+  }
+
+  .requirement-block h4 {
+    font-size: var(--step-0);
+    line-height: 1.35;
+    margin-bottom: var(--space-2xs);
+  }
+
+  .requirement-lead {
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .requirement-label {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-2xs);
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+
+  /* Originalbezeichnungen amtlicher Zeugnisse – bewusst hervorgehoben. */
+  .original-names {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .original-names li {
+    padding: 0.3rem 0.7rem;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--step--1);
+    overflow-wrap: anywhere;
+  }
+
+  .original-list {
+    margin: var(--space-md) 0 0;
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .original-list dt {
+    font-size: var(--step--1);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .original-list dd {
+    margin: 0;
+  }
+
+  .source-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2xs);
+    font-size: var(--step--1);
+  }
+
+  .source-list a {
+    overflow-wrap: anywhere;
+  }
+
+  .notice-important {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .notice-important svg {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: var(--accent);
+  }
+
+  .requirement-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+  }
+</style>

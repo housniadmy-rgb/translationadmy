@@ -1,0 +1,17 @@
+{
+  "name": "Translation Admy – Dolmetschen & Übersetzen",
+  "short_name": "Translation Admy",
+  "description": "Dolmetscherbüro Translation Admy: Dolmetschen und beglaubigte Übersetzungen in über 100 Sprachen.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f2c47",
+  "theme_color": "#0f2c47",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

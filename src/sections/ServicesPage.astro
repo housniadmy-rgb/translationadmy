@@ -1,0 +1,54 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { IconName } from '../components/icons';
+import { getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const icons: IconName[] = ['speech', 'conference', 'certificate', 'scales', 'accompany', 'document'];
+---
+
+<PageHero locale={locale} page="services" title={t.services.h1} lead={t.services.lead} />
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2">
+      {
+        t.services.items.map((item, index) => (
+          <article class="card card-interactive">
+            <span class="card-icon">
+              <Icon name={icons[index] ?? 'speech'} />
+            </span>
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+            <ul class="card-list">
+              {item.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="notice mt-2xl">
+      <h3>{t.services.noteTitle}</h3>
+      <p>{t.services.noteText}</p>
+      <div class="btn-group mt-lg">
+        <a class="btn btn-secondary" href={localizedPath(locale, 'languages')}>
+          {t.ui.allLanguages}
+          <Icon name="arrow-right" size={18} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<CtaBand locale={locale} title={t.home.ctaTitle} text={t.home.ctaText} button={t.home.ctaButton} />

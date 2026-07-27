@@ -1,0 +1,119 @@
+---
+import Icon from './Icon.astro';
+import { LANGUAGE_GROUPS } from '../data/languages';
+import { getDictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+---
+
+<div data-language-explorer>
+  <div class="lang-explorer-controls">
+    <div class="search-field">
+      <Icon name="search" />
+      <label class="visually-hidden" for="lang-search">{t.languages.searchLabel}</label>
+      <input
+        type="search"
+        id="lang-search"
+        placeholder={t.languages.searchPlaceholder}
+        autocomplete="off"
+        data-language-search
+      />
+      <button type="button" class="search-clear" aria-label={t.languages.clearSearch} data-search-clear>
+        <Icon name="close" />
+      </button>
+    </div>
+    <p class="search-status" role="status" aria-live="polite" data-search-status></p>
+  </div>
+
+  {
+    LANGUAGE_GROUPS.map((group) => (
+      <section class="lang-group" data-lang-group>
+        <h2>{t.languages.groupTitles[group.id]}</h2>
+        <p>{t.languages.groupIntros[group.id]}</p>
+        <ul class="lang-grid">
+          {group.languages.map((language) => (
+            <li data-language={language.toLowerCase()}>{language}</li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <div class="no-results" hidden data-no-results>
+    <p><strong>{t.languages.noResults}</strong></p>
+    <p class="text-muted">{t.languages.noResultsHint}</p>
+  </div>
+</div>
+
+<script
+  is:inline
+  define:vars={{
+    templates: {
+      one: t.languages.resultsOne,
+      many: t.languages.resultsMany,
+    },
+  }}
+>
+  (function () {
+    var root = document.querySelector('[data-language-explorer]');
+    if (!root) return;
+
+    var input = root.querySelector('[data-language-search]');
+    var clearButton = root.querySelector('[data-search-clear]');
+    var status = root.querySelector('[data-search-status]');
+    var noResults = root.querySelector('[data-no-results]');
+    var groups = Array.prototype.slice.call(root.querySelectorAll('[data-lang-group]'));
+
+    function normalise(value) {
+      // Diakritika entfernen, damit "Turkisch" auch "Türkisch" findet.
+      // ̀-ͯ = kombinierende Akzentzeichen aus der NFD-Zerlegung.
+      return value
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(new RegExp('[\\u0300-\\u036f]', 'g'), '');
+    }
+
+    function apply(term) {
+      var query = normalise(term.trim());
+      var total = 0;
+
+      groups.forEach(function (group) {
+        var visibleInGroup = 0;
+
+        Array.prototype.forEach.call(group.querySelectorAll('[data-language]'), function (item) {
+          var match = query === '' || normalise(item.getAttribute('data-language')).indexOf(query) !== -1;
+          item.hidden = !match;
+          if (match) visibleInGroup++;
+        });
+
+        group.hidden = visibleInGroup === 0;
+        total += visibleInGroup;
+      });
+
+      noResults.hidden = total !== 0;
+      clearButton.classList.toggle('is-visible', term !== '');
+
+      if (query === '') {
+        status.textContent = '';
+      } else {
+        status.textContent =
+          total === 1 ? templates.one : templates.many.replace('{count}', String(total));
+      }
+    }
+
+    input.addEventListener('input', function () {
+      apply(input.value);
+    });
+
+    clearButton.addEventListener('click', function () {
+      input.value = '';
+      apply('');
+      input.focus();
+    });
+  })();
+</script>

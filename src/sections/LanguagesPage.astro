@@ -1,0 +1,38 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import LanguageExplorer from '../components/LanguageExplorer.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { AVAILABLE_LOCALES, format, getDictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+---
+
+<PageHero locale={locale} page="languages" title={t.languages.h1} lead={t.languages.lead} />
+
+<section class="section">
+  <div class="container">
+    <LanguageExplorer locale={locale} />
+
+    <div class="notice mt-2xl">
+      <h3>{t.languages.missingTitle}</h3>
+      <p>{t.languages.missingText}</p>
+    </div>
+
+    {/*
+      Trennt klar zwischen dem Dolmetschangebot oben und den Sprachfassungen,
+      in denen diese Website selbst vorliegt.
+    */}
+    <p class="language-versions-note mt-lg">
+      <Icon name="globe" size={18} />
+      <span>{format(t.ui.websiteLanguages, { count: AVAILABLE_LOCALES.length })}</span>
+    </p>
+  </div>
+</section>
+
+<CtaBand locale={locale} title={t.home.ctaTitle} text={t.home.ctaText} button={t.home.ctaButton} />

@@ -1,0 +1,501 @@
+---
+import CountryRequirements from './CountryRequirements.astro';
+import {
+  APPLICATION_FIELDS,
+  AVAILABILITY_OPTIONS,
+  CONFIRMATIONS,
+  DELIVERY_MODES,
+  DOCUMENT_KINDS,
+  EXPERIENCE_LEVELS,
+  REQUIRED_DOCUMENTS,
+  SERVICE_MODES,
+  TRAVEL_RANGES,
+} from '../server/applications/types';
+import { CONTACT } from '../consts';
+import { getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+const a = t.apply;
+
+/**
+ * Der gesicherte Versand hängt an einer SMTP-Konfiguration auf dem Server.
+ * Fehlt sie, wird das im Formular offen benannt, statt einen funktionierenden
+ * Upload vorzutäuschen.
+ */
+const hasEndpoint = Boolean(import.meta.env.SMTP_HOST);
+---
+
+<form
+  class="form-grid apply-form"
+  action="/api/apply"
+  method="post"
+  enctype="multipart/form-data"
+  data-apply-form
+  novalidate
+>
+  <input type="hidden" name="locale" value={locale} />
+
+  <!-- Angaben zur Person -->
+  <fieldset>
+    <legend>{a.sectionPerson}</legend>
+
+    <div class="form-row-2">
+      <div class="field">
+        <label for="ap-firstName">{a.firstName} *</label>
+        <input type="text" id="ap-firstName" name="firstName" required autocomplete="given-name" />
+        <p class="field-error" data-error-for="firstName"></p>
+      </div>
+      <div class="field">
+        <label for="ap-lastName">{a.lastName} *</label>
+        <input type="text" id="ap-lastName" name="lastName" required autocomplete="family-name" />
+        <p class="field-error" data-error-for="lastName"></p>
+      </div>
+    </div>
+
+    <div class="form-row-2">
+      <div class="field">
+        <label for="ap-email">{a.email} *</label>
+        <input type="email" id="ap-email" name="email" required autocomplete="email" />
+        <p class="field-error" data-error-for="email"></p>
+      </div>
+      <div class="field">
+        <label for="ap-phone">{a.phone} *</label>
+        <input type="tel" id="ap-phone" name="phone" required autocomplete="tel" />
+        <p class="field-error" data-error-for="phone"></p>
+      </div>
+    </div>
+
+    <div class="form-row-3">
+      <div class="field">
+        <label for="ap-city">{a.city} *</label>
+        <input type="text" id="ap-city" name="city" required autocomplete="address-level2" />
+        <p class="field-error" data-error-for="city"></p>
+      </div>
+      <div class="field">
+        <label for="ap-country">{a.country} *</label>
+        <input type="text" id="ap-country" name="country" required autocomplete="country-name" />
+        <p class="field-error" data-error-for="country"></p>
+      </div>
+      <div class="field">
+        <label for="ap-nationality">
+          {a.nationality} <span class="optional">({a.optional})</span>
+        </label>
+        <input type="text" id="ap-nationality" name="nationality" />
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Sprachen -->
+  <fieldset>
+    <legend>{a.sectionLanguages}</legend>
+
+    <div class="field">
+      <label for="ap-spoken">{a.spokenLanguages} *</label>
+      <input type="text" id="ap-spoken" name="spokenLanguages" required aria-describedby="ap-spoken-hint" />
+      <p class="form-note" id="ap-spoken-hint">{a.spokenLanguagesHint}</p>
+      <p class="field-error" data-error-for="spokenLanguages"></p>
+    </div>
+
+    <div class="field">
+      <label for="ap-working">{a.workingLanguages} *</label>
+      <input type="text" id="ap-working" name="workingLanguages" required aria-describedby="ap-working-hint" />
+      <p class="form-note" id="ap-working-hint">{a.workingLanguagesHint}</p>
+      <p class="field-error" data-error-for="workingLanguages"></p>
+    </div>
+  </fieldset>
+
+  <!-- Einsatzprofil -->
+  <fieldset>
+    <legend>{a.sectionProfile}</legend>
+
+    <div class="field">
+      <fieldset class="choice-group">
+        <legend>{a.fieldsLabel} *</legend>
+        <p class="form-note">{a.fieldsHint}</p>
+        <div class="choice-grid">
+          {
+            APPLICATION_FIELDS.map((field) => (
+              <label class="choice">
+                <input type="checkbox" name="fields" value={field} />
+                <span>{a.fieldLabels[field]}</span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+      <p class="field-error" data-error-for="fields"></p>
+    </div>
+
+    <div class="form-row-2">
+      <div class="field">
+        <fieldset class="choice-group">
+          <legend>{a.serviceModesLabel} *</legend>
+          <div class="choice-grid">
+            {
+              SERVICE_MODES.map((mode) => (
+                <label class="choice">
+                  <input type="checkbox" name="serviceModes" value={mode} />
+                  <span>{a.serviceModeLabels[mode]}</span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+        <p class="field-error" data-error-for="serviceModes"></p>
+      </div>
+
+      <div class="field">
+        <fieldset class="choice-group">
+          <legend>{a.deliveryModesLabel} *</legend>
+          <div class="choice-grid">
+            {
+              DELIVERY_MODES.map((mode) => (
+                <label class="choice">
+                  <input type="checkbox" name="deliveryModes" value={mode} />
+                  <span>{a.deliveryModeLabels[mode]}</span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+        <p class="field-error" data-error-for="deliveryModes"></p>
+      </div>
+    </div>
+
+    <div class="form-row-3">
+      <div class="field">
+        <label for="ap-travel">{a.travelLabel} *</label>
+        <select id="ap-travel" name="travelRange" required>
+          <option value="">—</option>
+          {TRAVEL_RANGES.map((range) => <option value={range}>{a.travelLabels[range]}</option>)}
+        </select>
+        <p class="field-error" data-error-for="travelRange"></p>
+      </div>
+
+      <div class="field">
+        <label for="ap-availability">{a.availabilityLabel} *</label>
+        <select id="ap-availability" name="availability" required>
+          <option value="">—</option>
+          {
+            AVAILABILITY_OPTIONS.map((option) => (
+              <option value={option}>{a.availabilityLabels[option]}</option>
+            ))
+          }
+        </select>
+        <p class="field-error" data-error-for="availability"></p>
+      </div>
+
+      <div class="field">
+        <label for="ap-experience">{a.experienceLabel} *</label>
+        <select id="ap-experience" name="experience" required>
+          <option value="">—</option>
+          {
+            EXPERIENCE_LEVELS.map((level) => (
+              <option value={level}>{a.experienceLabels[level]}</option>
+            ))
+          }
+        </select>
+        <p class="field-error" data-error-for="experience"></p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="ap-message">
+        {a.messageLabel} <span class="optional">({a.optional})</span>
+      </label>
+      <textarea id="ap-message" name="message" aria-describedby="ap-message-hint"></textarea>
+      <p class="form-note" id="ap-message-hint">{a.messageHint}</p>
+    </div>
+  </fieldset>
+
+  <!-- Einsatzland und dessen Voraussetzungen -->
+  <fieldset>
+    <legend>{t.requirements.countryLabel}</legend>
+    <CountryRequirements locale={locale} />
+  </fieldset>
+
+  <!-- Unterlagen -->
+  <fieldset>
+    <legend>{a.sectionDocuments}</legend>
+
+    <p class="form-note">{a.uploadHint}</p>
+
+    <div class="upload-grid">
+      {
+        DOCUMENT_KINDS.map((kind) => {
+          const required = REQUIRED_DOCUMENTS.includes(kind);
+          return (
+            <div class="field">
+              <label for={`ap-doc-${kind}`}>
+                {a.uploadLabels[kind]}
+                {required ? ' *' : <span class="optional"> ({a.optional})</span>}
+              </label>
+              <input
+                type="file"
+                id={`ap-doc-${kind}`}
+                name={`documents.${kind}`}
+                multiple={kind === 'other'}
+                required={required}
+                accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+              />
+              <p class="field-error" data-error-for={`documents.${kind}`} />
+            </div>
+          );
+        })
+      }
+    </div>
+
+    {/* Führungszeugnisse werden bewusst nicht mit der Bewerbung erhoben. */}
+    <p class="notice">{a.criminalRecordNotice}</p>
+
+    {/* Ohne gesicherten Versand wird das offen benannt, statt es zu simulieren. */}
+    {!hasEndpoint && <p class="notice">{a.uploadBackendNotice}</p>}
+  </fieldset>
+
+  <!-- Pflichtbestätigungen -->
+  <fieldset>
+    <legend>{a.confirmationsTitle}</legend>
+
+    {
+      CONFIRMATIONS.map((key, index) => (
+        <div class="field">
+          <div class="checkbox-field">
+            <input type="checkbox" id={`ap-confirm-${key}`} name={`confirm.${key}`} required />
+            <label for={`ap-confirm-${key}`}>{a.confirmations[index]} *</label>
+          </div>
+          <p class="field-error" data-error-for={`confirm.${key}`} />
+        </div>
+      ))
+    }
+
+    <div class="field">
+      <div class="checkbox-field">
+        <input type="checkbox" id="ap-consent" name="consent" required />
+        <label for="ap-consent">{a.consent} *</label>
+      </div>
+      <p class="field-error" data-error-for="consent"></p>
+    </div>
+
+    <p>
+      <a href={localizedPath(locale, 'privacy')}>{a.privacyLinkText}</a>
+    </p>
+  </fieldset>
+
+  {/* Honeypot gegen einfache Spam-Bots. */}
+  <div class="visually-hidden" aria-hidden="true">
+    <label for="ap-website">Website</label>
+    <input type="text" id="ap-website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <p class="form-note">{a.requiredHint}</p>
+
+  <div>
+    <button type="submit" class="btn btn-primary btn-lg" data-submit>{a.submit}</button>
+  </div>
+
+  <div class="form-message form-message-success" role="status" hidden data-success>
+    <strong>{a.successTitle}</strong>
+    <p>{a.successText}</p>
+    <p data-reference-line hidden>
+      {a.referenceLabel}: <strong data-reference></strong>
+    </p>
+  </div>
+
+  <div class="form-message form-message-error" role="alert" hidden data-error>
+    <strong>{a.errorTitle}</strong>
+    <p data-error-text>{a.errorText}</p>
+    <p>
+      <a href={CONTACT.emailHref}>{CONTACT.email}</a>
+    </p>
+  </div>
+</form>
+
+<script
+  is:inline
+  define:vars={{
+    messages: a.validation,
+    requiredDocuments: REQUIRED_DOCUMENTS,
+    confirmations: CONFIRMATIONS,
+    labels: {
+      submit: a.submit,
+      sending: a.sending,
+      genericError: a.errorText,
+      notDelivered: a.errorNotDelivered,
+    },
+  }}
+>
+  (function () {
+    var form = document.querySelector('[data-apply-form]');
+    if (!form) return;
+
+    var successBox = form.querySelector('[data-success]');
+    var errorBox = form.querySelector('[data-error]');
+    var errorText = form.querySelector('[data-error-text]');
+    var referenceLine = form.querySelector('[data-reference-line]');
+    var referenceValue = form.querySelector('[data-reference]');
+    var submitButton = form.querySelector('[data-submit]');
+
+    function clearErrors() {
+      Array.prototype.forEach.call(form.querySelectorAll('[data-error-for]'), function (node) {
+        node.textContent = '';
+        node.classList.remove('is-visible');
+      });
+      Array.prototype.forEach.call(form.querySelectorAll('[aria-invalid]'), function (node) {
+        node.removeAttribute('aria-invalid');
+      });
+    }
+
+    function showError(field, code) {
+      var node = form.querySelector('[data-error-for="' + field + '"]');
+      if (node) {
+        node.textContent = messages[code] || messages.required;
+        node.classList.add('is-visible');
+      }
+      var input = form.elements[field];
+      var target = input && input.length && !input.tagName ? input[0] : input;
+      if (target && target.setAttribute) target.setAttribute('aria-invalid', 'true');
+    }
+
+    function checkedCount(name) {
+      return form.querySelectorAll('input[name="' + name + '"]:checked').length;
+    }
+
+    /** Spiegelt die Serverprüfung, damit Fehler ohne Roundtrip sichtbar werden. */
+    function validate() {
+      clearErrors();
+      var ok = true;
+      var required = [
+        'firstName',
+        'lastName',
+        'phone',
+        'city',
+        'country',
+        'spokenLanguages',
+        'workingLanguages',
+        'travelRange',
+        'availability',
+        'experience',
+      ];
+
+      required.forEach(function (name) {
+        var value = (form.elements[name].value || '').trim();
+        if (!value) {
+          showError(name, 'required');
+          ok = false;
+        }
+      });
+
+      var email = (form.elements['email'].value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        showError('email', 'email');
+        ok = false;
+      }
+
+      ['fields', 'serviceModes', 'deliveryModes'].forEach(function (name) {
+        if (checkedCount(name) === 0) {
+          showError(name, 'required');
+          ok = false;
+        }
+      });
+
+      // Einsatzland steuert die angezeigten Voraussetzungen und ist Pflicht.
+      if (!(form.elements['assignmentCountry'].value || '').trim()) {
+        showError('assignmentCountry', 'country');
+        ok = false;
+      }
+
+      // Nur der Lebenslauf ist ein Pflicht-Upload.
+      requiredDocuments.forEach(function (kind) {
+        var input = form.elements['documents.' + kind];
+        if (!input || !input.files || !input.files.length) {
+          showError('documents.' + kind, 'required');
+          ok = false;
+        }
+      });
+
+      // Alle Bestätigungen müssen gesetzt sein.
+      confirmations.forEach(function (key) {
+        if (!form.elements['confirm.' + key].checked) {
+          showError('confirm.' + key, 'confirmations');
+          ok = false;
+        }
+      });
+
+      if (!form.elements['consent'].checked) {
+        showError('consent', 'required');
+        ok = false;
+      }
+
+      if (!ok) {
+        var firstError = form.querySelector('.field-error.is-visible');
+        if (firstError && firstError.scrollIntoView) {
+          firstError.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        }
+      }
+      return ok;
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      successBox.hidden = true;
+      errorBox.hidden = true;
+
+      if (form.elements['website'].value !== '') {
+        successBox.hidden = false;
+        return;
+      }
+
+      if (!validate()) return;
+
+      submitButton.disabled = true;
+      submitButton.textContent = labels.sending;
+
+      fetch(form.action, { method: 'POST', body: new FormData(form) })
+        .then(function (response) {
+          return response.json().then(function (data) {
+            return { status: response.status, data: data };
+          });
+        })
+        .then(function (result) {
+          if (result.data && result.data.ok) {
+            form.reset();
+            clearErrors();
+            successBox.hidden = false;
+            if (result.data.reference) {
+              referenceValue.textContent = result.data.reference;
+              referenceLine.hidden = false;
+            }
+            successBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            return;
+          }
+
+          // Serverseitige Feldfehler anzeigen.
+          if (result.data && result.data.errors) {
+            clearErrors();
+            Object.keys(result.data.errors).forEach(function (field) {
+              showError(field, result.data.errors[field]);
+            });
+          }
+
+          errorText.textContent =
+            result.data && result.data.error === 'notDelivered'
+              ? labels.notDelivered
+              : labels.genericError;
+          errorBox.hidden = false;
+        })
+        .catch(function () {
+          errorText.textContent = labels.genericError;
+          errorBox.hidden = false;
+        })
+        .finally(function () {
+          submitButton.disabled = false;
+          submitButton.textContent = labels.submit;
+        });
+    });
+  })();
+</script>

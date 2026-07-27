@@ -1,0 +1,208 @@
+---
+import { CONTACT, CONTACT_ENDPOINT } from '../consts';
+import { getDictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+/**
+ * Ohne konfigurierten Endpunkt (PUBLIC_CONTACT_ENDPOINT) öffnet das Formular
+ * einen vorbereiteten E-Mail-Entwurf. So funktioniert die Seite auch als reines
+ * Static Hosting ohne Backend – und ohne dass Anfragen ins Leere laufen.
+ */
+const hasEndpoint = CONTACT_ENDPOINT !== '';
+---
+
+<form class="form-grid" data-contact-form novalidate>
+  <div class="form-row-2">
+    <div class="field">
+      <label for="cf-name">{t.contact.fieldName} *</label>
+      <input type="text" id="cf-name" name="name" required autocomplete="name" />
+      <p class="field-error" data-error-for="name">{t.contact.validationName}</p>
+    </div>
+
+    <div class="field">
+      <label for="cf-email">{t.contact.fieldEmail} *</label>
+      <input type="email" id="cf-email" name="email" required autocomplete="email" />
+      <p class="field-error" data-error-for="email">{t.contact.validationEmail}</p>
+    </div>
+  </div>
+
+  <div class="form-row-2">
+    <div class="field">
+      <label for="cf-org">
+        {t.contact.fieldOrg} <span class="optional">({t.contact.fieldOrgHint})</span>
+      </label>
+      <input type="text" id="cf-org" name="organisation" autocomplete="organization" />
+    </div>
+
+    <div class="field">
+      <label for="cf-subject">{t.contact.fieldSubject}</label>
+      <select id="cf-subject" name="subject">
+        {t.contact.subjectOptions.map((option) => <option value={option}>{option}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="cf-message">{t.contact.fieldMessage} *</label>
+    <textarea id="cf-message" name="message" required></textarea>
+    <p class="field-error" data-error-for="message">{t.contact.validationMessage}</p>
+  </div>
+
+  <div class="field">
+    <div class="checkbox-field">
+      <input type="checkbox" id="cf-consent" name="consent" required />
+      <label for="cf-consent">{t.contact.consent} *</label>
+    </div>
+    <p class="field-error" data-error-for="consent">{t.contact.validationConsent}</p>
+  </div>
+
+  {/* Honeypot gegen einfache Spam-Bots – für Menschen unsichtbar. */}
+  <div class="visually-hidden" aria-hidden="true">
+    <label for="cf-website">Website</label>
+    <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <p class="form-note">{t.contact.requiredHint}</p>
+  {!hasEndpoint && <p class="form-note">{t.contact.mailtoNote}</p>}
+
+  <div>
+    <button type="submit" class="btn btn-primary" data-submit>{t.contact.submit}</button>
+  </div>
+
+  <p class="form-message form-message-success" role="status" hidden data-success>
+    {t.contact.success}
+  </p>
+  <p class="form-message form-message-error" role="alert" hidden data-error>
+    {t.contact.error}
+  </p>
+</form>
+
+<script
+  is:inline
+  define:vars={{
+    endpoint: CONTACT_ENDPOINT,
+    mailto: CONTACT.email,
+    labels: {
+      sending: t.contact.sending,
+      submit: t.contact.submit,
+      subject: t.contact.fieldSubject,
+      name: t.contact.fieldName,
+      email: t.contact.fieldEmail,
+      org: t.contact.fieldOrg,
+      message: t.contact.fieldMessage,
+    },
+  }}
+>
+  (function () {
+    var form = document.querySelector('[data-contact-form]');
+    if (!form) return;
+
+    var successBox = form.querySelector('[data-success]');
+    var errorBox = form.querySelector('[data-error]');
+    var submitButton = form.querySelector('[data-submit]');
+
+    function setError(field, visible) {
+      var message = form.querySelector('[data-error-for="' + field + '"]');
+      if (message) message.classList.toggle('is-visible', visible);
+      var input = form.elements[field];
+      if (input && input.setAttribute) {
+        if (visible) input.setAttribute('aria-invalid', 'true');
+        else input.removeAttribute('aria-invalid');
+      }
+    }
+
+    function validate() {
+      var valid = true;
+      var name = form.elements['name'].value.trim();
+      var email = form.elements['email'].value.trim();
+      var message = form.elements['message'].value.trim();
+      var consent = form.elements['consent'].checked;
+
+      setError('name', !name);
+      if (!name) valid = false;
+
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      setError('email', !emailOk);
+      if (!emailOk) valid = false;
+
+      setError('message', !message);
+      if (!message) valid = false;
+
+      setError('consent', !consent);
+      if (!consent) valid = false;
+
+      if (!valid) {
+        var firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid && firstInvalid.focus) firstInvalid.focus();
+      }
+      return valid;
+    }
+
+    function buildMailto() {
+      var subject = form.elements['subject'].value;
+      var lines = [
+        labels.name + ': ' + form.elements['name'].value.trim(),
+        labels.email + ': ' + form.elements['email'].value.trim(),
+        labels.org + ': ' + form.elements['organisation'].value.trim(),
+        '',
+        form.elements['message'].value.trim(),
+      ];
+      return (
+        'mailto:' +
+        mailto +
+        '?subject=' +
+        encodeURIComponent(subject) +
+        '&body=' +
+        encodeURIComponent(lines.join('\n'))
+      );
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      successBox.hidden = true;
+      errorBox.hidden = true;
+
+      // Honeypot gefüllt: stillschweigend als Erfolg behandeln.
+      if (form.elements['website'].value !== '') {
+        successBox.hidden = false;
+        form.reset();
+        return;
+      }
+
+      if (!validate()) return;
+
+      if (!endpoint) {
+        window.location.href = buildMailto();
+        successBox.hidden = false;
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = labels.sending;
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Request failed');
+          successBox.hidden = false;
+          form.reset();
+        })
+        .catch(function () {
+          errorBox.hidden = false;
+        })
+        .finally(function () {
+          submitButton.disabled = false;
+          submitButton.textContent = labels.submit;
+        });
+    });
+  })();
+</script>

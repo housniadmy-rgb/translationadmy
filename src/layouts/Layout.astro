@@ -1,0 +1,38 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { LOCALE_TAGS, type Locale, type PageId } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { locale, page, title, description, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang={LOCALE_TAGS[locale]}>
+  <head>
+    <BaseHead
+      locale={locale}
+      page={page}
+      title={title}
+      description={description}
+      noindex={noindex}
+    />
+  </head>
+  <body>
+    <Header locale={locale} page={page} />
+
+    <main id="main" class="main-content">
+      <slot />
+    </main>
+
+    <Footer locale={locale} page={page} />
+  </body>
+</html>

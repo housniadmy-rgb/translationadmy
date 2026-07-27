@@ -1,0 +1,147 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import { CONTACT, ADDRESS, SITE, LEGAL } from '../consts';
+import { DEFAULT_LOCALE, getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+/**
+ * Kontaktzeilen der Anbieterkennzeichnung.
+ * Telefon und Mobil sind bewusst verlinkt, damit sie auf Smartphones direkt
+ * gewählt werden können; die Faxnummer bleibt reiner Text.
+ */
+const contactRows = [
+  { icon: 'phone', label: t.ui.phone, value: CONTACT.phone, href: CONTACT.phoneHref },
+  { icon: 'mobile', label: t.ui.mobile, value: CONTACT.mobile, href: CONTACT.mobileHref },
+  { icon: 'fax', label: t.ui.fax, value: CONTACT.fax, href: null },
+  { icon: 'mail', label: t.ui.email, value: CONTACT.email, href: CONTACT.emailHref },
+] as const;
+---
+
+<PageHero locale={locale} page="imprint" title={t.imprint.h1} lead={t.imprint.metaDescription} />
+
+<section class="section">
+  <div class="container container-narrow">
+    {locale !== DEFAULT_LOCALE && <p class="notice">{t.ui.legallyBindingNote}</p>}
+
+    <div class="prose">
+      <h2>{t.imprint.providerTitle}</h2>
+
+      {/* Firmenname, Anschrift und Namen bleiben in jeder Sprachfassung unübersetzt. */}
+      <address class="imprint-address">
+        <strong>{SITE.legalName}</strong><br />
+        {ADDRESS.street}<br />
+        {ADDRESS.postalCode}&nbsp;{ADDRESS.city}<br />
+        {ADDRESS.country}
+      </address>
+
+      <dl class="definition-list">
+        <div>
+          <dt>{t.imprint.representedBy}</dt>
+          <dd>{LEGAL.representedBy}</dd>
+        </div>
+      </dl>
+
+      <h2>{t.imprint.contactTitle}</h2>
+
+      <ul class="imprint-contact">
+        {
+          contactRows.map((row) => (
+            <li>
+              <Icon name={row.icon} size={18} />
+              <span class="imprint-contact-label">{row.label}</span>
+              {row.href ? <a href={row.href}>{row.value}</a> : <span>{row.value}</span>}
+            </li>
+          ))
+        }
+      </ul>
+
+      <h2>{t.imprint.taxNumberLabel}</h2>
+      <dl class="definition-list">
+        <div>
+          {/* Pflichtangabe nach § 27a UStG. */}
+          <dt>{t.imprint.vatIdLabel}</dt>
+          <dd>{LEGAL.vatId}</dd>
+        </div>
+        <div>
+          <dt>{t.imprint.taxNumberLabel}</dt>
+          <dd>{LEGAL.taxNumber}</dd>
+        </div>
+      </dl>
+
+      <h2>{t.imprint.responsibleTitle}</h2>
+      <p>{t.imprint.responsibleText}</p>
+      <address class="imprint-address">
+        {LEGAL.representedBy}<br />
+        {ADDRESS.street}<br />
+        {ADDRESS.postalCode}&nbsp;{ADDRESS.city}
+      </address>
+
+      <h2>{t.imprint.disputeTitle}</h2>
+      <p>{t.imprint.disputeText}</p>
+
+      <h2>{t.imprint.liabilityContentTitle}</h2>
+      <p>{t.imprint.liabilityContentText}</p>
+
+      <h2>{t.imprint.liabilityLinksTitle}</h2>
+      <p>{t.imprint.liabilityLinksText}</p>
+
+      <h2>{t.imprint.copyrightTitle}</h2>
+      <p>{t.imprint.copyrightText}</p>
+    </div>
+
+    <div class="btn-group mt-2xl">
+      <a class="btn btn-secondary" href={localizedPath(locale, 'privacy')}>
+        {t.nav.privacy}
+      </a>
+      <a class="btn btn-secondary" href={localizedPath(locale, 'contact')}>
+        {t.nav.contact}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .imprint-address {
+    font-style: normal;
+    line-height: 1.7;
+  }
+
+  .imprint-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .imprint-contact li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem var(--space-sm);
+  }
+
+  .imprint-contact svg {
+    flex-shrink: 0;
+    color: var(--brand);
+  }
+
+  .imprint-contact-label {
+    min-width: 6.5rem;
+    font-size: var(--step--1);
+    color: var(--text-subtle);
+  }
+
+  /* Auf dem Smartphone müssen die Nummern gut treffbar sein. */
+  .imprint-contact a {
+    font-weight: 600;
+    padding-block: 0.2rem;
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { CONTACT, ADDRESS, SITE } from '../consts';
+import { DEFAULT_LOCALE, getDictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const tiles = [
+  { icon: 'phone', label: t.ui.phone, value: CONTACT.phone, href: CONTACT.phoneHref },
+  { icon: 'mobile', label: t.ui.mobile, value: CONTACT.mobile, href: CONTACT.mobileHref },
+  { icon: 'mail', label: t.ui.email, value: CONTACT.email, href: CONTACT.emailHref },
+  { icon: 'fax', label: t.ui.fax, value: CONTACT.fax, href: null },
+] as const;
+---
+
+<PageHero locale={locale} page="contact" title={t.contact.h1} lead={t.contact.lead} />
+
+<section class="section">
+  <div class="container">
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--space-3xl);">
+      <div>
+        <h2>{t.contact.detailsTitle}</h2>
+
+        <div class="contact-tiles mt-lg">
+          {
+            tiles.map((tile) =>
+              tile.href ? (
+                <a class="contact-tile" href={tile.href}>
+                  <Icon name={tile.icon} />
+                  <span>
+                    <span class="contact-tile-label">{tile.label}</span>
+                    <span class="contact-tile-value">{tile.value}</span>
+                  </span>
+                </a>
+              ) : (
+                <div class="contact-tile">
+                  <Icon name={tile.icon} />
+                  <span>
+                    <span class="contact-tile-label">{tile.label}</span>
+                    <span class="contact-tile-value">{tile.value}</span>
+                  </span>
+                </div>
+              ),
+            )
+          }
+
+          <div class="contact-tile">
+            <Icon name="map-pin" />
+            <span>
+              <span class="contact-tile-label">{t.ui.postalAddress}</span>
+              <address class="contact-tile-value" style="font-style: normal;">
+                {SITE.legalName}<br />
+                {ADDRESS.street}<br />
+                {ADDRESS.postalCode}&nbsp;{ADDRESS.city}
+              </address>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2>{t.contact.formTitle}</h2>
+        <p class="text-muted mt-lg">{t.contact.formLead}</p>
+
+        <div class="mt-xl">
+          <ContactForm locale={locale} />
+        </div>
+
+        {locale !== DEFAULT_LOCALE && <p class="form-note mt-lg">{t.ui.legallyBindingNote}</p>}
+      </div>
+    </div>
+  </div>
+</section>

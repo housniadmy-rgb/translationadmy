@@ -1,0 +1,102 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { IconName } from '../components/icons';
+import { getDictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+// Reihenfolge entspricht t.authorities.audience.
+const audienceIcons: IconName[] = [
+  'scales',
+  'police',
+  'migration',
+  'building',
+  'home-shelter',
+  'government',
+  'users',
+  'school',
+  'europe',
+  'shield',
+  'handshake',
+];
+
+const principleIcons: IconName[] = ['check', 'balance', 'lock', 'clock'];
+---
+
+<PageHero locale={locale} page="authorities" title={t.authorities.h1} lead={t.authorities.lead} />
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t.authorities.audienceTitle}</h2>
+      <p class="lead">{t.authorities.audienceLead}</p>
+    </div>
+
+    {/* Klarstellung, dass es sich um Zielgruppen und nicht um Referenzen handelt. */}
+    <p class="notice" style="margin-bottom: var(--space-xl);">
+      {t.authorities.audienceDisclaimer}
+    </p>
+
+    <ul class="audience-list">
+      {
+        t.authorities.audience.map((item, index) => (
+          <li class="audience-item">
+            <Icon name={audienceIcons[index] ?? 'building'} />
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t.authorities.principlesTitle}</h2>
+      <p class="lead">{t.authorities.principlesLead}</p>
+    </div>
+
+    <div class="grid grid-4">
+      {
+        t.authorities.principles.map((item, index) => (
+          <article class="card">
+            <span class="card-icon">
+              <Icon name={principleIcons[index] ?? 'check'} />
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+    <h2>{t.authorities.procurementTitle}</h2>
+    <p class="lead mt-lg">{t.authorities.procurementText}</p>
+
+    <ul class="card-list mt-xl" style="font-size: var(--step-0);">
+      {t.authorities.procurementBullets.map((bullet) => <li>{bullet}</li>)}
+    </ul>
+
+    <div class="notice mt-2xl">
+      <h3>{t.authorities.tendersTitle}</h3>
+      <p>{t.authorities.tendersText}</p>
+    </div>
+  </div>
+</section>
+
+<CtaBand locale={locale} title={t.home.ctaTitle} text={t.home.ctaText} button={t.home.ctaButton} />

@@ -1,0 +1,143 @@
+---
+/**
+ * Sprachweiche unter "/".
+ *
+ * Reihenfolge der Erkennung:
+ *   1. zuvor gewählte Sprache (localStorage, kein Cookie, kein Tracking)
+ *   2. Browsersprache, sofern wir sie anbieten
+ *   3. Deutsch als Hauptfassung
+ *
+ * Ohne JavaScript greift der Meta-Refresh auf die deutsche Fassung,
+ * zusätzlich stehen alle Sprachfassungen als echte Links im Body –
+ * so finden auch Suchmaschinen jede Sprachversion von hier aus.
+ */
+import { SITE, SITE_URL } from '../consts';
+import {
+  AVAILABLE_LOCALES,
+  DEFAULT_LOCALE,
+  LOCALE_NAMES,
+  LOCALE_TAGS,
+  absoluteUrl,
+  getDictionary,
+  localizedPath,
+} from '../i18n';
+
+const defaultHome = localizedPath(DEFAULT_LOCALE, 'home');
+const t = getDictionary(DEFAULT_LOCALE);
+const siteUrl = Astro.site?.href ?? SITE_URL;
+
+const options = AVAILABLE_LOCALES.map((code) => ({
+  code,
+  name: LOCALE_NAMES[code],
+  tag: LOCALE_TAGS[code],
+  href: localizedPath(code, 'home'),
+}));
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{SITE.name} – {t.home.metaTitle}</title>
+    <meta name="description" content={t.home.metaDescription} />
+
+    {/* Kanonisch ist die deutsche Hauptfassung, nicht die Weiche selbst. */}
+    <link rel="canonical" href={absoluteUrl(siteUrl, DEFAULT_LOCALE, 'home')} />
+    <meta http-equiv="refresh" content={`0; url=${defaultHome}`} />
+
+    {
+      options.map((option) => (
+        <link rel="alternate" hreflang={option.tag} href={new URL(option.href, siteUrl).href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(siteUrl, DEFAULT_LOCALE, 'home')} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script
+      is:inline
+      define:vars={{ supported: AVAILABLE_LOCALES, fallback: defaultHome, prefix: '/' }}
+    >
+      (function () {
+        function pick() {
+          try {
+            var saved = localStorage.getItem('ta-lang');
+            if (saved && supported.indexOf(saved) !== -1) return saved;
+          } catch (error) {
+            /* localStorage gesperrt – dann zählt nur die Browsersprache. */
+          }
+
+          var candidates = navigator.languages || [navigator.language];
+          for (var i = 0; i < candidates.length; i++) {
+            if (!candidates[i]) continue;
+            var base = String(candidates[i]).toLowerCase().split('-')[0];
+            if (supported.indexOf(base) !== -1) return base;
+          }
+          return null;
+        }
+
+        var locale = pick();
+        window.location.replace(locale ? prefix + locale + '/' : fallback);
+      })();
+    </script>
+
+    <style>
+      body {
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #0f2c47;
+        color: #fff;
+        padding: 2rem;
+      }
+      .weiche {
+        max-width: 40rem;
+        text-align: center;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+      }
+      a {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 8px;
+        color: #fff;
+        text-decoration: none;
+      }
+      a:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="weiche">
+      <h1>{SITE.name}</h1>
+      <p>{t.ui.languageSwitcherHint}</p>
+      <ul>
+        {
+          options.map((option) => (
+            <li>
+              <a href={option.href} hreflang={option.tag} lang={option.tag}>
+                {option.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </body>
+</html>

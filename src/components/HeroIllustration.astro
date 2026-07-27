@@ -1,0 +1,82 @@
+---
+/**
+ * Abstrakte Illustration: zwei Gesprächsseiten, die über einen
+ * Sprachknotenpunkt verbunden sind. Vollständig selbst gezeichnetes SVG –
+ * keine Stockfotos, keine Lizenzfragen, kein zusätzlicher Netzwerk-Request.
+ */
+---
+
+<svg viewBox="0 0 520 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hero-card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
+    </linearGradient>
+    <linearGradient id="hero-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#efc87a" />
+      <stop offset="100%" stop-color="#c98f22" />
+    </linearGradient>
+    <linearGradient id="hero-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7fb0d6" />
+      <stop offset="100%" stop-color="#3d7fb8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Verbindungsnetz im Hintergrund -->
+  <g stroke="#7fb0d6" stroke-opacity="0.28" stroke-width="1.5">
+    <path d="M120 150 260 210 400 150" />
+    <path d="M120 150 260 210 400 268" />
+    <path d="M120 268 260 210 400 268" />
+    <path d="M120 268 260 210 400 150" />
+    <path d="M260 90v120M260 210v118" />
+  </g>
+
+  <!-- Äußere Knotenpunkte -->
+  <g fill="#0f2c47" stroke="url(#hero-blue)" stroke-width="2">
+    <circle cx="120" cy="150" r="15" />
+    <circle cx="400" cy="150" r="15" />
+    <circle cx="120" cy="268" r="15" />
+    <circle cx="400" cy="268" r="15" />
+    <circle cx="260" cy="90" r="15" />
+    <circle cx="260" cy="328" r="15" />
+  </g>
+
+  <!-- Zentrum: Sprachknoten -->
+  <circle cx="260" cy="210" r="46" fill="url(#hero-gold)" />
+  <g stroke="#0a1f33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <circle cx="260" cy="210" r="21" />
+    <path d="M239 210h42" />
+    <path d="M260 189c5.8 6.3 8.8 13.3 8.8 21s-3 14.7-8.8 21c-5.8-6.3-8.8-13.3-8.8-21s3-14.7 8.8-21Z" />
+  </g>
+
+  <!-- Sprechblase links: Ausgangssprache -->
+  <g transform="translate(28 44)">
+    <rect width="176" height="96" rx="16" fill="url(#hero-card)" stroke="#7fb0d6" stroke-opacity="0.5" />
+    <path d="M34 96v22l26-22Z" fill="#ffffff" fill-opacity="0.12" />
+    <rect x="22" y="26" width="118" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.55" />
+    <rect x="22" y="46" width="132" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.35" />
+    <rect x="22" y="66" width="84" height="9" rx="4.5" fill="#ffffff" fill-opacity="0.25" />
+  </g>
+
+  <!-- Sprechblase rechts: Zielsprache -->
+  <g transform="translate(316 280)">
+    <rect width="176" height="96" rx="16" fill="url(#hero-card)" stroke="#efc87a" stroke-opacity="0.55" />
+    <path d="M142 0v-22l-26 22Z" fill="#ffffff" fill-opacity="0.12" />
+    <rect x="22" y="26" width="104" height="9" rx="4.5" fill="#efc87a" fill-opacity="0.85" />
+    <rect x="22" y="46" width="132" height="9" rx="4.5" fill="#efc87a" fill-opacity="0.5" />
+    <rect x="22" y="66" width="72" height="9" rx="4.5" fill="#efc87a" fill-opacity="0.32" />
+  </g>
+
+  <!-- Bestätigungsmarke -->
+  <g transform="translate(392 96)">
+    <circle cx="26" cy="26" r="26" fill="#1a7f4b" />
+    <path
+      d="m15 26 8 8 14-15"
+      stroke="#ffffff"
+      stroke-width="3.2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+  </g>
+</svg>

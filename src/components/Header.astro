@@ -1,0 +1,293 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { SITE } from '../consts';
+import {
+  AVAILABLE_LOCALES,
+  FOOTER_NAV,
+  HEADER_NAV,
+  LOCALE_NAMES,
+  LOCALE_TAGS,
+  getDictionary,
+  localizedPath,
+  type Locale,
+  type PageId,
+} from '../i18n';
+
+interface Props {
+  locale: Locale;
+  page: PageId;
+}
+
+const { locale, page } = Astro.props;
+const t = getDictionary(locale);
+
+const navItems = HEADER_NAV.map((id) => ({
+  id,
+  label: t.nav[id],
+  href: localizedPath(locale, id),
+  isCurrent: id === page,
+}));
+
+/**
+ * Das mobile Menü führt alle Seiten auf – auch die, die im Kopf aus
+ * Platzgründen fehlen. So ist jede Seite mit einem Tipp erreichbar.
+ */
+const mobileItems: PageId[] = [
+  ...HEADER_NAV,
+  'careers',
+  'requirements',
+  'contact',
+  ...FOOTER_NAV.legal.filter((id) => id !== 'contact'),
+];
+---
+
+<a class="skip-link" href="#main">{t.ui.skipToContent}</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href={localizedPath(locale, 'home')}>
+      <Logo class="logo-mark" />
+      <span class="logo-text">
+        <span class="logo-name">{SITE.name}</span>
+        <span class="logo-sub">Dolmetschen &amp; Übersetzen</span>
+      </span>
+    </a>
+
+    <nav class="primary-nav" aria-label={t.nav.home}>
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href} aria-current={item.isCurrent ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      {/* Auf Mobilgeräten ausgeblendet – die Sprachwahl steht dort im Menü. */}
+      <div class="header-lang">
+        <LanguageSwitcher locale={locale} page={page} />
+      </div>
+
+      {/*
+        Im Kopf steht die gekürzte Beschriftung – die vollständige Fassung
+        bleibt im mobilen Menü, auf den Seiten-CTAs und hier als title.
+      */}
+      <a
+        class="btn btn-primary header-cta header-cta-apply"
+        href={localizedPath(locale, 'apply')}
+        title={t.ui.applyCta}
+      >
+        {t.ui.applyCtaShort}
+      </a>
+
+      <a class="btn btn-primary header-cta" href={localizedPath(locale, 'contact')}>
+        {t.nav.contact}
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={t.ui.openMenu}
+        data-menu-toggle
+        data-label-open={t.ui.openMenu}
+        data-label-close={t.ui.closeMenu}
+      >
+        <Icon name="menu" class="icon-menu" />
+        <Icon name="close" class="icon-close" />
+      </button>
+    </div>
+  </div>
+</header>
+
+{/*
+  Off-Canvas-Menü, bewusst außerhalb des Headers: Als position:fixed-Ebene
+  kann es die volle Höhe einnehmen, ohne vom sticky Kopf beschnitten zu werden.
+*/}
+<div class="mobile-menu" id="mobile-menu" hidden data-menu>
+  <div class="mobile-menu-backdrop" data-menu-backdrop></div>
+
+  <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label={t.nav.home}>
+    <div class="mobile-menu-head">
+      <span class="mobile-menu-title">{SITE.name}</span>
+      <button type="button" class="nav-toggle" aria-label={t.ui.closeMenu} data-menu-close>
+        <Icon name="close" />
+      </button>
+    </div>
+
+    <nav class="mobile-menu-nav" aria-label={t.nav.home}>
+      <ul>
+        {
+          mobileItems.map((id) => (
+            <li>
+              <a href={localizedPath(locale, id)} aria-current={id === page ? 'page' : undefined}>
+                {t.nav[id]}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="mobile-menu-cta">
+      <a class="btn btn-primary btn-block" href={localizedPath(locale, 'apply')}>
+        {t.ui.applyCta}
+      </a>
+      <a class="btn btn-secondary btn-block" href={localizedPath(locale, 'contact')}>
+        {t.nav.contact}
+      </a>
+    </div>
+
+    {/*
+      Vollständige Sprachwahl im Menü. Jede Sprache zeigt auf dieselbe
+      Unterseite, damit der Wechsel nicht zur Startseite zurückspringt.
+    */}
+    <div class="mobile-menu-langs">
+      <h2>{t.footer.languageHeading}</h2>
+      <ul>
+        {
+          AVAILABLE_LOCALES.map((code) => (
+            <li>
+              <a
+                href={localizedPath(code, page)}
+                hreflang={LOCALE_TAGS[code]}
+                lang={LOCALE_TAGS[code]}
+                aria-current={code === locale ? 'true' : undefined}
+                rel="alternate"
+              >
+                <span class="mobile-lang-code">{code}</span>
+                <span>{LOCALE_NAMES[code]}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  /*
+    Off-Canvas-Menü.
+
+    Geschlossen wird ausschließlich durch: Schalter, Schließen-Knopf,
+    Klick auf den abgedunkelten Hintergrund, Escape oder Auswahl eines
+    Menüpunkts. Scrollen, Resize, Fokuswechsel innerhalb des Menüs und
+    Layout-Shifts lassen es bewusst offen.
+  */
+  (() => {
+    const menu = document.querySelector<HTMLElement>('[data-menu]');
+    const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    if (!menu || !toggle) return;
+    if (menu.dataset.menuReady === 'true') return;
+    menu.dataset.menuReady = 'true';
+
+    const panel = menu.querySelector<HTMLElement>('.mobile-menu-panel');
+    const backdrop = menu.querySelector<HTMLElement>('[data-menu-backdrop]');
+    const closeButton = menu.querySelector<HTMLButtonElement>('[data-menu-close]');
+    if (!panel) return;
+
+    const FOCUSABLE = 'a[href], button:not([disabled])';
+    let scrollY = 0;
+
+    const isOpen = () => !menu.hidden;
+
+    /**
+     * Sperrt den Hintergrund über position: fixed statt overflow: hidden.
+     * Nur so bleibt die Scrollposition erhalten – overflow: hidden springt
+     * auf mobilen Browsern an den Seitenanfang zurück.
+     */
+    const lockBackground = () => {
+      scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.insetInline = '0';
+    };
+
+    const unlockBackground = () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.insetInline = '';
+      window.scrollTo({ top: scrollY, behavior: 'instant' as ScrollBehavior });
+    };
+
+    const open = () => {
+      if (isOpen()) return;
+      lockBackground();
+      menu.hidden = false;
+      // Erzwingt einen Frame, damit der Einfahr-Übergang greift.
+      requestAnimationFrame(() => menu.classList.add('is-open'));
+      toggle.setAttribute('aria-expanded', 'true');
+      const label = toggle.dataset.labelClose;
+      if (label) toggle.setAttribute('aria-label', label);
+      panel.querySelector<HTMLElement>(FOCUSABLE)?.focus();
+    };
+
+    const close = (returnFocus = true) => {
+      if (!isOpen()) return;
+      menu.classList.remove('is-open');
+      menu.hidden = true;
+      unlockBackground();
+      toggle.setAttribute('aria-expanded', 'false');
+      const label = toggle.dataset.labelOpen;
+      if (label) toggle.setAttribute('aria-label', label);
+      if (returnFocus) toggle.focus();
+    };
+
+    toggle.addEventListener('click', () => (isOpen() ? close() : open()));
+    closeButton?.addEventListener('click', () => close());
+    backdrop?.addEventListener('click', () => close());
+
+    // Auswahl eines Menüpunkts schließt das Menü; die Navigation läuft weiter.
+    panel.addEventListener('click', (event) => {
+      const link = (event.target as HTMLElement).closest('a[href]');
+      if (link) close(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!isOpen()) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+        return;
+      }
+
+      // Fokus im Menü halten, solange es geöffnet ist.
+      if (event.key === 'Tab') {
+        const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+          (node) => node.offsetParent !== null,
+        );
+        if (items.length === 0) return;
+        const first = items[0]!;
+        const last = items[items.length - 1]!;
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    /*
+      Beim Wechsel auf Desktop-Breite das Menü schließen, damit kein
+      gesperrter Hintergrund zurückbleibt. Der Wert entspricht dem
+      Umbruchpunkt in global.css.
+    */
+    const wide = window.matchMedia('(min-width: 86rem)');
+    wide.addEventListener('change', (event) => {
+      if (event.matches) close(false);
+    });
+  })();
+</script>

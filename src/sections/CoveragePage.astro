@@ -1,0 +1,134 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { IconName } from '../components/icons';
+import { COVERAGE_COUNTRIES } from '../consts';
+import { LOCALE_TAGS, getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const blocks = [
+  { icon: 'map-pin', title: t.coverage.baseTitle, text: t.coverage.baseText },
+  { icon: 'government', title: t.coverage.nationwideTitle, text: t.coverage.nationwideText },
+  { icon: 'europe', title: t.coverage.internationalTitle, text: t.coverage.internationalText },
+  { icon: 'video', title: t.coverage.remoteTitle, text: t.coverage.remoteText },
+] as const;
+
+const capabilityIcons: IconName[] = [
+  'government',
+  'accompany',
+  'video',
+  'clock',
+  'europe',
+  'migration',
+  'users',
+];
+
+/**
+ * Ländernamen in der Sprache der jeweiligen Seitenfassung.
+ * Intl.DisplayNames liefert die amtlichen Bezeichnungen – dadurch stimmen sie
+ * in allen 17 Fassungen, ohne dass Namen doppelt gepflegt werden müssen.
+ */
+const regionNames = new Intl.DisplayNames([LOCALE_TAGS[locale]], { type: 'region' });
+const countries = COVERAGE_COUNTRIES.map((code) => regionNames.of(code) ?? code).sort((a, b) =>
+  a.localeCompare(b, LOCALE_TAGS[locale]),
+);
+---
+
+<PageHero locale={locale} page="coverage" title={t.coverage.h1} lead={t.coverage.lead} />
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-2">
+      {
+        blocks.map((block) => (
+          <article class="card">
+            <span class="card-icon">
+              <Icon name={block.icon} />
+            </span>
+            <h2>{block.title}</h2>
+            <p>{block.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Bundesweit und europaweit im Einsatz -->
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <p class="kicker">{t.nav.coverage}</p>
+      <h2>{t.coverage.europeTitle}</h2>
+      <p class="lead">{t.coverage.europeText}</p>
+    </div>
+
+    <ul class="capability-list">
+      {
+        t.coverage.capabilities.map((capability, index) => (
+          <li>
+            <Icon name={capabilityIcons[index] ?? 'check'} />
+            <span>{capability}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Europäische Grenz- und Asylverfahren -->
+<section class="section">
+  <div class="container container-narrow">
+    <div class="section-header">
+      <p class="kicker">
+        <Icon name="europe" size={16} />
+        {t.nav.authorities}
+      </p>
+      <h2>{t.coverage.bordersTitle}</h2>
+    </div>
+
+    <div class="prose">
+      <p class="lead">{t.coverage.bordersText}</p>
+      <p>{t.coverage.bordersNote}</p>
+    </div>
+
+    {/*
+      Klarstellung: Die Nennung von Frontex und EUAA beschreibt Zielgruppen
+      und Verfügbarkeit – keine bestehende Zusammenarbeit oder Beauftragung.
+    */}
+    <p class="notice mt-xl">{t.authorities.audienceDisclaimer}</p>
+  </div>
+</section>
+
+<!-- Europäische Einsatz- und Vermittlungsgebiete -->
+<section class="section section-muted">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t.coverage.countriesTitle}</h2>
+      <p class="lead">{t.coverage.countriesNote}</p>
+    </div>
+
+    <ul class="chip-list">
+      {countries.map((country) => <li class="chip chip-brand">{country}</li>)}
+    </ul>
+
+    <div class="btn-group mt-2xl">
+      <a class="btn btn-accent btn-lg" href={localizedPath(locale, 'apply')}>
+        <Icon name="users" size={18} />
+        {t.ui.applyCta}
+      </a>
+      <a class="btn btn-secondary" href={localizedPath(locale, 'contact')}>
+        {t.ui.requestQuote}
+      </a>
+    </div>
+  </div>
+</section>
+
+<CtaBand locale={locale} title={t.home.ctaTitle} text={t.home.ctaText} button={t.home.ctaButton} />

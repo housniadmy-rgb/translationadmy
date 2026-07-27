@@ -1,0 +1,62 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { IconName } from '../components/icons';
+import { getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const icons: IconName[] = ['users', 'clock', 'handshake', 'check'];
+---
+
+<PageHero locale={locale} page="about" title={t.about.h1} lead={t.about.lead} />
+
+<section class="section">
+  <div class="container container-narrow">
+    <div class="prose">
+      {t.about.body.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+
+    <blockquote class="quote mt-2xl">{t.about.quote}</blockquote>
+  </div>
+</section>
+
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t.about.valuesTitle}</h2>
+    </div>
+
+    <div class="grid grid-4">
+      {
+        t.about.values.map((value, index) => (
+          <article class="card">
+            <span class="card-icon">
+              <Icon name={icons[index] ?? 'check'} />
+            </span>
+            <h3>{value.title}</h3>
+            <p>{value.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="btn-group mt-2xl">
+      <a class="btn btn-secondary" href={localizedPath(locale, 'services')}>
+        {t.nav.services}
+        <Icon name="arrow-right" size={18} />
+      </a>
+      <a class="btn btn-secondary" href={localizedPath(locale, 'careers')}>
+        {t.nav.careers}
+      </a>
+    </div>
+  </div>
+</section>
+
+<CtaBand locale={locale} title={t.home.ctaTitle} text={t.home.ctaText} button={t.home.ctaButton} />

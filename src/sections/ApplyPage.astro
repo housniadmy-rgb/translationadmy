@@ -1,0 +1,40 @@
+---
+import Icon from '../components/Icon.astro';
+import PageHero from '../components/PageHero.astro';
+import ApplicationForm from '../components/ApplicationForm.astro';
+import { CONTACT } from '../consts';
+import { getDictionary, localizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+---
+
+<PageHero locale={locale} page="apply" title={t.apply.h1} lead={t.apply.lead} />
+
+<section class="section">
+  <div class="container" style="max-width: 60rem;">
+    <ApplicationForm locale={locale} />
+
+    <div class="notice mt-2xl">
+      <h3>{t.careers.applyTitle}</h3>
+      <p>{t.careers.applyText}</p>
+      <div class="btn-group mt-lg">
+        <a class="btn btn-secondary" href={CONTACT.emailHref}>
+          <Icon name="mail" size={18} />
+          {CONTACT.email}
+        </a>
+        <a class="btn btn-secondary" href={CONTACT.phoneHref}>
+          <Icon name="phone" size={18} />
+          {CONTACT.phone}
+        </a>
+        <a class="btn btn-secondary" href={localizedPath(locale, 'privacy')}>
+          {t.nav.privacy}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
