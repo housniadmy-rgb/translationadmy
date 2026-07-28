@@ -5,6 +5,7 @@ import {
   LOCALE_NAMES,
   LOCALE_TAGS,
   getDictionary,
+  localeDirection,
   localizedPath,
   type Locale,
   type PageId,
@@ -13,9 +14,17 @@ import {
 interface Props {
   locale: Locale;
   page: PageId;
+  /**
+   * Kennung der aufklappenden Liste.
+   *
+   * Der Umschalter steht zweimal im Dokument – im Kopf und im Hamburger-Menü.
+   * Ohne eigene Kennung je Instanz gäbe es doppelte IDs; aria-controls zeigte
+   * dann auf das falsche Element und Sprachausgaben lasen den falschen Zustand.
+   */
+  menuId?: string;
 }
 
-const { locale, page } = Astro.props;
+const { locale, page, menuId = 'language-menu' } = Astro.props;
 const t = getDictionary(locale);
 
 // Entscheidend: der Wechsel zeigt auf dieselbe Unterseite in der Zielsprache.
@@ -23,6 +32,8 @@ const options = AVAILABLE_LOCALES.map((code) => ({
   code,
   name: LOCALE_NAMES[code],
   tag: LOCALE_TAGS[code],
+  // Der Eintrag steht in seiner eigenen Sprache und braucht deren Richtung.
+  dir: localeDirection(code),
   href: localizedPath(code, page),
   isCurrent: code === locale,
 }));
@@ -33,7 +44,7 @@ const options = AVAILABLE_LOCALES.map((code) => ({
     type="button"
     class="lang-button"
     aria-expanded="false"
-    aria-controls="language-menu"
+    aria-controls={menuId}
     aria-label={`${t.ui.languageSwitcherHint} – ${t.ui.currentLanguage}: ${LOCALE_NAMES[locale]}`}
     data-lang-toggle
   >
@@ -43,7 +54,7 @@ const options = AVAILABLE_LOCALES.map((code) => ({
     <Icon name="chevron-down" class="lang-caret" />
   </button>
 
-  <ul class="lang-menu" id="language-menu" hidden data-lang-menu>
+  <ul class="lang-menu" id={menuId} hidden data-lang-menu>
     {
       options.map((option) => (
         <li>
@@ -51,6 +62,7 @@ const options = AVAILABLE_LOCALES.map((code) => ({
             href={option.href}
             hreflang={option.tag}
             lang={option.tag}
+            dir={option.dir}
             aria-current={option.isCurrent ? 'true' : undefined}
             rel="alternate"
           >

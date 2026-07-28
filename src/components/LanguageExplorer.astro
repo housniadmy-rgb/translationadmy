@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { LANGUAGE_GROUPS } from '../data/languages';
+import { LANGUAGE_AUTONYMS, LANGUAGE_GROUPS, RTL_SCRIPT_LANGUAGES } from '../data/languages';
 import { getDictionary, type Locale } from '../i18n';
 
 interface Props {
@@ -35,10 +35,35 @@ const t = getDictionary(locale);
       <section class="lang-group" data-lang-group>
         <h2>{t.languages.groupTitles[group.id]}</h2>
         <p>{t.languages.groupIntros[group.id]}</p>
+        {/*
+          Jede Sprache steht mit ihrer Eigenbezeichnung zuerst und der
+          deutschen Bezeichnung darunter.
+
+          Das Autonym erkennt, wer die Sprache spricht – häufig ohne
+          Deutschkenntnisse. Die deutsche Bezeichnung brauchen die Stellen, die
+          den Einsatz bestellen, und sie trägt die Suchbegriffe. Deshalb bleibt
+          sie stehen, statt ersetzt zu werden.
+
+          data-language führt beide Schreibweisen, damit die Suche auf
+          „Arabisch“ genauso anschlägt wie auf „العربية“.
+        */}
         <ul class="lang-grid">
-          {group.languages.map((language) => (
-            <li data-language={language.toLowerCase()}>{language}</li>
-          ))}
+          {group.languages.map((language) => {
+            const autonym = LANGUAGE_AUTONYMS[language];
+            const rtl = RTL_SCRIPT_LANGUAGES.has(language);
+            return (
+              <li data-language={`${language} ${autonym ?? ''}`.trim().toLowerCase()}>
+                {autonym && (
+                  <span class="lang-autonym" dir={rtl ? 'rtl' : 'ltr'}>
+                    {autonym}
+                  </span>
+                )}
+                <span class="lang-name" lang="de" dir="ltr">
+                  {language}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       </section>
     ))

@@ -68,13 +68,37 @@
   --font-sans: 'Inter Variable', 'Inter', 'Inter Fallback', -apple-system,
     BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
+  /*
+    Arabischer Schriftstapel.
+
+    Bewusst kein zusätzlicher Webfont: Inter enthält kein Arabisch, ein
+    arabischer Schnitt wäre ein Download von über 100 kB und brächte erneut
+    ein Risiko für Layout-Shift beim Schriftwechsel. Die aufgeführten
+    Systemschriften sind auf Windows, macOS, iOS, Android und den gängigen
+    Linux-Distributionen vorhanden – dadurch erscheint arabischer Text ohne
+    jeden Nachladevorgang und damit ohne Sprung.
+
+    Inter steht bewusst vorn: Die Schriftauswahl greift zeichenweise, deshalb
+    bleiben lateinische Zeichen (Firmenname, Rufnummern, E-Mail-Adresse,
+    USt-IdNr.) unverändert in Inter, und nur die arabischen Zeichen fallen auf
+    die Systemschrift zurück.
+  */
+  --font-arabic: 'Inter Variable', 'Inter', 'Segoe UI', Tahoma, 'Noto Sans Arabic',
+    'Noto Naskh Arabic', 'Geeza Pro', 'SF Arabic', 'Arabic Typesetting', 'Traditional Arabic',
+    sans-serif;
+
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
   --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
   --step-1: clamp(1.18rem, 1.1rem + 0.4vw, 1.35rem);
   --step-2: clamp(1.4rem, 1.26rem + 0.7vw, 1.75rem);
-  --step-3: clamp(1.68rem, 1.44rem + 1.15vw, 2.3rem);
-  --step-4: clamp(2rem, 1.6rem + 1.9vw, 3rem);
-  --step-5: clamp(2.35rem, 1.75rem + 2.9vw, 3.9rem);
+  --step-3: clamp(1.6rem, 1.4rem + 1.1vw, 2.3rem);
+  /*
+    Die Untergrenzen sind auf 320-px-Displays bemessen. Mit den früheren
+    Werten (2rem / 2.35rem) beanspruchte eine Überschrift dort mehr Platz als
+    die Zeile hergibt; lange Komposita mussten mitten im Wort umbrechen.
+  */
+  --step-4: clamp(1.75rem, 1.4rem + 1.75vw, 3rem);
+  --step-5: clamp(2.1rem, 1.62rem + 2.55vw, 3.9rem);
 
   /* Abstände */
   --space-2xs: 0.25rem;
@@ -184,6 +208,21 @@ html {
 body {
   overflow-x: clip;
   max-width: 100%;
+}
+
+/*
+  Hintergrundsperre bei geöffnetem Menü.
+
+  Die Breite wird vom Skript in Pixel gesetzt (auf documentElement.clientWidth).
+  Grund: position: fixed bezieht sich auf den Initial Containing Block, der die
+  Breite der Scrollleiste NICHT abzieht. Ohne die feste Breite würde der Körper
+  beim Öffnen des Menüs um die Scrollleistenbreite breiter – genau das war ein
+  sichtbarer seitlicher Sprung („Zittern“).
+*/
+body.is-scroll-locked {
+  position: fixed;
+  left: 0;
+  right: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -406,7 +445,7 @@ a:hover {
 }
 
 .prose ul {
-  padding-left: 1.25rem;
+  padding-inline-start: 1.25rem;
 }
 
 .prose li + li {
@@ -504,6 +543,19 @@ a:hover {
   gap: var(--space-sm);
 }
 
+/*
+  Als Flex-Element bliebe ein Button sonst mindestens so breit wie sein
+  längstes Wort – bei Fassungen wie „Bewerbungsunterlagen“ oder dem
+  finnischen Pendant reicht das auf 320 px über die Zeile hinaus.
+  Der Text darf dann lieber umbrechen als den Button abzuschneiden.
+*/
+.btn-group > .btn {
+  max-width: 100%;
+  text-align: center;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 /* ------------------------------- Karten -------------------------------- */
 
 .card {
@@ -587,14 +639,14 @@ a:hover {
 
 .card-list li {
   position: relative;
-  padding-left: 1.4rem;
+  padding-inline-start: 1.4rem;
   overflow-wrap: break-word;
 }
 
 .card-list li::before {
   content: '';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 0.55em;
   width: 0.45rem;
   height: 0.45rem;
@@ -610,7 +662,7 @@ a:hover {
 */
 .skip-link {
   position: absolute;
-  left: var(--space-md);
+  inset-inline-start: var(--space-md);
   top: var(--space-md);
   z-index: 400;
   background: var(--navy-800);
@@ -643,6 +695,8 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* Nie umbrechen: Die Kopfhöhe muss über alle Sprachen konstant bleiben. */
+  flex-wrap: nowrap;
   gap: var(--space-sm);
   min-height: var(--header-height);
   /* Erlaubt den Kindern, unter ihre Inhaltsbreite zu schrumpfen. */
@@ -878,10 +932,16 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
-  padding: var(--space-lg) var(--space-lg) var(--space-2xl);
+  /*
+    Untere und rechte Sicherheitsabstände für Geräte mit Aussparung oder
+    Gestenleiste – sonst liegt der letzte Menüpunkt darunter.
+  */
+  padding: var(--space-lg);
+  padding-right: max(var(--space-lg), env(safe-area-inset-right, 0px));
+  padding-bottom: calc(var(--space-2xl) + env(safe-area-inset-bottom, 0px));
   background: var(--surface);
   box-shadow: var(--shadow-xl);
-  /* Viele Einträge und 17 Sprachen: das Panel scrollt für sich allein. */
+  /* Viele Einträge und 18 Sprachen: das Panel scrollt für sich allein. */
   overflow-y: auto;
   overscroll-behavior: contain;
   /* Nur transform und opacity – keine Layout-Eigenschaften animieren. */
@@ -900,22 +960,88 @@ a:hover {
   }
 }
 
+/*
+  Reihenfolge im Panel: Logo, Sprachwahl, Trennlinie, Menüpunkte,
+  Trennlinie, beide Handlungsaufrufe. Die Sprachwahl steht bewusst oben –
+  wer die Seite nicht lesen kann, muss sie finden, ohne durch dreizehn
+  Menüpunkte scrollen zu müssen.
+*/
 .mobile-menu-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--border);
 }
 
 .mobile-menu-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
   font-weight: 700;
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
 }
 
-.mobile-menu-nav ul,
-.mobile-menu-langs ul {
+.mobile-menu-logo {
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+}
+
+/* Trennlinie zwischen Sprachwahl und erstem Menüpunkt. */
+.mobile-menu-lang {
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+/*
+  Im Panel klappt die Liste im Textfluss auf, nicht absolut positioniert.
+
+  Das Panel scrollt für sich (overflow-y: auto) und beschneidet damit alles,
+  was über seine Kante hinausragt. Eine absolut positionierte Liste mit
+  achtzehn Sprachen wäre dort unten abgeschnitten und teilweise unerreichbar.
+  Im Fluss schiebt sie die Menüpunkte nach unten und ist immer vollständig
+  sichtbar und erreichbar.
+*/
+.mobile-menu-lang .lang-switcher {
+  display: block;
+}
+
+.mobile-menu-lang .lang-button {
+  width: 100%;
+  justify-content: flex-start;
+  gap: var(--space-xs);
+  padding: 0.7rem 0.85rem;
+  font-size: var(--step-0);
+}
+
+/* Im Panel ist Platz für den ausgeschriebenen Namen statt des Kürzels. */
+.mobile-menu-lang .lang-button .lang-code {
+  display: none;
+}
+
+.mobile-menu-lang .lang-button .lang-label {
+  display: inline;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Der Pfeil rückt ans Ende, unabhängig von der Schreibrichtung. */
+.mobile-menu-lang .lang-button .lang-caret {
+  margin-inline-start: auto;
+}
+
+.mobile-menu-lang .lang-menu {
+  position: static;
+  min-width: 0;
+  max-width: none;
+  max-height: min(50vh, 22rem);
+  margin-top: var(--space-xs);
+  box-shadow: none;
+}
+
+.mobile-menu-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -944,10 +1070,16 @@ a:hover {
   font-weight: 700;
 }
 
+/*
+  Trennlinie zwischen den Menüpunkten und den Handlungsaufrufen.
+  Der letzte Menüpunkt trägt bereits eine Unterlinie, deshalb kommt der
+  Abstand hier über margin statt über eine zweite Linie.
+*/
 .mobile-menu-cta {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  padding-top: var(--space-xs);
 }
 
 /* Lange Beschriftungen dürfen im Panel umbrechen statt zu überlaufen. */
@@ -957,88 +1089,47 @@ a:hover {
   min-height: 2.875rem;
 }
 
-.mobile-menu-langs h2 {
-  font-size: var(--step--1);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--text-subtle);
-  margin-bottom: var(--space-sm);
-}
-
-.mobile-menu-langs a {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 0.7rem 0.25rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: var(--step--1);
-  border-bottom: 1px solid var(--border);
-  overflow-wrap: anywhere;
-}
-
-.mobile-menu-langs a:hover {
-  color: var(--text);
-}
-
-.mobile-menu-langs a[aria-current='true'] {
-  color: var(--brand);
-  font-weight: 700;
-}
-
-.mobile-lang-code {
-  flex-shrink: 0;
-  min-width: 2.1rem;
-  padding: 0.15rem 0.35rem;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-
-/* Ab Desktop-Breite wird das Panel vollständig abgeschaltet. */
-@media (min-width: 86.0625rem) {
-  .mobile-menu {
-    display: none;
-  }
-}
-
+/* ---------------------- Umschaltung Kopf ↔ Hamburger -------------------- */
 
 /*
-  Mobile Navigation.
-  Der Umbruchpunkt liegt bewusst hoch: Mit der vollen Beschriftung
-  „Als Dolmetscher / Übersetzer bewerben“ wird es daneben sonst zu eng.
-  Unterhalb dieser Breite wandern beide Buttons ins Menü.
+  Kompaktmodus: Navigation, Sprachwahl und beide Handlungsaufrufe wandern
+  vollständig ins Hamburger-Menü.
+
+  Entschieden wird nicht über einen geratenen Umbruchpunkt, sondern gemessen:
+  Ein Inline-Skript im Kopf addiert die natürlichen Breiten von Logo,
+  Navigation und Aktionsbereich und vergleicht sie mit dem verfügbaren Platz.
+  Dadurch stimmt der Umschaltzeitpunkt in allen 18 Sprachfassungen – auch in
+  Maltesisch und Finnisch, die deutlich mehr Platz brauchen als Deutsch – und
+  es kann weder ein Button abgeschnitten werden noch waagerecht überlaufen.
 */
+html.is-nav-compact .primary-nav,
+html.is-nav-compact .header-cta,
+html.is-nav-compact .header-lang {
+  display: none;
+}
+
+html.is-nav-compact .nav-toggle {
+  display: inline-flex;
+}
+
 /*
-  Umbruchpunkt 86rem = 1376 px.
+  Rückfallebene ohne JavaScript: fester Umbruchpunkt, bemessen an der
+  breitesten Sprachfassung (Maltesisch). Sobald das Messskript gelaufen ist,
+  trägt <html> die Klasse js-nav und diese Regeln greifen nicht mehr.
 
-  Bemessen an der breitesten Sprachfassung (Maltesisch), nicht an Deutsch:
-  Logo ~200 px + fünf Navigationspunkte ~660 px + Sprachwahl ~78 px +
-  Bewerbungs-Button ~196 px + Kontakt-Button ~85 px + Abstände ~40 px
-  ≈ 1259 px zuzüglich 64 px Containerinnenabstand ≈ 1323 px.
-
-  Darunter wandert alles ins Hamburger-Menü – lieber früher umschalten als
-  Text abschneiden.
+  Umbruchpunkt 86rem = 1376 px: Logo ~200 px + fünf Navigationspunkte ~660 px
+  + Sprachwahl ~78 px + Bewerbungs-Button ~196 px + Kontakt-Button ~85 px +
+  Abstände ~40 px ≈ 1259 px zuzüglich 64 px Containerinnenabstand ≈ 1323 px.
 */
 @media (max-width: 86rem) {
-  .primary-nav,
-  .header-cta,
-  .header-lang {
+  html:not(.js-nav) .primary-nav,
+  html:not(.js-nav) .header-cta,
+  html:not(.js-nav) .header-lang {
     display: none;
   }
 
-  .nav-toggle {
+  html:not(.js-nav) .nav-toggle {
     display: inline-flex;
-  }
-}
-
-@media (max-width: 30rem) {
-  .logo-sub {
-    display: none;
   }
 }
 
@@ -1093,11 +1184,19 @@ a:hover {
 
 .lang-menu {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: calc(100% + 0.5rem);
   min-width: 15rem;
+  /*
+    Klemmt die Liste in den sichtbaren Bereich. Ohne die Obergrenze könnte sie
+    auf schmalen Fenstern nach links aus dem Bild laufen und – trotz
+    overflow-x: clip – rechts eine Scrollleiste auslösen.
+  */
+  max-width: calc(100vw - 1.5rem);
   max-height: min(70vh, 26rem);
   overflow-y: auto;
+  /* Verhindert, dass das Scrollen der Liste die Seite mitscrollt. */
+  overscroll-behavior: contain;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1228,6 +1327,9 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  /* Erlaubt langen Übersetzungen den Umbruch statt des Überlaufs. */
+  max-width: 100%;
+  min-width: 0;
   padding: 0.4rem 0.85rem;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.1);
@@ -1412,9 +1514,10 @@ a:hover {
 
 .quote {
   position: relative;
-  padding: var(--space-xl) var(--space-xl) var(--space-xl) calc(var(--space-xl) + 1.5rem);
+  padding: var(--space-xl);
+  padding-inline-start: calc(var(--space-xl) + 1.5rem);
   background: var(--brand-soft);
-  border-left: 4px solid var(--accent);
+  border-inline-start: 4px solid var(--accent);
   border-radius: var(--radius);
   font-size: var(--step-1);
   line-height: 1.55;
@@ -1425,7 +1528,7 @@ a:hover {
 .quote::before {
   content: '“';
   position: absolute;
-  left: var(--space-md);
+  inset-inline-start: var(--space-md);
   top: 0.1em;
   font-size: 3rem;
   line-height: 1;
@@ -1507,7 +1610,7 @@ a:hover {
   padding: var(--space-md) var(--space-lg);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
+  border-inline-start: 3px solid var(--accent);
   border-radius: var(--radius);
   overflow-wrap: break-word;
 }
@@ -1518,6 +1621,12 @@ a:hover {
   flex-shrink: 0;
   margin-top: 0.15rem;
   color: var(--brand);
+}
+
+/* Als Flex-Element müsste der Text sonst mindestens sein längstes Wort breit
+   bleiben und würde den Rahmen sprengen. */
+.capability-list > li > span {
+  min-width: 0;
 }
 
 /* ------------------------------- Chips --------------------------------- */
@@ -1533,12 +1642,16 @@ a:hover {
 
 .chip {
   display: inline-block;
+  /* Lange Sprachbezeichnungen („Kurdisch (Kurmanci)“) dürfen den
+     Rahmen nie sprengen – auch nicht auf 320-px-Displays. */
+  max-width: 100%;
   padding: 0.4rem 0.9rem;
   border-radius: var(--radius-full);
   background: var(--surface);
   border: 1px solid var(--border);
   font-size: var(--step--1);
   color: var(--text-muted);
+  overflow-wrap: break-word;
 }
 
 .chip-brand {
@@ -1573,7 +1686,7 @@ a:hover {
 
 .search-field svg {
   position: absolute;
-  left: 0.9rem;
+  inset-inline-start: 0.9rem;
   top: 50%;
   transform: translateY(-50%);
   width: 1.15rem;
@@ -1597,7 +1710,7 @@ a:hover {
 
 .search-clear {
   position: absolute;
-  right: 0.5rem;
+  inset-inline-end: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
   display: none;
@@ -1655,6 +1768,9 @@ a:hover {
 }
 
 .lang-grid li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
   padding: 0.6rem 0.9rem;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1662,6 +1778,34 @@ a:hover {
   font-size: var(--step--1);
   min-width: 0;
   overflow-wrap: break-word;
+}
+
+/*
+  Die Eigenbezeichnung steht oben und trägt das Gewicht – sie ist das, was
+  Sprechende der Sprache suchen. Etwas größer gesetzt, weil viele Autonyme in
+  Schriften stehen, die bei gleicher Punktgröße kleiner wirken als lateinische
+  (arabisch, äthiopisch, Tifinagh, chinesisch).
+*/
+.lang-autonym {
+  font-size: 1.02em;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.lang-name {
+  font-size: 0.86em;
+  line-height: 1.3;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* Ohne belegtes Autonym trägt die deutsche Bezeichnung allein den Eintrag. */
+.lang-grid li > .lang-name:only-child {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .lang-group[hidden],
@@ -1699,6 +1843,11 @@ a:hover {
   color: var(--brand);
 }
 
+.language-versions-note > span,
+.language-versions-note > p {
+  min-width: 0;
+}
+
 /* ------------------------------ Formular ------------------------------- */
 
 .form-grid {
@@ -1730,6 +1879,26 @@ a:hover {
   display: grid;
   gap: var(--space-lg);
   background: var(--surface);
+  min-width: 0;
+}
+
+/* Rasterelemente dürfen nicht an ihrem längsten Wort hängen bleiben. */
+.apply-form fieldset > * {
+  min-width: 0;
+}
+
+/*
+  Auf schmalen Displays frisst der Rahmeninnenabstand sonst ein Viertel der
+  nutzbaren Breite: 320 px − 48 px Container − 64 px Fieldset = 208 px.
+*/
+@media (max-width: 30rem) {
+  .apply-form fieldset {
+    padding: var(--space-md);
+  }
+
+  .apply-form > fieldset > legend {
+    font-size: var(--step-0);
+  }
 }
 
 .apply-form > fieldset > legend {
@@ -1786,6 +1955,13 @@ a:hover {
   cursor: pointer;
 }
 
+/* Lange Beschriftungen ("Behörden- und Gerichtsdolmetschen") umbrechen lassen. */
+.choice > span {
+  min-width: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
 .choice:has(input:checked) {
   border-color: var(--brand);
   background: var(--brand-soft);
@@ -1802,14 +1978,20 @@ a:hover {
   min-width: 0;
 }
 
+/*
+  Dateifelder haben eine eigene Mindestbreite aus Schaltfläche plus Dateiname.
+  Ohne min-width: 0 laufen sie mit langen Dateinamen aus dem Raster heraus.
+*/
 .apply-form input[type='file'] {
   padding: 0.6rem;
   background: var(--bg);
   cursor: pointer;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .apply-form input[type='file']::file-selector-button {
-  margin-right: 0.75rem;
+  margin-inline-end: 0.75rem;
   padding: 0.45rem 0.9rem;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
@@ -1964,6 +2146,11 @@ a.contact-tile:hover {
   color: var(--brand);
   flex-shrink: 0;
   margin-top: 0.2rem;
+}
+
+/* Rufnummern und E-Mail-Adressen dürfen die Kachel nicht sprengen. */
+.contact-tile > span {
+  min-width: 0;
 }
 
 .contact-tile-label {
@@ -2182,16 +2369,22 @@ a.contact-tile:hover {
   margin: var(--space-md) 0 0;
 }
 
+/*
+  Die Sprachen stehen ausgeschrieben in ihrer eigenen Schreibweise, deshalb
+  keine Versalien und keine Sperrung: „Ελληνικά“ und „العربية“ vertragen
+  beides nicht – Versalien greifen im Griechischen die Akzente an, und
+  Sperrung reißt die arabische Verbindungsschrift auf.
+*/
 .footer-languages a {
   display: inline-block;
-  padding: 0.25rem 0.55rem;
+  max-width: 100%;
+  padding: 0.3rem 0.7rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--navy-200);
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  overflow-wrap: break-word;
 }
 
 .footer-languages a:hover {
@@ -2225,6 +2418,10 @@ a.contact-tile:hover {
   text-align: center;
 }
 
+.mt-md {
+  margin-top: var(--space-md);
+}
+
 .mt-lg {
   margin-top: var(--space-lg);
 }
@@ -2240,7 +2437,7 @@ a.contact-tile:hover {
 .notice {
   padding: var(--space-lg);
   background: var(--accent-soft);
-  border-left: 4px solid var(--accent);
+  border-inline-start: 4px solid var(--accent);
   border-radius: var(--radius);
 }
 
@@ -2269,3 +2466,167 @@ a.contact-tile:hover {
 .definition-list dd {
   margin: 0.15rem 0 0;
 }
+
+/* Weiterführender Verweis mit Pfeil – Bewerberbereich und Länderblöcke. */
+.requirement-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+/* ==================== Textrichtung von rechts nach links ==================
+   Gilt ausschließlich für die arabische Fassung. Layout.astro setzt dazu
+   dir="rtl" am <html>-Element.
+
+   Der überwiegende Teil des Layouts spiegelt bereits von selbst: Flexbox und
+   Grid folgen der Schreibrichtung, und alle Abstände und Rahmen oben stehen
+   auf logischen Eigenschaften (padding-inline-start, inset-inline-end,
+   border-inline-start …). Hier bleiben nur die Fälle, die der Browser nicht
+   allein lösen kann.
+   ========================================================================= */
+
+html[dir='rtl'] {
+  --font-sans: var(--font-arabic);
+}
+
+/*
+  ENTSCHEIDEND für arabische Schrift: keine Sperrung (letter-spacing).
+
+  Arabisch ist eine verbundene Schrift. Positive Laufweite reißt die
+  Buchstabenverbindungen innerhalb eines Wortes auf, negative Laufweite lässt
+  sie ineinanderlaufen – beides macht den Text schwer lesbar bis unleserlich.
+  Das Design nutzt Laufweite an vielen Stellen (Überschriften, Kicker,
+  Fußzeilen-Überschriften, Sprachkürzel), deshalb wird sie hier flächig
+  zurückgesetzt statt Regel für Regel.
+*/
+html[dir='rtl'],
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3,
+html[dir='rtl'] h4,
+html[dir='rtl'] .kicker,
+html[dir='rtl'] .logo,
+html[dir='rtl'] .logo-sub,
+html[dir='rtl'] .card h2,
+html[dir='rtl'] .card h3,
+html[dir='rtl'] .stat-value,
+html[dir='rtl'] .site-footer h2,
+html[dir='rtl'] .mobile-menu-title,
+html[dir='rtl'] .footer-contact .label,
+html[dir='rtl'] .chip,
+html[dir='rtl'] .apply-form > fieldset > legend {
+  letter-spacing: normal;
+}
+
+/*
+  Arabische Schrift hat ausgeprägte Ober- und Unterlängen und braucht mehr
+  Durchschuss als lateinische, sonst berühren sich die Zeilen.
+*/
+html[dir='rtl'] body {
+  line-height: 1.85;
+}
+
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3,
+html[dir='rtl'] h4 {
+  line-height: 1.45;
+  /*
+    Arabisch kennt keine Silbentrennung, und der Zeilenumbruch mitten im Wort
+    ist hier – anders als bei deutschen Komposita – nie erwünscht.
+  */
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+/*
+  Richtungsgebundene Symbole spiegeln.
+
+  Nur diese zwei tragen eine Richtungsbedeutung: der Weiter-Pfeil und das
+  Migrationssymbol (Pfeil über dem Globus). Alle übrigen Symbole – Telefon,
+  Waage, Schloss, Uhr, Gebäude – behalten ihre Form, ihr Spiegelbild wäre
+  sinnlos oder sogar falsch.
+*/
+html[dir='rtl'] .icon-directional {
+  transform: scaleX(-1);
+}
+
+/*
+  Das Off-Canvas-Menü fährt in der arabischen Fassung von links ein.
+  inset-inline-end greift hier nicht: Das Panel wird über transform bewegt,
+  und dessen Vorzeichen ist physisch – deshalb wird es hier gedreht.
+*/
+html[dir='rtl'] .mobile-menu-panel {
+  transform: translateX(-100%);
+}
+
+html[dir='rtl'] .mobile-menu.is-open .mobile-menu-panel {
+  transform: translateX(0);
+}
+
+/* Sicherheitsabstand des Panels wandert auf die andere Geräteseite. */
+html[dir='rtl'] .mobile-menu-panel {
+  padding-inline-end: max(var(--space-lg), env(safe-area-inset-left, 0px));
+}
+
+/*
+  Der Einfahr-Übergang der Sprungmarke bleibt vertikal – hier ist nichts zu
+  spiegeln, aber die Ausrichtung des Textes im Panel muss von der
+  Schreibrichtung kommen, nicht von einem festen Wert.
+*/
+html[dir='rtl'] .mobile-menu-nav a,
+html[dir='rtl'] .footer-links a,
+html[dir='rtl'] .field label,
+html[dir='rtl'] .checkbox-field label,
+html[dir='rtl'] .definition-list dt,
+html[dir='rtl'] .definition-list dd {
+  text-align: start;
+}
+
+/*
+  LTR-Inseln.
+
+  Rufnummern, E-Mail-Adressen, URLs, die USt-IdNr., die Steuernummer und
+  Dateinamen sind lateinische Zeichenfolgen. Im arabischen Textfluss würde der
+  Bidi-Algorithmus sie zwar korrekt von links nach rechts setzen, aber
+  führende und schließende Zeichen (Pluszeichen, Klammern, Punkte) an die
+  falsche Seite rücken: aus „+49 6721 9875872“ wird sonst „9875872 6721 49+“.
+  Deshalb tragen diese Werte im Markup dir="ltr" – hier kommt nur die
+  Ausrichtung dazu, damit sie in ihrer Zeile am Zeilenanfang stehen.
+*/
+html[dir='rtl'] [dir='ltr'] {
+  text-align: start;
+}
+
+/*
+  Zahlen in Kennzahlen und Formularen bleiben in westlichen Ziffern, damit sie
+  zu den Angaben in den übrigen Fassungen passen und maschinell lesbar sind.
+*/
+html[dir='rtl'] .stat-value,
+html[dir='rtl'] input[type='email'],
+html[dir='rtl'] input[type='tel'],
+html[dir='rtl'] input[type='url'],
+html[dir='rtl'] input[type='file'] {
+  direction: ltr;
+  text-align: start;
+}
+
+/*
+  Das Anführungszeichen des Zitats öffnet im Arabischen auf der rechten Seite.
+  inset-inline-start erledigt die Position, das Zeichen selbst muss getauscht
+  werden – sonst zeigt es in die falsche Richtung.
+*/
+html[dir='rtl'] .quote::before {
+  content: '”';
+}
+
+/*
+  Die Brotkrumen-Navigation ist eine Flexbox und dreht sich von selbst.
+  Der Schrägstrich als Trenner ist richtungsneutral und bleibt.
+*/
+
+/*
+  Der Umschaltpunkt Kopf ↔ Hamburger wird gemessen und ist damit
+  richtungsunabhängig – für Arabisch ist hier nichts zu ergänzen.
+*/

@@ -62,7 +62,7 @@ export const LEGAL = {
  *
  * Bewusst als ISO-3166-Codes hinterlegt: Die Ländernamen werden zur Laufzeit
  * über Intl.DisplayNames in der jeweiligen Seitensprache ausgegeben. Dadurch
- * sind sie in allen 17 Fassungen korrekt, ohne 17 × 18 Namen zu pflegen.
+ * sind sie in allen 18 Fassungen korrekt, ohne 18 × 19 Namen zu pflegen.
  *
  * Es handelt sich ausdrücklich um mögliche Einsatzgebiete, nicht um
  * Niederlassungen oder zugesagte Verfügbarkeiten.

@@ -144,6 +144,24 @@ export function getMailer(): Mailer {
     // Erzwingt STARTTLS, wenn die Verbindung nicht bereits verschlüsselt ist.
     requireTLS: !secure,
     auth: { user, pass: password },
+
+    /*
+      Zeitgrenzen ausdrücklich setzen.
+
+      Nodemailer wartet in der Voreinstellung bis zu zwei Minuten auf den
+      Verbindungsaufbau. Ist der Mailserver nicht erreichbar, hängt die
+      Formularanfrage genauso lange – die absendende Person sieht nur einen
+      drehenden Button, und bei mehreren Anfragen belegen die offenen
+      Verbindungen den Server. Lieber nach 10 Sekunden ehrlich scheitern:
+      Die Route meldet dann einen Fehler samt E-Mail-Adresse als Ausweg.
+
+      Der Socket darf länger offen bleiben: Bewerbungen tragen Anhänge von
+      bis zu 8 MB, deren Übertragung braucht Zeit.
+    */
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 30_000,
+
     tls: {
       // Veraltete Protokollversionen ausschließen.
       minVersion: 'TLSv1.2',

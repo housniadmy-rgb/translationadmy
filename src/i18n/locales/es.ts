@@ -20,6 +20,7 @@ const es: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Interpretación y traducción',
     skipToContent: 'Ir al contenido',
     openMenu: 'Abrir el menú',
     closeMenu: 'Cerrar el menú',
@@ -50,11 +51,11 @@ const es: Dictionary = {
   home: {
     metaTitle: 'Intérpretes y traductores para autoridades, juzgados y empresas',
     metaDescription:
-      'Agencia de interpretación Translation Admy: interpretación consecutiva y de conferencias y traducciones juradas en numerosos idiomas y dialectos. Para autoridades, juzgados, empresas y particulares en toda Alemania.',
+      'Agencia de interpretación Translation Admy: interpretación consecutiva y de conferencias y traducciones juradas en numerosos idiomas y dialectos. Para autoridades, juzgados, empresas y particulares en toda Europa.',
     heroKicker: 'Agencia de interpretación Translation Admy',
     heroTitle: 'Entenderse sin rodeos: en el idioma de su interlocutor',
     heroLead:
-      'Interpretamos y traducimos para autoridades, juzgados, centros de acogida, empresas y particulares. Intérpretes nativos, más de 10 años de experiencia, disponibles en toda España y en distintos países europeos.',
+      'Interpretamos y traducimos para autoridades, juzgados, centros de acogida, empresas y particulares. Intérpretes nativos, más de 10 años de experiencia, operativos en Alemania y en numerosos países europeos.',
     heroPrimary: 'Consulta sin compromiso',
     heroSecondary: 'Ver servicios',
     heroBadges: [
@@ -62,7 +63,7 @@ const es: Dictionary = {
       'Traducciones juradas',
       'Servicios a corto plazo',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Versiones lingüísticas del sitio',
     statYears: '10+',
     statYearsLabel: 'Más de 10 años de experiencia',
@@ -346,7 +347,7 @@ const es: Dictionary = {
     ],
     tendersTitle: 'Licitaciones y procedimientos de contratación en Europa',
     tendersText:
-      'Participamos en licitaciones y procedimientos de contratación de organismos públicos en Alemania y en el resto de Europa. Si convoca una licitación de servicios lingüísticos, póngase en contacto con nosotros: reuniremos la documentación necesaria para presentar la oferta.',
+      'Participamos en licitaciones y procedimientos de contratación de organismos públicos en toda Europa. Si convoca una licitación de servicios lingüísticos, póngase en contacto con nosotros: reuniremos la documentación necesaria para presentar la oferta.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const es: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Áreas de actuación: Alemania y Europa',
+    metaTitle: 'Áreas de actuación: en toda Europa',
     metaDescription:
-      'Translation Admy facilita intérpretes y traductores para servicios en toda Alemania y en determinados países europeos: presencial, telefónico o por vídeo, también en procedimientos de asilo y fronteras.',
+      'Translation Admy facilita intérpretes y traductores para servicios en toda Europa: presencial, telefónico o por vídeo, también en procedimientos de asilo y fronteras.',
     h1: 'Áreas de actuación',
     lead:
-      'Nuestra oficina tiene su sede en Bingen am Rhein. Nuestros intérpretes trabajan en toda Alemania.',
+      'Nuestra oficina tiene su sede en Bingen am Rhein. Nuestros intérpretes trabajan en toda Europa.',
     baseTitle: 'Sede en Bingen am Rhein',
     baseText:
-      'Desde Bingen am Rhein llegamos con rapidez a la región Rin-Meno, Hesse renana y el Rin Medio. Para citas en esta zona solemos estar disponibles incluso con muy poca antelación.',
-    europeTitle: 'Presentes en toda Alemania y en Europa',
+      'Desde Bingen am Rhein coordinamos servicios en toda Europa. Para las citas con muy poca antelación recurrimos a una red que va más allá de las fronteras nacionales.',
+    europeTitle: 'Presentes en toda Europa',
     europeText:
-      'Translation Admy facilita intérpretes y traductores para servicios en toda Alemania y en determinados países europeos. Según el encargo, apoyamos a autoridades, entidades públicas, empresas y organizaciones internacionales de forma presencial, telefónica o por videoconferencia.',
+      'Translation Admy facilita intérpretes y traductores para servicios en toda Europa. Según el encargo, apoyamos a autoridades, entidades públicas, empresas y organizaciones internacionales de forma presencial, telefónica o por videoconferencia.',
     capabilities: [
-      'Servicios en toda Alemania',
+      'Servicios en toda Europa',
       'Interpretación presencial',
       'Interpretación telefónica y por vídeo',
       'Encargos urgentes y planificados con antelación',
-      'Proyectos transfronterizos y de alcance europeo',
+      'Proyectos transfronterizos en varios países',
       'Apoyo en procedimientos de asilo, migración y acogida',
       'Creación de una red europea de intérpretes',
     ],
@@ -440,12 +441,12 @@ const es: Dictionary = {
     countriesNote:
       'La disponibilidad concreta depende del idioma, la cualificación, el lugar y la fecha.',
 
-    nationwideTitle: 'En toda Alemania',
+    nationwideTitle: 'En toda Europa',
     nationwideText:
-      'Colaboramos con intérpretes en todo el territorio alemán. Indíquenos el lugar y la fecha y comprobaremos la disponibilidad sobre el terreno.',
-    internationalTitle: 'Servicios en otros países europeos',
+      'Colaboramos con intérpretes en numerosos países europeos. Indíquenos el lugar y la fecha y comprobaremos la disponibilidad sobre el terreno.',
+    internationalTitle: 'Servicios transfronterizos',
     internationalText:
-      'Para servicios fuera de Alemania, póngase en contacto con nosotros. Valoramos caso por caso si podemos cubrir su necesidad y de qué manera.',
+      'Para servicios en varios países o fuera de nuestras áreas habituales, póngase en contacto con nosotros. Valoramos caso por caso si podemos cubrir su necesidad y de qué manera.',
     remoteTitle: 'Citas por teléfono y videoconferencia',
     remoteText:
       'Cuando una cita presencial no es posible o no es necesaria, la mediación lingüística puede realizarse también por teléfono o videoconferencia, previo acuerdo.',
@@ -459,7 +460,7 @@ const es: Dictionary = {
     lead:
       'Nuestra cobertura lingüística es especialmente amplia y podemos ayudarle en muchos idiomas. Interpretamos y traducimos para usted en los siguientes idiomas.',
     searchLabel: 'Buscar un idioma',
-    searchPlaceholder: 'p. ej. árabe, tigriña, sorani …',
+    searchPlaceholder: 'p. ej. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Borrar la búsqueda',
     resultsOne: '1 idioma encontrado',
     resultsMany: '{count} idiomas encontrados',
@@ -522,19 +523,19 @@ const es: Dictionary = {
   careers: {
     metaTitle: 'Empleo: se buscan intérpretes para todos los idiomas y dialectos',
     metaDescription:
-      'Para reforzar nuestro equipo en toda Alemania buscamos intérpretes para todos los idiomas y dialectos. Presente su candidatura en Translation Admy.',
+      'Para reforzar nuestro equipo en toda Europa buscamos intérpretes para todos los idiomas y dialectos. Presente su candidatura en Translation Admy.',
     h1: 'Empleo',
     lead:
-      'Para reforzar nuestro equipo en toda Alemania buscamos intérpretes para todos los idiomas y dialectos.',
+      'Para reforzar nuestro equipo en toda Europa buscamos intérpretes para todos los idiomas y dialectos.',
     requirementsTitle: 'Requisitos',
     requirements: [
-      'Certificado de alemán de nivel C1, Abitur / Fachabitur alemán, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, certificado de Studienkolleg o título universitario',
+      'Acreditación de nivel C1 o superior en sus idiomas de trabajo, o un título equivalente reconocido en su país de residencia',
       'Sin antecedentes penales',
       'Debe disponer de autorización de trabajo',
     ],
     offerTitle: 'Lo que le espera',
     offer: [
-      'Servicios en toda Alemania, también en su región',
+      'Servicios en toda Europa, también en su región',
       'Encargos variados para autoridades, juzgados, empresas y particulares',
       'Un equipo que valora una mediación lingüística precisa y neutral',
     ],
@@ -552,7 +553,7 @@ const es: Dictionary = {
       },
       {
         title: 'Proyectos en toda Europa',
-        text: 'Junto a los servicios en toda Alemania, aumentan las solicitudes procedentes de otros países europeos.',
+        text: 'Recibimos solicitudes de toda Europa: la demanda de mediación lingüística crece más allá de las fronteras.',
       },
       {
         title: 'Colaboración justa',
@@ -636,7 +637,7 @@ const es: Dictionary = {
     travelLabels: {
       local: 'Lugar de residencia y alrededores',
       regional: 'Regional',
-      national: 'Toda Alemania',
+      national: 'Todo el país de residencia',
       european: 'Toda Europa',
     },
 
@@ -878,6 +879,7 @@ const es: Dictionary = {
         body: [
           'Si nos envía una candidatura a través del formulario correspondiente, trataremos los datos y documentos remitidos exclusivamente para valorar su candidatura. La base jurídica es el art. 6.1.b) del RGPD y, respecto al consentimiento prestado, el art. 6.1.a) del RGPD.',
           'La documentación se transmite por correo electrónico a nuestra agencia y se trata de forma confidencial. Puede solicitar su supresión en cualquier momento.',
+          'Conservamos sus documentos únicamente durante el tiempo necesario para evaluar su candidatura y para una posible colaboración. Después los eliminamos, salvo que existan obligaciones legales de conservación.',
         ],
       },
       {

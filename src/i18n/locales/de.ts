@@ -23,6 +23,7 @@ const de: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Dolmetschen & Übersetzen',
     skipToContent: 'Zum Inhalt springen',
     openMenu: 'Menü öffnen',
     closeMenu: 'Menü schließen',
@@ -54,11 +55,11 @@ const de: Dictionary = {
   home: {
     metaTitle: 'Dolmetscher & Übersetzer für Behörden, Gerichte und Unternehmen',
     metaDescription:
-      'Dolmetscherbüro Translation Admy: Konsekutiv- und Konferenzdolmetschen sowie beglaubigte Übersetzungen in zahlreichen Sprachen und Dialekten. Für Behörden, Gerichte, Unternehmen und Privatpersonen – bundesweit im Einsatz.',
+      'Dolmetscherbüro Translation Admy: Konsekutiv- und Konferenzdolmetschen sowie beglaubigte Übersetzungen in zahlreichen Sprachen und Dialekten. Für Behörden, Gerichte, Unternehmen und Privatpersonen – europaweit im Einsatz.',
     heroKicker: 'Dolmetscherbüro Translation Admy',
     heroTitle: 'Verstehen ohne Umwege – in der Sprache Ihres Gegenübers',
     heroLead:
-      'Wir dolmetschen und übersetzen für Behörden, Gerichte, Aufnahmeeinrichtungen, Unternehmen und Privatpersonen. Muttersprachliche Dolmetscherinnen und Dolmetscher, über 10 Jahre Erfahrung, im Einsatz in Deutschland und in verschiedenen europäischen Ländern.',
+      'Wir dolmetschen und übersetzen für Behörden, Gerichte, Aufnahmeeinrichtungen, Unternehmen und Privatpersonen. Muttersprachliche Dolmetscherinnen und Dolmetscher, über 10 Jahre Erfahrung, im Einsatz in Deutschland und in zahlreichen europäischen Ländern.',
     heroPrimary: 'Unverbindlich anfragen',
     heroSecondary: 'Leistungen ansehen',
     heroBadges: [
@@ -66,7 +67,7 @@ const de: Dictionary = {
       'Beglaubigte Übersetzungen',
       'Kurzfristige Einsätze',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Sprachfassungen dieser Website',
     statYears: '10+',
     statYearsLabel: 'Über 10 Jahre Erfahrung',
@@ -350,7 +351,7 @@ const de: Dictionary = {
     ],
     tendersTitle: 'Ausschreibungen und Vergabeverfahren in Europa',
     tendersText:
-      'Wir beteiligen uns an Ausschreibungen und Vergabeverfahren öffentlicher Auftraggeber in Deutschland und im europäischen Ausland. Wenn Sie Sprachdienstleistungen ausschreiben, sprechen Sie uns an – wir stellen Ihnen die für die Angebotsabgabe erforderlichen Unterlagen zusammen.',
+      'Wir beteiligen uns an Ausschreibungen und Vergabeverfahren öffentlicher Auftraggeber europaweit. Wenn Sie Sprachdienstleistungen ausschreiben, sprechen Sie uns an – wir stellen Ihnen die für die Angebotsabgabe erforderlichen Unterlagen zusammen.',
   },
 
   business: {
@@ -412,24 +413,24 @@ const de: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Einsatzgebiete – bundesweit und europaweit',
+    metaTitle: 'Einsatzgebiete – europaweit im Einsatz',
     metaDescription:
-      'Translation Admy vermittelt Dolmetscher und Übersetzer für Einsätze in ganz Deutschland und in ausgewählten europäischen Ländern – vor Ort, telefonisch oder per Video, auch im Umfeld von Asyl- und Grenzverfahren.',
+      'Translation Admy vermittelt Dolmetscher und Übersetzer für europaweite Einsätze – vor Ort, telefonisch oder per Video, auch im Umfeld von Asyl- und Grenzverfahren.',
     h1: 'Einsatzgebiete',
     lead:
-      'Unser Büro sitzt in Bingen am Rhein. Unsere Dolmetscherinnen und Dolmetscher sind im gesamten Bundesgebiet im Einsatz.',
+      'Unser Büro sitzt in Bingen am Rhein. Unsere Dolmetscherinnen und Dolmetscher sind europaweit im Einsatz.',
     baseTitle: 'Standort Bingen am Rhein',
     baseText:
-      'Von Bingen am Rhein aus erreichen wir das Rhein-Main-Gebiet, Rheinhessen und den Mittelrhein in kurzer Zeit. Für Termine in dieser Region sind wir häufig auch sehr kurzfristig verfügbar.',
-    europeTitle: 'Bundesweit und europaweit im Einsatz',
+      'Von Bingen am Rhein aus koordinieren wir Einsätze in ganz Europa. Für kurzfristige Termine greifen wir auf ein Netzwerk zurück, das über die Landesgrenzen hinausreicht.',
+    europeTitle: 'Europaweit im Einsatz',
     europeText:
-      'Translation Admy vermittelt Dolmetscherinnen, Dolmetscher sowie Übersetzerinnen und Übersetzer für Einsätze in ganz Deutschland und in ausgewählten europäischen Ländern. Je nach Auftrag unterstützen wir Behörden, öffentliche Einrichtungen, Unternehmen und internationale Organisationen vor Ort, telefonisch oder per Video.',
+      'Translation Admy vermittelt Dolmetscherinnen, Dolmetscher sowie Übersetzerinnen und Übersetzer für Einsätze in ganz Europa. Je nach Auftrag unterstützen wir Behörden, öffentliche Einrichtungen, Unternehmen und internationale Organisationen vor Ort, telefonisch oder per Video.',
     capabilities: [
-      'Bundesweite Einsätze in ganz Deutschland',
+      'Europaweite Einsätze',
       'Dolmetschen vor Ort',
       'Telefon- und Videodolmetschen',
       'Kurzfristige und langfristig geplante Einsätze',
-      'Grenzüberschreitende und europaweite Projekte',
+      'Grenzüberschreitende Projekte in mehreren Ländern',
       'Unterstützung bei Asyl-, Migrations- und Aufnahmeverfahren',
       'Aufbau eines europaweiten Dolmetschernetzwerks',
     ],
@@ -444,12 +445,12 @@ const de: Dictionary = {
     countriesNote:
       'Die konkrete Verfügbarkeit richtet sich nach Sprache, Qualifikation, Einsatzort und Termin.',
 
-    nationwideTitle: 'Bundesweit',
+    nationwideTitle: 'Europaweit',
     nationwideText:
-      'Wir arbeiten mit Dolmetscherinnen und Dolmetschern im gesamten Bundesgebiet zusammen. Nennen Sie uns Ort und Termin – wir prüfen die Verfügbarkeit vor Ort.',
-    internationalTitle: 'Einsätze im europäischen Ausland',
+      'Wir arbeiten mit Dolmetscherinnen und Dolmetschern in zahlreichen europäischen Ländern zusammen. Nennen Sie uns Ort und Termin – wir prüfen die Verfügbarkeit vor Ort.',
+    internationalTitle: 'Grenzüberschreitende Einsätze',
     internationalText:
-      'Für Einsätze außerhalb Deutschlands sprechen Sie uns bitte an. Wir prüfen im Einzelfall, ob und wie wir Ihren Bedarf abdecken können.',
+      'Für Einsätze in mehreren Ländern oder außerhalb unserer üblichen Einsatzgebiete sprechen Sie uns bitte an. Wir prüfen im Einzelfall, ob und wie wir Ihren Bedarf abdecken können.',
     remoteTitle: 'Telefon- und Videotermine',
     remoteText:
       'Wenn ein Termin vor Ort nicht möglich oder nicht erforderlich ist, kann die Sprachmittlung nach Absprache auch telefonisch oder per Videoverbindung erfolgen.',
@@ -463,7 +464,7 @@ const de: Dictionary = {
     lead:
       'Wir sind im Sprachbereich besonders breit aufgestellt und können Sie in vielen Sprachen unterstützen. Wir dolmetschen und übersetzen in den folgenden Sprachen für Sie.',
     searchLabel: 'Sprache suchen',
-    searchPlaceholder: 'z. B. Arabisch, Tigrinia, Sorani …',
+    searchPlaceholder: 'z. B. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Suche zurücksetzen',
     resultsOne: '1 Sprache gefunden',
     resultsMany: '{count} Sprachen gefunden',
@@ -526,19 +527,19 @@ const de: Dictionary = {
   careers: {
     metaTitle: 'Karriere – Dolmetscher für alle Sprachen und Dialekte gesucht',
     metaDescription:
-      'Wir suchen zur Verstärkung unseres Teams im gesamten Bundesgebiet Dolmetscher für alle Sprachen und Dialekte. Jetzt bewerben bei Translation Admy.',
+      'Wir suchen zur Verstärkung unseres Teams europaweit Dolmetscher für alle Sprachen und Dialekte. Jetzt bewerben bei Translation Admy.',
     h1: 'Karriere',
     lead:
-      'Wir suchen zur Verstärkung unseres Teams im gesamten Bundesgebiet Dolmetscher für alle Sprachen und Dialekte.',
+      'Wir suchen zur Verstärkung unseres Teams europaweit Dolmetscher für alle Sprachen und Dialekte.',
     requirementsTitle: 'Voraussetzungen',
     requirements: [
-      'C1 Zertifikat der deutschen Sprache, deutsches Abitur / Fachabi, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkollegabschluss oder einen Hochschulabschluss',
+      'Sprachnachweis auf Niveau C1 oder höher in Ihren Arbeitssprachen – oder ein im Wohnsitzland anerkannter gleichwertiger Abschluss',
       'Keine Einträge im Strafregister',
       'Erwerbstätigkeit muss gestattet sein',
     ],
     offerTitle: 'Was Sie erwartet',
     offer: [
-      'Einsätze in ganz Deutschland – auch in Ihrer Region',
+      'Europaweite Einsätze – auch in Ihrer Region',
       'Abwechslungsreiche Aufträge für Behörden, Gerichte, Unternehmen und Privatpersonen',
       'Ein Team, das Wert auf genaue und neutrale Sprachmittlung legt',
     ],
@@ -556,7 +557,7 @@ const de: Dictionary = {
       },
       {
         title: 'Europaweite Projekte',
-        text: 'Neben Einsätzen in ganz Deutschland kommen zunehmend Anfragen aus dem europäischen Ausland hinzu.',
+        text: 'Anfragen erreichen uns aus ganz Europa – die Nachfrage nach Sprachmittlung wächst über Ländergrenzen hinweg.',
       },
       {
         title: 'Faire Zusammenarbeit',
@@ -640,7 +641,7 @@ const de: Dictionary = {
     travelLabels: {
       local: 'Wohnort und Umgebung',
       regional: 'Regional',
-      national: 'Bundesweit',
+      national: 'Landesweit im Wohnsitzland',
       european: 'Europaweit',
     },
 
@@ -895,6 +896,7 @@ const de: Dictionary = {
         body: [
           'Wenn Sie uns über das Bewerbungsformular eine Bewerbung senden, verarbeiten wir die übermittelten Angaben und Unterlagen ausschließlich zur Prüfung Ihrer Bewerbung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO sowie hinsichtlich der erteilten Einwilligung Art. 6 Abs. 1 lit. a DSGVO.',
           'Die Unterlagen werden per E-Mail an unser Büro übermittelt und vertraulich behandelt. Sie können jederzeit deren Löschung verlangen.',
+          'Wir bewahren Ihre Unterlagen nur so lange auf, wie es für die Prüfung Ihrer Bewerbung und eine mögliche Zusammenarbeit erforderlich ist. Danach löschen wir sie, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
         ],
       },
       {

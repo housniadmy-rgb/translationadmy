@@ -20,6 +20,7 @@ const hu: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Tolmácsolás és fordítás',
     skipToContent: 'Ugrás a tartalomra',
     openMenu: 'Menü megnyitása',
     closeMenu: 'Menü bezárása',
@@ -50,11 +51,11 @@ const hu: Dictionary = {
   home: {
     metaTitle: 'Tolmácsok és fordítók hatóságoknak, bíróságoknak és vállalatoknak',
     metaDescription:
-      'Translation Admy tolmácsiroda: követő és konferenciatolmácsolás, valamint hiteles fordítások számos nyelven és nyelvjárásban. Hatóságoknak, bíróságoknak, vállalatoknak és magánszemélyeknek Németország egész területén és Európában.',
+      'Translation Admy tolmácsiroda: követő és konferenciatolmácsolás, valamint hiteles fordítások számos nyelven és nyelvjárásban. Hatóságoknak, bíróságoknak, vállalatoknak és magánszemélyeknek Európa egész területén.',
     heroKicker: 'Translation Admy tolmácsiroda',
     heroTitle: 'Megértés kerülőutak nélkül — beszélgetőpartnere nyelvén',
     heroLead:
-      'Tolmácsolunk és fordítunk hatóságoknak, bíróságoknak, befogadó intézményeknek, vállalatoknak és magánszemélyeknek. Anyanyelvi tolmácsok, több mint 10 év tapasztalat, Magyarország egész területén és több európai országban.',
+      'Tolmácsolunk és fordítunk hatóságoknak, bíróságoknak, befogadó intézményeknek, vállalatoknak és magánszemélyeknek. Anyanyelvi tolmácsok, több mint 10 év tapasztalat, jelen vagyunk Németországban és számos európai országban.',
     heroPrimary: 'Kötelezettség nélküli megkeresés',
     heroSecondary: 'Szolgáltatások megtekintése',
     heroBadges: [
@@ -62,7 +63,7 @@ const hu: Dictionary = {
       'Hiteles fordítások',
       'Rövid határidejű megbízások',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'A weboldal nyelvi változatai',
     statYears: '10+',
     statYearsLabel: 'Több mint 10 év tapasztalat',
@@ -346,7 +347,7 @@ const hu: Dictionary = {
     ],
     tendersTitle: 'Közbeszerzések és pályázatok Európában',
     tendersText:
-      'Részt veszünk közmegrendelők közbeszerzési és pályázati eljárásaiban Németországban és Európa más országaiban. Ha nyelvi szolgáltatásokra ír ki pályázatot, keressen minket — összeállítjuk az ajánlattételhez szükséges dokumentumokat.',
+      'Részt veszünk közmegrendelők közbeszerzési és pályázati eljárásaiban Európa egész területén. Ha nyelvi szolgáltatásokra ír ki pályázatot, keressen minket — összeállítjuk az ajánlattételhez szükséges dokumentumokat.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const hu: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Működési területek — Németország és Európa',
+    metaTitle: 'Működési területek — Európa egész területén',
     metaDescription:
-      'A Translation Admy tolmácsokat és fordítókat közvetít Németország egész területén és kiválasztott európai országokban — helyszínen, telefonon vagy videón, menekültügyi és határeljárásokban is.',
+      'A Translation Admy tolmácsokat és fordítókat közvetít Európa egész területén — helyszínen, telefonon vagy videón, menekültügyi és határeljárásokban is.',
     h1: 'Működési területek',
     lead:
-      'Irodánk székhelye Bingen am Rhein. Tolmácsaink Németország egész területén dolgoznak.',
+      'Irodánk székhelye Bingen am Rhein. Tolmácsaink Európa egész területén dolgoznak.',
     baseTitle: 'Székhely Bingen am Rheinben',
     baseText:
-      'Bingen am Rheinből rövid idő alatt elérjük a Rajna-Majna régiót, Rajnai Hessent és a Közép-Rajnát. Az e térségben lévő időpontokra gyakran nagyon rövid határidővel is rendelkezésre állunk.',
-    europeTitle: 'Egész Németországban és Európában jelen vagyunk',
+      'Bingen am Rheinből Európa egész területére szervezünk megbízásokat. A nagyon rövid határidős időpontokhoz olyan hálózatra támaszkodunk, amely átnyúlik az országhatárokon.',
+    europeTitle: 'Európa egész területén jelen vagyunk',
     europeText:
-      'A Translation Admy tolmácsokat és fordítókat közvetít megbízásokhoz Németország egész területén és kiválasztott európai országokban. A megbízástól függően hatóságokat, közintézményeket, vállalatokat és nemzetközi szervezeteket támogatunk helyszínen, telefonon vagy videón keresztül.',
+      'A Translation Admy tolmácsokat és fordítókat közvetít megbízásokhoz Európa egész területén. A megbízástól függően hatóságokat, közintézményeket, vállalatokat és nemzetközi szervezeteket támogatunk helyszínen, telefonon vagy videón keresztül.',
     capabilities: [
-      'Megbízások Németország egész területén',
+      'Megbízások Európa egész területén',
       'Helyszíni tolmácsolás',
       'Telefonos és videótolmácsolás',
       'Rövid határidejű és hosszú távra tervezett megbízások',
-      'Határon átnyúló és európai szintű projektek',
+      'Határon átnyúló projektek több országban',
       'Támogatás menekültügyi, migrációs és befogadási eljárásokban',
       'Európai tolmácshálózat kiépítése',
     ],
@@ -440,12 +441,12 @@ const hu: Dictionary = {
     countriesNote:
       'A tényleges rendelkezésre állás a nyelvtől, a képzettségtől, a helyszíntől és az időponttól függ.',
 
-    nationwideTitle: 'Országosan',
+    nationwideTitle: 'Európa-szerte',
     nationwideText:
-      'Németország egész területén együttműködünk tolmácsokkal. Adja meg a helyszínt és az időpontot — ellenőrizzük a helyi rendelkezésre állást.',
-    internationalTitle: 'Megbízások más európai országokban',
+      'Számos európai országban működünk együtt tolmácsokkal. Adja meg a helyszínt és az időpontot — ellenőrizzük a helyi rendelkezésre állást.',
+    internationalTitle: 'Határon átnyúló megbízások',
     internationalText:
-      'A Németországon kívüli megbízásokkal kapcsolatban forduljon hozzánk. Esetenként megvizsgáljuk, hogy és milyen módon tudjuk fedezni az igényét.',
+      'A több országra kiterjedő vagy a szokásos működési területünkön kívüli megbízásokkal kapcsolatban forduljon hozzánk. Esetenként megvizsgáljuk, hogy és milyen módon tudjuk fedezni az igényét.',
     remoteTitle: 'Telefonos és videós időpontok',
     remoteText:
       'Ha a helyszíni találkozó nem lehetséges vagy nem szükséges, a nyelvi közvetítés egyeztetés alapján telefonon vagy videokapcsolaton keresztül is történhet.',
@@ -459,7 +460,7 @@ const hu: Dictionary = {
     lead:
       'Nyelvi kínálatunk különösen széles, és sok nyelven tudjuk támogatni Önt. Az alábbi nyelveken tolmácsolunk és fordítunk Önnek.',
     searchLabel: 'Nyelv keresése',
-    searchPlaceholder: 'pl. arab, tigrinya, szoráni …',
+    searchPlaceholder: 'pl. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Keresés törlése',
     resultsOne: '1 nyelv található',
     resultsMany: '{count} nyelv található',
@@ -522,19 +523,19 @@ const hu: Dictionary = {
   careers: {
     metaTitle: 'Karrier — tolmácsokat keresünk minden nyelvre és nyelvjárásra',
     metaDescription:
-      'Csapatunk bővítéséhez Németország egész területén tolmácsokat keresünk minden nyelvre és nyelvjárásra. Jelentkezzen most a Translation Admynál.',
+      'Csapatunk bővítéséhez Európa egész területén tolmácsokat keresünk minden nyelvre és nyelvjárásra. Jelentkezzen most a Translation Admynál.',
     h1: 'Tolmácsoknak és fordítóknak',
     lead:
-      'Csapatunk bővítéséhez Németország egész területén tolmácsokat keresünk minden nyelvre és nyelvjárásra.',
+      'Csapatunk bővítéséhez Európa egész területén tolmácsokat keresünk minden nyelvre és nyelvjárásra.',
     requirementsTitle: 'Feltételek',
     requirements: [
-      'C1 szintű német nyelvi bizonyítvány, német Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkolleg-bizonyítvány vagy felsőfokú végzettség',
+      'A munkanyelveiben C1 vagy magasabb szintű nyelvi igazolás — vagy a lakóhely szerinti országban elismert, ezzel egyenértékű végzettség',
       'Büntetlen előélet',
       'Munkavállalási engedély szükséges',
     ],
     offerTitle: 'Amire számíthat',
     offer: [
-      'Megbízások Németország egész területén — az Ön régiójában is',
+      'Megbízások Európa egész területén — az Ön régiójában is',
       'Változatos megbízások hatóságoknak, bíróságoknak, vállalatoknak és magánszemélyeknek',
       'Csapat, amely fontosnak tartja a pontos és semleges nyelvi közvetítést',
     ],
@@ -552,7 +553,7 @@ const hu: Dictionary = {
       },
       {
         title: 'Európai szintű projektek',
-        text: 'A németországi megbízások mellett egyre több megkeresés érkezik más európai országokból.',
+        text: 'Megkeresések egész Európából érkeznek hozzánk — a nyelvi közvetítés iránti igény átlépi az országhatárokat.',
       },
       {
         title: 'Tisztességes együttműködés',
@@ -636,7 +637,7 @@ const hu: Dictionary = {
     travelLabels: {
       local: 'Lakóhely és környéke',
       regional: 'Regionális',
-      national: 'Országos',
+      national: 'A lakóhely szerinti ország egész területén',
       european: 'Európai',
     },
 
@@ -876,15 +877,9 @@ const hu: Dictionary = {
       {
         title: 'Jelentkezések',
         body: [
-          'Ha a jelentkezési űrlapon keresztül küld nekünk pályázatot, a továbbított adatokat és dokumentumokat kizárólag jelentkezése elbírálása céljából kezeljük. A jogalap a GDPR 6. cikk (1) bekezdés b) pontja, illetve a megadott hozzájárulás tekintetében a 6. cikk (1) bekezdés a) pontja.',
-          'A dokumentumokat e-mailben továbbítjuk irodánkba, és bizalmasan kezeljük. Törlésüket bármikor kérheti.',
-        ],
-      },
-      {
-        title: 'Jelentkezések',
-        body: [
           'Ha a jelentkezési űrlapon keresztül küld nekünk pályázatot, a továbbított adatokat és dokumentumokat kizárólag jelentkezése elbírálása céljából kezeljük. A jogalap a GDPR 6. cikk (1) bekezdés b) pontja, a megadott hozzájárulás tekintetében pedig a 6. cikk (1) bekezdés a) pontja.',
           'A dokumentumokat e-mailben továbbítjuk irodánkba, és bizalmasan kezeljük. Törlésüket bármikor kérheti.',
+          'Dokumentumait csak addig őrizzük meg, ameddig az a jelentkezés elbírálásához és az esetleges együttműködéshez szükséges. Ezt követően töröljük őket, kivéve ha törvényi megőrzési kötelezettség áll fenn.',
         ],
       },
       {

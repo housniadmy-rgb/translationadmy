@@ -4,11 +4,8 @@ import Logo from './Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import { SITE } from '../consts';
 import {
-  AVAILABLE_LOCALES,
-  FOOTER_NAV,
   HEADER_NAV,
-  LOCALE_NAMES,
-  LOCALE_TAGS,
+  PAGE_IDS,
   getDictionary,
   localizedPath,
   type Locale,
@@ -31,27 +28,29 @@ const navItems = HEADER_NAV.map((id) => ({
 }));
 
 /**
- * Das mobile Menü führt alle Seiten auf – auch die, die im Kopf aus
- * Platzgründen fehlen. So ist jede Seite mit einem Tipp erreichbar.
+ * Das mobile Menü führt jede Seite der Website auf – auch die, die im Kopf
+ * aus Platzgründen fehlen („Einsatzgebiete“ und „Über uns“).
+ *
+ * Bewusst aus PAGE_IDS abgeleitet und nicht aufgezählt: Eine handgepflegte
+ * Liste hatte genau diese zwei Seiten vergessen, und im Kompaktmodus ist das
+ * Menü der einzige Zugang zur Navigation. So kann keine Seite mehr fehlen,
+ * wenn später eine hinzukommt.
+ *
+ * Ausgenommen ist allein die Bewerbungsseite: Sie steht direkt darunter als
+ * hervorgehobener Handlungsaufruf.
  */
-const mobileItems: PageId[] = [
-  ...HEADER_NAV,
-  'careers',
-  'requirements',
-  'contact',
-  ...FOOTER_NAV.legal.filter((id) => id !== 'contact'),
-];
+const mobileItems: PageId[] = PAGE_IDS.filter((id) => id !== 'apply');
 ---
 
 <a class="skip-link" href="#main">{t.ui.skipToContent}</a>
 
-<header class="site-header">
-  <div class="container header-inner">
+<header class="site-header" data-header>
+  <div class="container header-inner" data-header-inner>
     <a class="logo" href={localizedPath(locale, 'home')}>
       <Logo class="logo-mark" />
       <span class="logo-text">
         <span class="logo-name">{SITE.name}</span>
-        <span class="logo-sub">Dolmetschen &amp; Übersetzen</span>
+        <span class="logo-sub">{t.ui.logoSubtitle}</span>
       </span>
     </a>
 
@@ -109,6 +108,89 @@ const mobileItems: PageId[] = [
 </header>
 
 {/*
+  Kopf messen statt raten – bewusst als Inline-Skript direkt hinter dem Kopf.
+
+  Es läuft noch während des Parsens und damit vor dem ersten Bildaufbau. Ein
+  gebündeltes Modul-Skript wäre "defer" und würde erst nach dem ersten Frame
+  laufen: Der Kopf erschiene kurz in der falschen Fassung und würde dann
+  umspringen – genau der Layout-Shift, der vermieden werden soll.
+*/}
+<script is:inline>
+  (() => {
+    const root = document.documentElement;
+    const header = document.querySelector('[data-header]');
+    const inner = header && header.querySelector('[data-header-inner]');
+    if (!inner) return;
+
+    const COMPACT = 'is-nav-compact';
+    /* Reserve, damit der letzte Button nie auf Kante steht. */
+    const BUFFER = 10;
+
+    /**
+     * Passen Logo, Navigation und Aktionsbereich nebeneinander?
+     * Gemessen werden die natürlichen Breiten – alle Kinder stehen auf
+     * flex-shrink: 0, ihre Rechtecke entsprechen daher dem Platzbedarf.
+     * Ausgeblendete Kinder (der Hamburger-Schalter) liefern kein Rechteck
+     * und fallen automatisch aus der Rechnung.
+     */
+    const fits = () => {
+      const styles = getComputedStyle(inner);
+      const gap = parseFloat(styles.columnGap) || 0;
+      const padding =
+        (parseFloat(styles.paddingLeft) || 0) + (parseFloat(styles.paddingRight) || 0);
+
+      let needed = 0;
+      let visible = 0;
+      for (const child of inner.children) {
+        if (child.getClientRects().length === 0) continue;
+        needed += child.getBoundingClientRect().width;
+        visible += 1;
+      }
+      needed += gap * Math.max(0, visible - 1);
+
+      return needed <= inner.clientWidth - padding - BUFFER;
+    };
+
+    /*
+      Gemessen wird immer im vollen Zustand. Die Entscheidung hängt damit
+      allein von der Fensterbreite ab und nicht vom vorherigen Zustand –
+      dadurch kann der Kopf nicht zwischen beiden Fassungen pendeln.
+    */
+    const evaluate = () => {
+      const wasCompact = root.classList.contains(COMPACT);
+      root.classList.remove(COMPACT);
+      const compact = !fits();
+      if (compact) root.classList.add(COMPACT);
+
+      /* Verlässt der Kopf den Kompaktmodus, darf kein Menü offen bleiben. */
+      if (wasCompact && !compact) {
+        document.dispatchEvent(new CustomEvent('ta:nav-expanded'));
+      }
+    };
+
+    /* Ab jetzt entscheidet die Messung; die Media-Query-Rückfallebene ruht. */
+    root.classList.add('js-nav');
+    evaluate();
+
+    /*
+      Auf Breitenänderungen reagieren. Ein ResizeObserver auf dem Kopf reicht:
+      Das Umschalten verändert die Breite dieses Kastens nicht, deshalb kann
+      die Rückmeldung sich nicht selbst erneut auslösen.
+    */
+    if (typeof ResizeObserver === 'function') {
+      new ResizeObserver(evaluate).observe(inner);
+    } else {
+      window.addEventListener('resize', evaluate, { passive: true });
+    }
+
+    /* Nach dem Schriftwechsel sind die Textbreiten endgültig – erneut messen. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(evaluate).catch(() => {});
+    }
+  })();
+</script>
+
+{/*
   Off-Canvas-Menü, bewusst außerhalb des Headers: Als position:fixed-Ebene
   kann es die volle Höhe einnehmen, ohne vom sticky Kopf beschnitten zu werden.
 */}
@@ -117,10 +199,28 @@ const mobileItems: PageId[] = [
 
   <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label={t.nav.home}>
     <div class="mobile-menu-head">
-      <span class="mobile-menu-title">{SITE.name}</span>
+      <span class="mobile-menu-title">
+        <Logo class="mobile-menu-logo" />
+        <span>{SITE.name}</span>
+      </span>
       <button type="button" class="nav-toggle" aria-label={t.ui.closeMenu} data-menu-close>
         <Icon name="close" />
       </button>
+    </div>
+
+    {/*
+      Sprachwahl direkt unter dem Logo und vor dem ersten Menüpunkt.
+
+      Bewusst derselbe Baustein wie im Kopf: gleiche Bedienung, gleiche
+      Tastatursteuerung, und jeder Eintrag zeigt auf dieselbe Unterseite in der
+      Zielsprache – der Wechsel springt also nicht auf die Startseite zurück.
+
+      Die eigene Kennung ist nötig, weil der Umschalter damit zweimal im
+      Dokument steht. Die aufklappende Liste läuft hier im Textfluss statt
+      absolut positioniert; im scrollenden Panel würde sie sonst abgeschnitten.
+    */}
+    <div class="mobile-menu-lang">
+      <LanguageSwitcher locale={locale} page={page} menuId="mobile-language-menu" />
     </div>
 
     <nav class="mobile-menu-nav" aria-label={t.nav.home}>
@@ -146,31 +246,6 @@ const mobileItems: PageId[] = [
       </a>
     </div>
 
-    {/*
-      Vollständige Sprachwahl im Menü. Jede Sprache zeigt auf dieselbe
-      Unterseite, damit der Wechsel nicht zur Startseite zurückspringt.
-    */}
-    <div class="mobile-menu-langs">
-      <h2>{t.footer.languageHeading}</h2>
-      <ul>
-        {
-          AVAILABLE_LOCALES.map((code) => (
-            <li>
-              <a
-                href={localizedPath(code, page)}
-                hreflang={LOCALE_TAGS[code]}
-                lang={LOCALE_TAGS[code]}
-                aria-current={code === locale ? 'true' : undefined}
-                rel="alternate"
-              >
-                <span class="mobile-lang-code">{code}</span>
-                <span>{LOCALE_NAMES[code]}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
   </div>
 </div>
 
@@ -204,23 +279,38 @@ const mobileItems: PageId[] = [
      * Sperrt den Hintergrund über position: fixed statt overflow: hidden.
      * Nur so bleibt die Scrollposition erhalten – overflow: hidden springt
      * auf mobilen Browsern an den Seitenanfang zurück.
+     *
+     * Die Breite wird ausdrücklich in Pixel festgeschrieben: position: fixed
+     * bezieht sich auf den Initial Containing Block, und der zieht die Breite
+     * der vertikalen Scrollleiste nicht ab. Ohne diese Festlegung würde der
+     * Seiteninhalt beim Öffnen des Menüs um rund 15 px zur Seite rutschen.
      */
     const lockBackground = () => {
       scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
+      document.body.style.width = `${document.documentElement.clientWidth}px`;
       document.body.style.top = `-${scrollY}px`;
-      document.body.style.insetInline = '0';
+      document.body.classList.add('is-scroll-locked');
     };
 
     const unlockBackground = () => {
-      document.body.style.position = '';
+      document.body.classList.remove('is-scroll-locked');
+      document.body.style.width = '';
       document.body.style.top = '';
-      document.body.style.insetInline = '';
       window.scrollTo({ top: scrollY, behavior: 'instant' as ScrollBehavior });
     };
 
     const open = () => {
       if (isOpen()) return;
+      // Ein offenes Sprach-Dropdown im Kopf würde sonst darunter liegen bleiben.
+      document
+        .querySelectorAll<HTMLElement>('[data-lang-menu]')
+        .forEach((list) => {
+          list.hidden = true;
+          list.closest('[data-lang-switcher]')
+            ?.querySelector('[data-lang-toggle]')
+            ?.setAttribute('aria-expanded', 'false');
+        });
+
       lockBackground();
       menu.hidden = false;
       // Erzwingt einen Frame, damit der Einfahr-Übergang greift.
@@ -281,13 +371,11 @@ const mobileItems: PageId[] = [
     });
 
     /*
-      Beim Wechsel auf Desktop-Breite das Menü schließen, damit kein
-      gesperrter Hintergrund zurückbleibt. Der Wert entspricht dem
-      Umbruchpunkt in global.css.
+      Verlässt der Kopf den Kompaktmodus, muss das Menü schließen – sonst
+      bliebe ein gesperrter Hintergrund ohne sichtbaren Schalter zurück.
+      Das Ereignis stammt aus dem Messskript im Kopf; damit gibt es genau
+      eine Quelle für den Umschaltzeitpunkt statt einer zweiten Media Query.
     */
-    const wide = window.matchMedia('(min-width: 86rem)');
-    wide.addEventListener('change', (event) => {
-      if (event.matches) close(false);
-    });
+    document.addEventListener('ta:nav-expanded', () => close(false));
   })();
 </script>

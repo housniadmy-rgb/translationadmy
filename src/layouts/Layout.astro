@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { LOCALE_TAGS, type Locale, type PageId } from '../i18n';
+import { LOCALE_TAGS, localeDirection, type Locale, type PageId } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -13,10 +13,22 @@ interface Props {
 }
 
 const { locale, page, title, description, noindex } = Astro.props;
+
+/*
+  dir am <html>-Element ist der einzige Schalter für die Textrichtung: Alle
+  logischen CSS-Eigenschaften (padding-inline-start, inset-inline-end …) und
+  der Bidi-Algorithmus des Browsers richten sich danach. Die deutsche und
+  alle anderen Fassungen bleiben unverändert bei ltr.
+
+  Der Hinweis steht bewusst hier und nicht als JSX-Kommentar zwischen doctype
+  und <html>: Dort erkennt Astro das Dokument nicht mehr als vollständiges
+  HTML-Dokument und lässt das <html>-Element samt lang und dir ganz weg.
+*/
+const direction = localeDirection(locale);
 ---
 
 <!doctype html>
-<html lang={LOCALE_TAGS[locale]}>
+<html lang={LOCALE_TAGS[locale]} dir={direction}>
   <head>
     <BaseHead
       locale={locale}

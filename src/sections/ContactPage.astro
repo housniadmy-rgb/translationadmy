@@ -36,7 +36,7 @@ const tiles = [
                   <Icon name={tile.icon} />
                   <span>
                     <span class="contact-tile-label">{tile.label}</span>
-                    <span class="contact-tile-value">{tile.value}</span>
+                    <span class="contact-tile-value" dir="ltr">{tile.value}</span>
                   </span>
                 </a>
               ) : (
@@ -44,7 +44,7 @@ const tiles = [
                   <Icon name={tile.icon} />
                   <span>
                     <span class="contact-tile-label">{tile.label}</span>
-                    <span class="contact-tile-value">{tile.value}</span>
+                    <span class="contact-tile-value" dir="ltr">{tile.value}</span>
                   </span>
                 </div>
               ),
@@ -55,7 +55,7 @@ const tiles = [
             <Icon name="map-pin" />
             <span>
               <span class="contact-tile-label">{t.ui.postalAddress}</span>
-              <address class="contact-tile-value" style="font-style: normal;">
+              <address class="contact-tile-value" style="font-style: normal;" dir="ltr">
                 {SITE.legalName}<br />
                 {ADDRESS.street}<br />
                 {ADDRESS.postalCode}&nbsp;{ADDRESS.city}

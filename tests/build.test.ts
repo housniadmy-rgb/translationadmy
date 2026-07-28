@@ -4,8 +4,15 @@ import { fileURLToPath } from 'node:url';
 import { parseHTML } from 'linkedom';
 import { beforeAll, describe, expect, it } from 'vitest';
 
-import { SITE_URL } from '../src/consts';
-import { LOCALES, LOCALE_TAGS, PAGE_IDS, SLUGS, DEFAULT_LOCALE } from '../src/i18n/config';
+import { SITE_URL, CONTACT, ADDRESS, LEGAL } from '../src/consts';
+import {
+  LOCALES,
+  LOCALE_TAGS,
+  PAGE_IDS,
+  SLUGS,
+  DEFAULT_LOCALE,
+  localeDirection,
+} from '../src/i18n/config';
 
 /**
  * Prüft die tatsächlich erzeugten Seiten.
@@ -53,7 +60,7 @@ describe.skipIf(!hasBuild)('Erzeugte Seiten', () => {
   });
 
   it('erzeugt die erwartete Gesamtzahl an Seiten', () => {
-    // 17 Sprachen × 13 Seiten + Sprachweiche + 404
+    // 18 Sprachen × 14 Seiten + Sprachweiche + 404
     expect(pages.length).toBe(LOCALES.length * PAGE_IDS.length + 2);
   });
 
@@ -90,6 +97,72 @@ describe.skipIf(!hasBuild)('Erzeugte Seiten', () => {
         LOCALE_TAGS[locale],
       );
     }
+  });
+
+  it('gibt auf jeder Seite ein <html>-Element mit lang und dir aus', () => {
+    /*
+      Regressionsschutz: Ein JSX-Kommentar zwischen <!doctype html> und <html>
+      genügt, damit Astro das Dokument nicht mehr als vollständiges
+      HTML-Dokument erkennt und das <html>-Element samt lang und dir
+      stillschweigend weglässt. Im Quelltext ist das kaum zu sehen, im Build
+      fehlt dann auf jeder Seite die Sprach- und Richtungsangabe.
+
+      Geprüft wird deshalb am Rohtext, nicht über den Parser: linkedom ergänzt
+      ein fehlendes <html> beim Einlesen von selbst.
+    */
+    for (const page of pages) {
+      if (page.url === '/') continue; // Sprachweiche, eigenes Markup
+      expect(page.html, `<html lang=…> fehlt: ${page.url}`).toMatch(/<html lang="[^"]+"/);
+      expect(page.html, `dir fehlt: ${page.url}`).toMatch(/<html [^>]*dir="(ltr|rtl)"/);
+    }
+  });
+
+  it('setzt die Textrichtung je Sprachfassung', () => {
+    for (const locale of LOCALES) {
+      for (const page of PAGE_IDS) {
+        const html = readFileSync(distPath(locale, page), 'utf8');
+        const dir = html.match(/<html [^>]*dir="(ltr|rtl)"/)?.[1];
+        expect(dir, `dir für ${locale}/${page}`).toBe(localeDirection(locale));
+      }
+    }
+  });
+
+  it('stellt Kontaktdaten in der arabischen Fassung von links nach rechts dar', () => {
+    /*
+      Rufnummern, Faxnummer, E-Mail-Adresse, Anschrift, USt-IdNr. und
+      Steuernummer sind lateinische Zeichenfolgen. Ohne dir="ltr" rückt der
+      Bidi-Algorithmus im arabischen Textfluss führende Zeichen an die falsche
+      Seite: aus „+49 6721 9875872“ würde „9875872 6721 49+“.
+    */
+    const values = [CONTACT.phone, CONTACT.mobile, CONTACT.fax, CONTACT.email];
+
+    for (const page of ['home', 'contact', 'imprint'] as const) {
+      const { document } = parseHTML(readFileSync(distPath('ar', page), 'utf8'));
+      const ltrText = [...document.querySelectorAll('[dir="ltr"]')]
+        .map((node) => node.textContent ?? '')
+        .join(' ');
+
+      for (const value of values) {
+        if (!(document.body.textContent ?? '').includes(value)) continue;
+        expect(ltrText, `${value} ohne dir="ltr" auf /ar/${page}`).toContain(value);
+      }
+    }
+
+    // Impressum: Pflichtangaben mit Zahlen und Schrägstrichen.
+    const { document } = parseHTML(readFileSync(distPath('ar', 'imprint'), 'utf8'));
+    const ltrText = [...document.querySelectorAll('[dir="ltr"]')]
+      .map((node) => node.textContent ?? '')
+      .join(' ');
+    expect(ltrText, 'USt-IdNr. ohne dir="ltr"').toContain(LEGAL.vatId);
+    expect(ltrText, 'Steuernummer ohne dir="ltr"').toContain(LEGAL.taxNumber);
+    expect(ltrText, 'Straße ohne dir="ltr"').toContain(ADDRESS.street);
+  });
+
+  it('spiegelt nur richtungsgebundene Symbole', () => {
+    // Der Weiter-Pfeil trägt eine Leserichtung, das Telefonsymbol nicht.
+    const { document } = parseHTML(readFileSync(distPath('ar', 'home'), 'utf8'));
+    const directional = document.querySelectorAll('svg.icon-directional');
+    expect(directional.length, 'kein gespiegeltes Symbol gefunden').toBeGreaterThan(0);
   });
 
   it('setzt für jede Seite ein Canonical auf die eigene URL', () => {
@@ -271,6 +344,86 @@ describe.skipIf(!hasBuild)('Erzeugte Seiten', () => {
     }
 
     expect(missing, `Pflichtlinks fehlen:\n${missing.join('\n')}`).toEqual([]);
+  });
+
+  it('das Hamburger-Menü führt jede Seite und jede Sprachfassung auf', () => {
+    /*
+      Im Kompaktmodus (Smartphone und Tablet) ist dieses Menü der einzige
+      Zugang zur Navigation. Fehlt dort eine Seite, ist sie auf dem Gerät
+      praktisch nicht erreichbar – „Einsatzgebiete“ und „Über uns“ waren
+      genau so verloren gegangen.
+    */
+    const missing: string[] = [];
+
+    for (const locale of LOCALES) {
+      const { document } = parseHTML(readFileSync(distPath(locale, 'home'), 'utf8'));
+      const menu = document.querySelector('#mobile-menu');
+      expect(menu, `Menü fehlt in ${locale}`).toBeTruthy();
+
+      const hrefs = new Set(
+        [...menu!.querySelectorAll('a[href]')].map((node) => node.getAttribute('href')),
+      );
+
+      for (const page of PAGE_IDS) {
+        const slug = SLUGS[page][locale as keyof typeof LOCALE_TAGS];
+        const target = slug === '' ? `/${locale}/` : `/${locale}/${slug}/`;
+        if (!hrefs.has(target)) missing.push(`${locale} → ${page}`);
+      }
+
+      // Die Sprachwahl steht im Kompaktmodus ausschließlich im Menü.
+      for (const other of LOCALES) {
+        if (!hrefs.has(`/${other}/`)) missing.push(`${locale} → Sprache ${other}`);
+      }
+    }
+
+    expect(missing, `im Menü fehlen:\n${missing.join('\n')}`).toEqual([]);
+  });
+
+  it('führt die Sprachwahl im Hamburger-Menü vor dem ersten Menüpunkt', () => {
+    /*
+      Reihenfolge im Panel: Logo, Sprachwahl, Menüpunkte, Handlungsaufrufe.
+
+      Die Sprachwahl stand früher ganz unten – hinter dreizehn Menüpunkten und
+      zwei Buttons. Wer die Seitensprache nicht lesen kann, muss die Sprachwahl
+      aber als Erstes finden, ohne das halbe Menü durchscrollen zu müssen.
+    */
+    for (const locale of LOCALES) {
+      const html = readFileSync(distPath(locale, 'home'), 'utf8');
+      const { document } = parseHTML(html);
+      const panel = document.querySelector('.mobile-menu-panel');
+      expect(panel, `Panel fehlt in ${locale}`).toBeTruthy();
+
+      const kinder = [...panel!.children].map((node) => node.className);
+      expect(kinder, `Aufbau des Panels in ${locale}`).toEqual([
+        'mobile-menu-head',
+        'mobile-menu-lang',
+        'mobile-menu-nav',
+        'mobile-menu-cta',
+      ]);
+
+      // Die Sprachwahl ist derselbe Baustein wie im Kopf, mit eigener Kennung.
+      const umschalter = panel!.querySelector('#mobile-language-menu');
+      expect(umschalter, `Sprachwahl fehlt im Menü von ${locale}`).toBeTruthy();
+      expect(
+        umschalter!.querySelectorAll('a[href]').length,
+        `Sprachen im Menü von ${locale}`,
+      ).toBe(LOCALES.length);
+    }
+  });
+
+  it('vergibt die Kennung der Sprachliste nur einmal je Seite', () => {
+    /*
+      Der Umschalter steht zweimal im Dokument – im Kopf und im Menü. Ohne
+      eigene Kennung je Instanz zeigte aria-controls auf das falsche Element.
+    */
+    for (const page of pages) {
+      if (page.url === '/') continue;
+      const treffer = page.html.match(/id="(mobile-)?language-menu"/g) ?? [];
+      expect(treffer.sort(), `doppelte Kennung auf ${page.url}`).toEqual([
+        'id="language-menu"',
+        'id="mobile-language-menu"',
+      ]);
+    }
   });
 
   it('das Impressum nennt alle Pflichtangaben und macht Nummern wählbar', () => {

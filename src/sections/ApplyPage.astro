@@ -25,11 +25,11 @@ const t = getDictionary(locale);
       <div class="btn-group mt-lg">
         <a class="btn btn-secondary" href={CONTACT.emailHref}>
           <Icon name="mail" size={18} />
-          {CONTACT.email}
+          <span dir="ltr">{CONTACT.email}</span>
         </a>
         <a class="btn btn-secondary" href={CONTACT.phoneHref}>
           <Icon name="phone" size={18} />
-          {CONTACT.phone}
+          <span dir="ltr">{CONTACT.phone}</span>
         </a>
         <a class="btn btn-secondary" href={localizedPath(locale, 'privacy')}>
           {t.nav.privacy}

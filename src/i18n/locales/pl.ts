@@ -20,6 +20,7 @@ const pl: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Tłumaczenia ustne i pisemne',
     skipToContent: 'Przejdź do treści',
     openMenu: 'Otwórz menu',
     closeMenu: 'Zamknij menu',
@@ -50,11 +51,11 @@ const pl: Dictionary = {
   home: {
     metaTitle: 'Tłumacze ustni i pisemni dla urzędów, sądów i firm',
     metaDescription:
-      'Biuro tłumaczeń Translation Admy: tłumaczenia konsekutywne i konferencyjne oraz tłumaczenia uwierzytelnione w wielu językach i dialektach. Dla urzędów, sądów, firm i klientów prywatnych w całych Niemczech i w Europie.',
+      'Biuro tłumaczeń Translation Admy: tłumaczenia konsekutywne i konferencyjne oraz tłumaczenia uwierzytelnione w wielu językach i dialektach. Dla urzędów, sądów, firm i klientów prywatnych w całej Europie.',
     heroKicker: 'Biuro tłumaczeń Translation Admy',
     heroTitle: 'Porozumienie bez przeszkód — w języku Państwa rozmówcy',
     heroLead:
-      'Tłumaczymy ustnie i pisemnie dla urzędów, sądów, ośrodków recepcyjnych, firm i klientów prywatnych. Tłumacze native speakerzy, ponad 12 lat doświadczenia, działamy w całej Polsce i w różnych krajach europejskich.',
+      'Tłumaczymy ustnie i pisemnie dla urzędów, sądów, ośrodków recepcyjnych, firm i klientów prywatnych. Tłumacze native speakerzy, ponad 10 lat doświadczenia, działamy w Niemczech i w wielu krajach europejskich.',
     heroPrimary: 'Zapytanie bez zobowiązań',
     heroSecondary: 'Zobacz usługi',
     heroBadges: [
@@ -62,7 +63,7 @@ const pl: Dictionary = {
       'Tłumaczenia uwierzytelnione',
       'Zlecenia w krótkim terminie',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Wersje językowe strony',
     statYears: '10+',
     statYearsLabel: 'Ponad 10 lat doświadczenia',
@@ -346,7 +347,7 @@ const pl: Dictionary = {
     ],
     tendersTitle: 'Przetargi i postępowania o udzielenie zamówienia w Europie',
     tendersText:
-      'Bierzemy udział w przetargach i postępowaniach o udzielenie zamówienia prowadzonych przez zleceniodawców publicznych w Niemczech i w innych krajach Europy. Jeśli ogłaszają Państwo przetarg na usługi językowe, prosimy o kontakt — przygotujemy dokumenty niezbędne do złożenia oferty.',
+      'Bierzemy udział w przetargach i postępowaniach o udzielenie zamówienia prowadzonych przez zleceniodawców publicznych w całej Europie. Jeśli ogłaszają Państwo przetarg na usługi językowe, prosimy o kontakt — przygotujemy dokumenty niezbędne do złożenia oferty.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const pl: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Obszary działania — Niemcy i Europa',
+    metaTitle: 'Obszary działania — w całej Europie',
     metaDescription:
-      'Translation Admy pośredniczy w zapewnianiu tłumaczy w całych Niemczech i w wybranych krajach europejskich — na miejscu, telefonicznie lub przez wideo, także w procedurach azylowych i granicznych.',
+      'Translation Admy pośredniczy w zapewnianiu tłumaczy w całej Europie — na miejscu, telefonicznie lub przez wideo, także w procedurach azylowych i granicznych.',
     h1: 'Obszary działania',
     lead:
-      'Nasze biuro ma siedzibę w Bingen am Rhein. Nasi tłumacze działają w całych Niemczech.',
+      'Nasze biuro ma siedzibę w Bingen am Rhein. Nasi tłumacze działają w całej Europie.',
     baseTitle: 'Siedziba w Bingen am Rhein',
     baseText:
-      'Z Bingen am Rhein szybko docieramy do regionu Ren-Men, Hesji Nadreńskiej i Środkowego Renu. Na terminy w tym regionie jesteśmy często dostępni nawet w bardzo krótkim czasie.',
-    europeTitle: 'Działamy w całych Niemczech i w Europie',
+      'Z Bingen am Rhein koordynujemy zlecenia w całej Europie. Przy terminach w bardzo krótkim czasie korzystamy z sieci, która wykracza poza granice krajowe.',
+    europeTitle: 'Działamy w całej Europie',
     europeText:
-      'Translation Admy pośredniczy w zapewnianiu tłumaczy ustnych i pisemnych do zleceń w całych Niemczech oraz w wybranych krajach europejskich. W zależności od zlecenia wspieramy urzędy, instytucje publiczne, firmy i organizacje międzynarodowe na miejscu, telefonicznie lub przez wideo.',
+      'Translation Admy pośredniczy w zapewnianiu tłumaczy ustnych i pisemnych do zleceń w całej Europie. W zależności od zlecenia wspieramy urzędy, instytucje publiczne, firmy i organizacje międzynarodowe na miejscu, telefonicznie lub przez wideo.',
     capabilities: [
-      'Zlecenia w całych Niemczech',
+      'Zlecenia w całej Europie',
       'Tłumaczenia ustne na miejscu',
       'Tłumaczenia telefoniczne i wideo',
       'Zlecenia w krótkim terminie i planowane z wyprzedzeniem',
-      'Projekty transgraniczne i ogólnoeuropejskie',
+      'Projekty transgraniczne w kilku krajach',
       'Wsparcie w procedurach azylowych, migracyjnych i recepcyjnych',
       'Budowa ogólnoeuropejskiej sieci tłumaczy',
     ],
@@ -440,12 +441,12 @@ const pl: Dictionary = {
     countriesNote:
       'Konkretna dostępność zależy od języka, kwalifikacji, miejsca i terminu.',
 
-    nationwideTitle: 'W całych Niemczech',
+    nationwideTitle: 'W całej Europie',
     nationwideText:
-      'Współpracujemy z tłumaczami na terenie całych Niemiec. Prosimy podać miejsce i termin — sprawdzimy dostępność na miejscu.',
-    internationalTitle: 'Realizacje w innych krajach Europy',
+      'Współpracujemy z tłumaczami w wielu krajach europejskich. Prosimy podać miejsce i termin — sprawdzimy dostępność na miejscu.',
+    internationalTitle: 'Realizacje transgraniczne',
     internationalText:
-      'W sprawie realizacji poza Niemcami prosimy o kontakt. Sprawdzamy indywidualnie, czy i w jaki sposób możemy pokryć Państwa zapotrzebowanie.',
+      'W sprawie realizacji w kilku krajach lub poza naszymi zwykłymi obszarami prosimy o kontakt. Sprawdzamy indywidualnie, czy i w jaki sposób możemy pokryć Państwa zapotrzebowanie.',
     remoteTitle: 'Terminy telefoniczne i wideo',
     remoteText:
       'Gdy spotkanie na miejscu nie jest możliwe lub konieczne, wsparcie językowe może odbyć się po uzgodnieniu również telefonicznie lub przez połączenie wideo.',
@@ -459,7 +460,7 @@ const pl: Dictionary = {
     lead:
       'Nasza oferta językowa jest wyjątkowo szeroka i możemy wesprzeć Państwa w wielu językach. Tłumaczymy dla Państwa ustnie i pisemnie w następujących językach.',
     searchLabel: 'Szukaj języka',
-    searchPlaceholder: 'np. arabski, tigrinia, sorani …',
+    searchPlaceholder: 'np. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Wyczyść wyszukiwanie',
     resultsOne: 'Znaleziono 1 język',
     resultsMany: 'Znaleziono {count} języków',
@@ -485,12 +486,12 @@ const pl: Dictionary = {
   },
 
   about: {
-    metaTitle: 'O nas — biuro tłumaczeń z ponad 12-letnim doświadczeniem',
+    metaTitle: 'O nas — biuro tłumaczeń z ponad 10-letnim doświadczeniem',
     metaDescription:
-      'Translation Admy to doświadczony zespół profesjonalnych tłumaczy ustnych i pisemnych z ponad 12-letnim doświadczeniem w branży.',
+      'Translation Admy to doświadczony zespół profesjonalnych tłumaczy ustnych i pisemnych z ponad 10-letnim doświadczeniem w branży.',
     h1: 'O nas',
     lead:
-      'Jesteśmy doświadczonym zespołem profesjonalnych tłumaczy ustnych i pisemnych z ponad 12-letnim doświadczeniem w branży.',
+      'Jesteśmy doświadczonym zespołem profesjonalnych tłumaczy ustnych i pisemnych z ponad 10-letnim doświadczeniem w branży.',
     body: [
       'Kieruje nami wysokie wymaganie, dziś i w przyszłości: dostarczamy naszym klientom wyłącznie najlepsze usługi i rozwiązania, zawsze w korzystnej cenie. Nasza oferta jest podporządkowana wyłącznie konkretnym potrzebom i oczekiwaniom klientów.',
       'Właśnie dlatego w naszym biurze pracują wyłącznie wykwalifikowani tłumacze ustni i pisemni będący native speakerami. Nasi współpracownicy dysponują wystarczającym doświadczeniem w tłumaczeniach pisemnych i ustnych.',
@@ -506,7 +507,7 @@ const pl: Dictionary = {
       },
       {
         title: 'Doświadczenie',
-        text: 'Ponad 12 lat doświadczenia w branży — i współpracownicy z praktyką w tłumaczeniach ustnych i pisemnych.',
+        text: 'Ponad 10 lat doświadczenia w branży — i współpracownicy z praktyką w tłumaczeniach ustnych i pisemnych.',
       },
       {
         title: 'Nastawienie na potrzeby',
@@ -522,19 +523,19 @@ const pl: Dictionary = {
   careers: {
     metaTitle: 'Kariera — poszukujemy tłumaczy wszystkich języków i dialektów',
     metaDescription:
-      'W celu wzmocnienia naszego zespołu w całych Niemczech poszukujemy tłumaczy wszystkich języków i dialektów. Aplikuj już teraz do Translation Admy.',
+      'W celu wzmocnienia naszego zespołu w całej Europie poszukujemy tłumaczy wszystkich języków i dialektów. Aplikuj już teraz do Translation Admy.',
     h1: 'Dla tłumaczy ustnych i pisemnych',
     lead:
-      'W celu wzmocnienia naszego zespołu w całych Niemczech poszukujemy tłumaczy wszystkich języków i dialektów.',
+      'W celu wzmocnienia naszego zespołu w całej Europie poszukujemy tłumaczy wszystkich języków i dialektów.',
     requirementsTitle: 'Wymagania',
     requirements: [
-      'Certyfikat języka niemieckiego na poziomie C1, niemiecka matura Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, świadectwo Studienkolleg lub dyplom ukończenia studiów',
+      'Potwierdzenie znajomości języków roboczych na poziomie C1 lub wyższym — albo równoważne wykształcenie uznawane w kraju zamieszkania',
       'Brak wpisów w rejestrze karnym',
       'Wymagane zezwolenie na pracę',
     ],
     offerTitle: 'Co Państwa czeka',
     offer: [
-      'Zlecenia w całych Niemczech — także w Państwa regionie',
+      'Zlecenia w całej Europie — także w Państwa regionie',
       'Różnorodne zlecenia dla urzędów, sądów, firm i osób prywatnych',
       'Zespół, dla którego liczy się dokładne i bezstronne wsparcie językowe',
     ],
@@ -552,7 +553,7 @@ const pl: Dictionary = {
       },
       {
         title: 'Projekty w całej Europie',
-        text: 'Obok zleceń w całych Niemczech przybywa zapytań z innych krajów europejskich.',
+        text: 'Zapytania docierają do nas z całej Europy — zapotrzebowanie na tłumaczenia rośnie ponad granicami.',
       },
       {
         title: 'Uczciwa współpraca',
@@ -636,7 +637,7 @@ const pl: Dictionary = {
     travelLabels: {
       local: 'Miejsce zamieszkania i okolice',
       regional: 'Regionalnie',
-      national: 'W całych Niemczech',
+      national: 'W całym kraju zamieszkania',
       european: 'W całej Europie',
     },
 
@@ -878,6 +879,7 @@ const pl: Dictionary = {
         body: [
           'Jeśli prześlą nam Państwo zgłoszenie przez formularz aplikacyjny, przetwarzamy przekazane dane i dokumenty wyłącznie w celu oceny Państwa zgłoszenia. Podstawą prawną jest art. 6 ust. 1 lit. b RODO oraz art. 6 ust. 1 lit. a RODO w zakresie udzielonej zgody.',
           'Dokumenty są przekazywane e-mailem do naszego biura i traktowane poufnie. W każdej chwili mogą Państwo zażądać ich usunięcia.',
+          'Przechowujemy Państwa dokumenty wyłącznie tak długo, jak jest to niezbędne do rozpatrzenia zgłoszenia i ewentualnej współpracy. Następnie je usuwamy, o ile nie stoją temu na przeszkodzie ustawowe obowiązki przechowywania.',
         ],
       },
       {

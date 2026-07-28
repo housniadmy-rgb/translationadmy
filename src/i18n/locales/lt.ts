@@ -20,6 +20,7 @@ const lt: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Vertimas žodžiu ir raštu',
     skipToContent: 'Pereiti prie turinio',
     openMenu: 'Atverti meniu',
     closeMenu: 'Užverti meniu',
@@ -50,11 +51,11 @@ const lt: Dictionary = {
   home: {
     metaTitle: 'Vertėjai žodžiu ir raštu institucijoms, teismams ir įmonėms',
     metaDescription:
-      'Vertimų biuras Translation Admy: nuoseklusis ir konferencijų vertimas bei patvirtinti vertimai daugybe kalbų ir tarmių. Institucijoms, teismams, įmonėms ir privatiems klientams visoje Vokietijoje ir Europoje.',
+      'Vertimų biuras Translation Admy: nuoseklusis ir konferencijų vertimas bei patvirtinti vertimai daugybe kalbų ir tarmių. Institucijoms, teismams, įmonėms ir privatiems klientams visoje Europoje.',
     heroKicker: 'Vertimų biuras Translation Admy',
     heroTitle: 'Supratimas be kliūčių — jūsų pašnekovo kalba',
     heroLead:
-      'Verčiame žodžiu ir raštu institucijoms, teismams, priėmimo centrams, įmonėms ir privatiems klientams. Vertėjai gimtakalbiai, daugiau nei 10 metų patirtis, dirbame visoje Lietuvoje ir įvairiose Europos šalyse.',
+      'Verčiame žodžiu ir raštu institucijoms, teismams, priėmimo centrams, įmonėms ir privatiems klientams. Vertėjai gimtakalbiai, daugiau nei 10 metų patirtis, dirbame Vokietijoje ir daugelyje Europos šalių.',
     heroPrimary: 'Neįpareigojanti užklausa',
     heroSecondary: 'Peržiūrėti paslaugas',
     heroBadges: [
@@ -62,7 +63,7 @@ const lt: Dictionary = {
       'Patvirtinti vertimai',
       'Užsakymai trumpu terminu',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Svetainės kalbų versijos',
     statYears: '10+',
     statYearsLabel: 'Daugiau nei 10 metų patirtis',
@@ -346,7 +347,7 @@ const lt: Dictionary = {
     ],
     tendersTitle: 'Viešieji pirkimai ir konkursai Europoje',
     tendersText:
-      'Dalyvaujame viešojo sektoriaus užsakovų viešuosiuose pirkimuose ir konkursuose Vokietijoje ir kitose Europos šalyse. Jei skelbiate kalbos paslaugų konkursą, kreipkitės į mus — parengsime pasiūlymui pateikti reikalingus dokumentus.',
+      'Dalyvaujame viešojo sektoriaus užsakovų viešuosiuose pirkimuose ir konkursuose visoje Europoje. Jei skelbiate kalbos paslaugų konkursą, kreipkitės į mus — parengsime pasiūlymui pateikti reikalingus dokumentus.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const lt: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Veiklos teritorijos — Vokietija ir Europa',
+    metaTitle: 'Veiklos teritorijos — visoje Europoje',
     metaDescription:
-      'Translation Admy tarpininkauja parenkant vertėjus visoje Vokietijoje ir pasirinktose Europos šalyse — vietoje, telefonu arba vaizdo ryšiu, taip pat prieglobsčio ir sienų procedūrose.',
+      'Translation Admy tarpininkauja parenkant vertėjus visoje Europoje — vietoje, telefonu arba vaizdo ryšiu, taip pat prieglobsčio ir sienų procedūrose.',
     h1: 'Veiklos teritorijos',
     lead:
-      'Mūsų biuro būstinė yra Bingen am Rhein. Mūsų vertėjai dirba visoje Vokietijoje.',
+      'Mūsų biuro būstinė yra Bingen am Rhein. Mūsų vertėjai dirba visoje Europoje.',
     baseTitle: 'Būstinė Bingen am Rhein',
     baseText:
-      'Iš Bingen am Rhein greitai pasiekiame Reino-Maino regioną, Reino Heseną ir Vidurio Reiną. Šio regiono susitikimams dažnai esame pasiekiami net ir labai trumpu terminu.',
-    europeTitle: 'Dirbame visoje Vokietijoje ir Europoje',
+      'Iš Bingen am Rhein koordinuojame užsakymus visoje Europoje. Labai trumpo termino susitikimams remiamės tinklu, kuris apima ne vieną valstybę.',
+    europeTitle: 'Dirbame visoje Europoje',
     europeText:
-      'Translation Admy tarpininkauja parenkant vertėjus žodžiu ir raštu užsakymams visoje Vokietijoje ir pasirinktose Europos šalyse. Priklausomai nuo užsakymo, padedame institucijoms, viešosioms įstaigoms, įmonėms ir tarptautinėms organizacijoms vietoje, telefonu arba vaizdo ryšiu.',
+      'Translation Admy tarpininkauja parenkant vertėjus žodžiu ir raštu užsakymams visoje Europoje. Priklausomai nuo užsakymo, padedame institucijoms, viešosioms įstaigoms, įmonėms ir tarptautinėms organizacijoms vietoje, telefonu arba vaizdo ryšiu.',
     capabilities: [
-      'Užsakymai visoje Vokietijoje',
+      'Užsakymai visoje Europoje',
       'Vertimas žodžiu vietoje',
       'Vertimas telefonu ir vaizdo ryšiu',
       'Skubūs ir iš anksto suplanuoti užsakymai',
-      'Tarpvalstybiniai ir visos Europos projektai',
+      'Tarpvalstybiniai projektai keliose šalyse',
       'Pagalba prieglobsčio, migracijos ir priėmimo procedūrose',
       'Visos Europos vertėjų tinklo kūrimas',
     ],
@@ -440,12 +441,12 @@ const lt: Dictionary = {
     countriesNote:
       'Konkretus prieinamumas priklauso nuo kalbos, kvalifikacijos, vietos ir datos.',
 
-    nationwideTitle: 'Visoje Vokietijoje',
+    nationwideTitle: 'Visoje Europoje',
     nationwideText:
-      'Bendradarbiaujame su vertėjais visoje Vokietijos teritorijoje. Nurodykite vietą ir datą — patikrinsime galimybes vietoje.',
-    internationalTitle: 'Darbai kitose Europos šalyse',
+      'Bendradarbiaujame su vertėjais daugelyje Europos šalių. Nurodykite vietą ir datą — patikrinsime galimybes vietoje.',
+    internationalTitle: 'Tarpvalstybiniai darbai',
     internationalText:
-      'Dėl darbų už Vokietijos ribų kreipkitės į mus. Kiekvienu atveju įvertiname, ar ir kaip galime patenkinti jūsų poreikį.',
+      'Dėl darbų keliose šalyse arba už mūsų įprastų veiklos teritorijų kreipkitės į mus. Kiekvienu atveju įvertiname, ar ir kaip galime patenkinti jūsų poreikį.',
     remoteTitle: 'Susitikimai telefonu ir vaizdo ryšiu',
     remoteText:
       'Kai susitikimas vietoje neįmanomas arba nebūtinas, kalbinis tarpininkavimas susitarus gali vykti ir telefonu arba vaizdo ryšiu.',
@@ -459,7 +460,7 @@ const lt: Dictionary = {
     lead:
       'Mūsų kalbų pasiūla itin plati ir galime jums padėti daugeliu kalbų. Verčiame jums žodžiu ir raštu šiomis kalbomis.',
     searchLabel: 'Ieškoti kalbos',
-    searchPlaceholder: 'pvz., arabų, tigrinjų, sorani …',
+    searchPlaceholder: 'pvz., Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Išvalyti paiešką',
     resultsOne: 'Rasta 1 kalba',
     resultsMany: 'Rasta kalbų: {count}',
@@ -522,19 +523,19 @@ const lt: Dictionary = {
   careers: {
     metaTitle: 'Karjera — ieškome vertėjų visoms kalboms ir tarmėms',
     metaDescription:
-      'Stiprindami savo komandą visoje Vokietijoje ieškome vertėjų visoms kalboms ir tarmėms. Pateikite paraišką Translation Admy jau dabar.',
+      'Stiprindami savo komandą visoje Europoje ieškome vertėjų visoms kalboms ir tarmėms. Pateikite paraišką Translation Admy jau dabar.',
     h1: 'Vertėjams žodžiu ir raštu',
     lead:
-      'Stiprindami savo komandą visoje Vokietijoje ieškome vertėjų visoms kalboms ir tarmėms.',
+      'Stiprindami savo komandą visoje Europoje ieškome vertėjų visoms kalboms ir tarmėms.',
     requirementsTitle: 'Reikalavimai',
     requirements: [
-      'Vokiečių kalbos C1 lygio pažymėjimas, vokiškas Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkolleg pažymėjimas arba aukštojo mokslo diplomas',
+      'Darbo kalbų mokėjimo įrodymas C1 ar aukštesniu lygiu — arba gyvenamosios vietos valstybėje pripažįstamas lygiavertis išsilavinimas',
       'Neteistumas',
       'Būtinas leidimas dirbti',
     ],
     offerTitle: 'Ko galite tikėtis',
     offer: [
-      'Užsakymai visoje Vokietijoje — taip pat jūsų regione',
+      'Užsakymai visoje Europoje — taip pat jūsų regione',
       'Įvairūs užsakymai institucijoms, teismams, įmonėms ir privatiems asmenims',
       'Komanda, kuriai svarbus tikslus ir nešališkas kalbinis tarpininkavimas',
     ],
@@ -552,7 +553,7 @@ const lt: Dictionary = {
       },
       {
         title: 'Projektai visoje Europoje',
-        text: 'Be užsakymų visoje Vokietijoje, vis daugiau užklausų gauname ir iš kitų Europos šalių.',
+        text: 'Užklausos mus pasiekia iš visos Europos — kalbinio tarpininkavimo poreikis auga peržengdamas valstybių ribas.',
       },
       {
         title: 'Sąžiningas bendradarbiavimas',
@@ -636,7 +637,7 @@ const lt: Dictionary = {
     travelLabels: {
       local: 'Gyvenamoji vieta ir apylinkės',
       regional: 'Regionas',
-      national: 'Visa Vokietija',
+      national: 'Visa gyvenamosios vietos valstybė',
       european: 'Visa Europa',
     },
 
@@ -878,6 +879,7 @@ const lt: Dictionary = {
         body: [
           'Jei atsiunčiate mums paraišką per paraiškų formą, perduotus duomenis ir dokumentus tvarkome tik jūsų paraiškai įvertinti. Teisinis pagrindas — BDAR 6 straipsnio 1 dalies b punktas, o duoto sutikimo atžvilgiu — 6 straipsnio 1 dalies a punktas.',
           'Dokumentai el. paštu perduodami mūsų biurui ir tvarkomi konfidencialiai. Jų ištrynimo galite paprašyti bet kada.',
+          'Jūsų dokumentus saugome tik tiek laiko, kiek būtina paraiškai įvertinti ir galimam bendradarbiavimui. Vėliau juos ištriname, nebent tam prieštarauja teisės aktuose nustatytos saugojimo pareigos.',
         ],
       },
       {

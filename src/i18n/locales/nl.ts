@@ -20,6 +20,7 @@ const nl: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Tolken & vertalen',
     skipToContent: 'Naar de inhoud',
     openMenu: 'Menu openen',
     closeMenu: 'Menu sluiten',
@@ -50,11 +51,11 @@ const nl: Dictionary = {
   home: {
     metaTitle: 'Tolken en vertalers voor overheid, rechtbanken en bedrijven',
     metaDescription:
-      'Tolkenbureau Translation Admy: consecutief tolken en congrestolken plus beëdigde vertalingen in talrijke talen en dialecten. Voor overheden, rechtbanken, bedrijven en particulieren in heel Duitsland en Europa.',
+      'Tolkenbureau Translation Admy: consecutief tolken en congrestolken plus beëdigde vertalingen in talrijke talen en dialecten. Voor overheden, rechtbanken, bedrijven en particulieren in heel Europa.',
     heroKicker: 'Tolkenbureau Translation Admy',
     heroTitle: 'Elkaar begrijpen zonder omwegen — in de taal van uw gesprekspartner',
     heroLead:
-      'Wij tolken en vertalen voor overheden, rechtbanken, opvangcentra, bedrijven en particulieren. Tolken met moedertaalniveau, meer dan 10 jaar ervaring, inzetbaar in heel Nederland en in verschillende Europese landen.',
+      'Wij tolken en vertalen voor overheden, rechtbanken, opvangcentra, bedrijven en particulieren. Tolken met moedertaalniveau, meer dan 10 jaar ervaring, inzetbaar in Duitsland en in talrijke Europese landen.',
     heroPrimary: 'Vrijblijvend aanvragen',
     heroSecondary: 'Bekijk onze diensten',
     heroBadges: [
@@ -62,7 +63,7 @@ const nl: Dictionary = {
       'Beëdigde vertalingen',
       'Opdrachten op korte termijn',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Taalversies van deze site',
     statYears: '10+',
     statYearsLabel: 'Meer dan 10 jaar ervaring',
@@ -346,7 +347,7 @@ const nl: Dictionary = {
     ],
     tendersTitle: 'Aanbestedingen en gunningsprocedures in Europa',
     tendersText:
-      'Wij nemen deel aan aanbestedingen en gunningsprocedures van publieke opdrachtgevers in Duitsland en elders in Europa. Schrijft u taaldiensten aan? Neem contact met ons op — wij stellen de voor inschrijving benodigde documenten samen.',
+      'Wij nemen deel aan aanbestedingen en gunningsprocedures van publieke opdrachtgevers in heel Europa. Schrijft u taaldiensten aan? Neem contact met ons op — wij stellen de voor inschrijving benodigde documenten samen.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const nl: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Inzetgebieden — Duitsland en Europa',
+    metaTitle: 'Inzetgebieden — in heel Europa',
     metaDescription:
-      'Translation Admy bemiddelt tolken en vertalers voor opdrachten in heel Duitsland en in geselecteerde Europese landen — ter plaatse, telefonisch of via video, ook bij asiel- en grensprocedures.',
+      'Translation Admy bemiddelt tolken en vertalers voor opdrachten in heel Europa — ter plaatse, telefonisch of via video, ook bij asiel- en grensprocedures.',
     h1: 'Inzetgebieden',
     lead:
-      'Ons bureau is gevestigd in Bingen am Rhein. Onze tolken werken in heel Duitsland.',
+      'Ons bureau is gevestigd in Bingen am Rhein. Onze tolken werken in heel Europa.',
     baseTitle: 'Vestiging in Bingen am Rhein',
     baseText:
-      'Vanuit Bingen am Rhein bereiken wij het Rijn-Main-gebied, Rijn-Hessen en de Midden-Rijn in korte tijd. Voor afspraken in deze regio zijn wij vaak ook zeer kort van tevoren beschikbaar.',
-    europeTitle: 'Actief in heel Duitsland en in Europa',
+      'Vanuit Bingen am Rhein coördineren wij opdrachten in heel Europa. Voor afspraken op zeer korte termijn maken wij gebruik van een netwerk dat over de landsgrenzen heen reikt.',
+    europeTitle: 'Actief in heel Europa',
     europeText:
-      'Translation Admy bemiddelt tolken en vertalers voor opdrachten in heel Duitsland en in geselecteerde Europese landen. Afhankelijk van de opdracht ondersteunen wij overheden, publieke instellingen, bedrijven en internationale organisaties ter plaatse, telefonisch of via video.',
+      'Translation Admy bemiddelt tolken en vertalers voor opdrachten in heel Europa. Afhankelijk van de opdracht ondersteunen wij overheden, publieke instellingen, bedrijven en internationale organisaties ter plaatse, telefonisch of via video.',
     capabilities: [
-      'Opdrachten in heel Duitsland',
+      'Opdrachten in heel Europa',
       'Tolken ter plaatse',
       'Telefonisch tolken en videotolken',
       'Opdrachten op korte termijn en langdurig gepland',
-      'Grensoverschrijdende en Europese projecten',
+      'Grensoverschrijdende projecten in meerdere landen',
       'Ondersteuning bij asiel-, migratie- en opvangprocedures',
       'Opbouw van een Europees tolkennetwerk',
     ],
@@ -440,12 +441,12 @@ const nl: Dictionary = {
     countriesNote:
       'De concrete beschikbaarheid hangt af van taal, kwalificatie, locatie en datum.',
 
-    nationwideTitle: 'In heel Duitsland',
+    nationwideTitle: 'In heel Europa',
     nationwideText:
-      'Wij werken samen met tolken in heel Duitsland. Geef ons locatie en datum door — wij controleren de beschikbaarheid ter plaatse.',
-    internationalTitle: 'Opdrachten elders in Europa',
+      'Wij werken samen met tolken in talrijke Europese landen. Geef ons locatie en datum door — wij controleren de beschikbaarheid ter plaatse.',
+    internationalTitle: 'Grensoverschrijdende opdrachten',
     internationalText:
-      'Voor opdrachten buiten Duitsland kunt u contact met ons opnemen. Wij beoordelen per geval of en hoe wij aan uw behoefte kunnen voldoen.',
+      'Voor opdrachten in meerdere landen of buiten onze gebruikelijke inzetgebieden kunt u contact met ons opnemen. Wij beoordelen per geval of en hoe wij aan uw behoefte kunnen voldoen.',
     remoteTitle: 'Telefonische en videoafspraken',
     remoteText:
       'Wanneer een afspraak ter plaatse niet mogelijk of niet nodig is, kan de taalbemiddeling in overleg ook telefonisch of via een videoverbinding plaatsvinden.',
@@ -459,7 +460,7 @@ const nl: Dictionary = {
     lead:
       'Ons taalaanbod is bijzonder breed en wij kunnen u in veel talen ondersteunen. Wij tolken en vertalen voor u in de volgende talen.',
     searchLabel: 'Zoek een taal',
-    searchPlaceholder: 'bijv. Arabisch, Tigrinya, Sorani …',
+    searchPlaceholder: 'bijv. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Zoekopdracht wissen',
     resultsOne: '1 taal gevonden',
     resultsMany: '{count} talen gevonden',
@@ -522,19 +523,19 @@ const nl: Dictionary = {
   careers: {
     metaTitle: 'Werken bij — tolken gezocht voor alle talen en dialecten',
     metaDescription:
-      'Ter versterking van ons team zoeken wij in heel Duitsland tolken voor alle talen en dialecten. Solliciteer nu bij Translation Admy.',
+      'Ter versterking van ons team zoeken wij in heel Europa tolken voor alle talen en dialecten. Solliciteer nu bij Translation Admy.',
     h1: 'Voor tolken en vertalers',
     lead:
-      'Ter versterking van ons team zoeken wij in heel Duitsland tolken voor alle talen en dialecten.',
+      'Ter versterking van ons team zoeken wij in heel Europa tolken voor alle talen en dialecten.',
     requirementsTitle: 'Voorwaarden',
     requirements: [
-      'Certificaat Duits op niveau C1, Duits Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkolleg-diploma of een universitair diploma',
+      'Bewijs van taalvaardigheid op niveau C1 of hoger in uw werktalen — of een in uw land van verblijf erkende gelijkwaardige kwalificatie',
       'Geen aantekeningen in het strafregister',
       'Er moet een werkvergunning aanwezig zijn',
     ],
     offerTitle: 'Wat u kunt verwachten',
     offer: [
-      'Opdrachten in heel Duitsland — ook in uw regio',
+      'Opdrachten in heel Europa — ook in uw regio',
       'Afwisselende opdrachten voor overheden, rechtbanken, bedrijven en particulieren',
       'Een team dat hecht aan nauwkeurige en onpartijdige taalbemiddeling',
     ],
@@ -552,7 +553,7 @@ const nl: Dictionary = {
       },
       {
         title: 'Projecten in heel Europa',
-        text: 'Naast opdrachten in heel Duitsland komen er steeds meer aanvragen uit andere Europese landen bij.',
+        text: 'Aanvragen bereiken ons uit heel Europa — de vraag naar taalbemiddeling groeit over de grenzen heen.',
       },
       {
         title: 'Eerlijke samenwerking',
@@ -636,7 +637,7 @@ const nl: Dictionary = {
     travelLabels: {
       local: 'Woonplaats en omgeving',
       regional: 'Regionaal',
-      national: 'In heel Duitsland',
+      national: 'In het hele land van verblijf',
       european: 'In heel Europa',
     },
 
@@ -878,6 +879,7 @@ const nl: Dictionary = {
         body: [
           'Wanneer u ons via het sollicitatieformulier een sollicitatie stuurt, verwerken wij de doorgegeven gegevens en documenten uitsluitend om uw sollicitatie te beoordelen. Rechtsgrondslag is art. 6 lid 1 sub b AVG respectievelijk art. 6 lid 1 sub a AVG voor de verleende toestemming.',
           'De documenten worden per e-mail naar ons bureau verzonden en vertrouwelijk behandeld. U kunt te allen tijde verzoeken om verwijdering.',
+          'Wij bewaren uw documenten uitsluitend zolang dat nodig is voor de beoordeling van uw sollicitatie en een eventuele samenwerking. Daarna verwijderen wij ze, tenzij wettelijke bewaarplichten dit beletten.',
         ],
       },
       {

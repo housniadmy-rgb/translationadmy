@@ -2,8 +2,9 @@
 
 Mehrsprachige Website des Dolmetscherbüros Translation Admy, Bingen am Rhein.
 
-Gebaut mit [Astro 5](https://astro.build). 17 Sprachfassungen, 13 Seiten je Sprache,
-221 vorgerenderte Seiten plus eine Server-Route für Bewerbungen.
+Gebaut mit [Astro 5](https://astro.build). 18 Sprachfassungen (davon Arabisch von rechts
+nach links), 14 Seiten je Sprache, 252 vorgerenderte Seiten plus Sprachweiche und
+Fehlerseite sowie zwei Server-Routen für Kontakt und Bewerbungen.
 
 ---
 
@@ -155,7 +156,7 @@ src/
     config.ts               Sprachen, Seiten, lokalisierte URL-Segmente
     types.ts                Übersetzungsschema – erzwingt Vollständigkeit
     index.ts                Routing-Hilfen, hreflang, Sprachwechsel
-    locales/*.ts            17 Sprachdateien
+    locales/*.ts            18 Sprachdateien
   components/               Header, Footer, Formulare, Icons, SEO-Head
   sections/                 Seiteninhalte (eine Datei je Seitentyp)
   layouts/Layout.astro      Grundgerüst
@@ -238,7 +239,7 @@ externen Formulardienst umgestellt werden.
 ## SEO
 
 - Eigener Meta-Titel und eigene Meta-Beschreibung je Seite **und** je Sprache
-- `hreflang` für alle 17 Fassungen plus `x-default` auf die deutsche Fassung
+- `hreflang` für alle 18 Fassungen plus `x-default` auf die deutsche Fassung
 - Canonical je Sprachfassung
 - Sitemap unter `/sitemap-index.xml`, alle Sprachen enthalten, 404 ausgenommen
 - Strukturierte Daten: `ProfessionalService`, `WebSite`, `BreadcrumbList`
@@ -261,7 +262,7 @@ lokal im Browser (`localStorage`) gespeichert und nicht übertragen.
 141 Tests in fünf Dateien:
 
 - `config.test.ts` – Domain, Sitemap-Verweis, Eindeutigkeit der URL-Segmente, Navigation
-- `i18n.test.ts` – alle 17 Sprachdateien vollständig, keine leeren Werte,
+- `i18n.test.ts` – alle 18 Sprachdateien vollständig, keine leeren Werte,
   eigene Meta-Angaben je Seite, keine versehentlich kopierten Fassungen
 - `content.test.ts` – Sprachdaten, Kontakt- und Rechtsangaben unverändert übernommen
 - `applications.test.ts` – Prüflogik des Bewerbungsformulars, Upload-Grenzen

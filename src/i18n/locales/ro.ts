@@ -20,6 +20,7 @@ const ro: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Interpretariat & traduceri',
     skipToContent: 'Salt la conținut',
     openMenu: 'Deschide meniul',
     closeMenu: 'Închide meniul',
@@ -50,11 +51,11 @@ const ro: Dictionary = {
   home: {
     metaTitle: 'Interpreți și traducători pentru autorități, instanțe și companii',
     metaDescription:
-      'Biroul de interpretariat Translation Admy: interpretariat consecutiv și de conferință, precum și traduceri autorizate în numeroase limbi și dialecte. Pentru autorități, instanțe, companii și persoane fizice, în toată Germania și în Europa.',
+      'Biroul de interpretariat Translation Admy: interpretariat consecutiv și de conferință, precum și traduceri autorizate în numeroase limbi și dialecte. Pentru autorități, instanțe, companii și persoane fizice, în toată Europa.',
     heroKicker: 'Biroul de interpretariat Translation Admy',
     heroTitle: 'Înțelegere fără obstacole — în limba interlocutorului dumneavoastră',
     heroLead:
-      'Asigurăm interpretariat și traduceri pentru autorități, instanțe, centre de primire, companii și persoane fizice. Interpreți vorbitori nativi, peste 10 ani de experiență, disponibili în toată România și în diferite țări europene.',
+      'Asigurăm interpretariat și traduceri pentru autorități, instanțe, centre de primire, companii și persoane fizice. Interpreți vorbitori nativi, peste 10 ani de experiență, prezenți în Germania și în numeroase țări europene.',
     heroPrimary: 'Solicitare fără obligații',
     heroSecondary: 'Vedeți serviciile',
     heroBadges: [
@@ -62,7 +63,7 @@ const ro: Dictionary = {
       'Traduceri autorizate',
       'Intervenții în termen scurt',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Versiuni lingvistice ale site-ului',
     statYears: '10+',
     statYearsLabel: 'Peste 10 ani de experiență',
@@ -346,7 +347,7 @@ const ro: Dictionary = {
     ],
     tendersTitle: 'Licitații și proceduri de atribuire în Europa',
     tendersText:
-      'Participăm la licitații și proceduri de atribuire ale beneficiarilor publici din Germania și din restul Europei. Dacă organizați o licitație pentru servicii lingvistice, contactați-ne — pregătim documentele necesare depunerii ofertei.',
+      'Participăm la licitații și proceduri de atribuire ale beneficiarilor publici din toată Europa. Dacă organizați o licitație pentru servicii lingvistice, contactați-ne — pregătim documentele necesare depunerii ofertei.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const ro: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Zone de acțiune — Germania și Europa',
+    metaTitle: 'Zone de acțiune — în toată Europa',
     metaDescription:
-      'Translation Admy intermediază interpreți și traducători pentru misiuni în toată Germania și în anumite țări europene — la fața locului, telefonic sau prin video, inclusiv în proceduri de azil și de frontieră.',
+      'Translation Admy intermediază interpreți și traducători pentru misiuni în toată Europa — la fața locului, telefonic sau prin video, inclusiv în proceduri de azil și de frontieră.',
     h1: 'Zone de acțiune',
     lead:
-      'Biroul nostru are sediul în Bingen am Rhein. Interpreții noștri acționează în toată Germania.',
+      'Biroul nostru are sediul în Bingen am Rhein. Interpreții noștri acționează în toată Europa.',
     baseTitle: 'Sediul din Bingen am Rhein',
     baseText:
-      'Din Bingen am Rhein ajungem rapid în zona Rin-Main, în Hessa Renană și pe Rinul Mijlociu. Pentru programările din această zonă suntem adesea disponibili chiar în termen foarte scurt.',
-    europeTitle: 'Prezenți în toată Germania și în Europa',
+      'Din Bingen am Rhein coordonăm misiuni în toată Europa. Pentru programările în termen foarte scurt ne bazăm pe o rețea care depășește granițele naționale.',
+    europeTitle: 'Prezenți în toată Europa',
     europeText:
-      'Translation Admy intermediază interpreți și traducători pentru misiuni în toată Germania și în anumite țări europene. În funcție de comandă, sprijinim autorități, instituții publice, companii și organizații internaționale la fața locului, telefonic sau prin videoconferință.',
+      'Translation Admy intermediază interpreți și traducători pentru misiuni în toată Europa. În funcție de comandă, sprijinim autorități, instituții publice, companii și organizații internaționale la fața locului, telefonic sau prin videoconferință.',
     capabilities: [
-      'Misiuni în toată Germania',
+      'Misiuni în toată Europa',
       'Interpretariat la fața locului',
       'Interpretariat telefonic și prin video',
       'Misiuni în termen scurt și planificate din timp',
-      'Proiecte transfrontaliere și la nivel european',
+      'Proiecte transfrontaliere în mai multe țări',
       'Sprijin în proceduri de azil, migrație și primire',
       'Construirea unei rețele europene de interpreți',
     ],
@@ -440,12 +441,12 @@ const ro: Dictionary = {
     countriesNote:
       'Disponibilitatea concretă depinde de limbă, calificare, locul misiunii și dată.',
 
-    nationwideTitle: 'În toată Germania',
+    nationwideTitle: 'În toată Europa',
     nationwideText:
-      'Colaborăm cu interpreți pe întreg teritoriul Germaniei. Spuneți-ne locul și data — verificăm disponibilitatea la fața locului.',
-    internationalTitle: 'Intervenții în alte țări europene',
+      'Colaborăm cu interpreți în numeroase țări europene. Spuneți-ne locul și data — verificăm disponibilitatea la fața locului.',
+    internationalTitle: 'Intervenții transfrontaliere',
     internationalText:
-      'Pentru intervenții în afara Germaniei vă rugăm să ne contactați. Analizăm de la caz la caz dacă și cum putem acoperi nevoia dumneavoastră.',
+      'Pentru intervenții în mai multe țări sau în afara zonelor noastre obișnuite vă rugăm să ne contactați. Analizăm de la caz la caz dacă și cum putem acoperi nevoia dumneavoastră.',
     remoteTitle: 'Întâlniri telefonice și video',
     remoteText:
       'Când o întâlnire la fața locului nu este posibilă sau necesară, medierea lingvistică poate avea loc, pe bază de înțelegere, și telefonic sau prin videoconferință.',
@@ -459,7 +460,7 @@ const ro: Dictionary = {
     lead:
       'Acoperirea noastră lingvistică este deosebit de largă și vă putem sprijini în numeroase limbi. Asigurăm pentru dumneavoastră interpretariat și traduceri în următoarele limbi.',
     searchLabel: 'Căutați o limbă',
-    searchPlaceholder: 'de ex. arabă, tigrină, sorani …',
+    searchPlaceholder: 'de ex. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Ștergeți căutarea',
     resultsOne: 'S-a găsit 1 limbă',
     resultsMany: 'S-au găsit {count} limbi',
@@ -522,19 +523,19 @@ const ro: Dictionary = {
   careers: {
     metaTitle: 'Carieră — căutăm interpreți pentru toate limbile și dialectele',
     metaDescription:
-      'Pentru consolidarea echipei noastre în toată Germania căutăm interpreți pentru toate limbile și dialectele. Aplicați acum la Translation Admy.',
+      'Pentru consolidarea echipei noastre în toată Europa căutăm interpreți pentru toate limbile și dialectele. Aplicați acum la Translation Admy.',
     h1: 'Pentru interpreți și traducători',
     lead:
-      'Pentru consolidarea echipei noastre în toată Germania căutăm interpreți pentru toate limbile și dialectele.',
+      'Pentru consolidarea echipei noastre în toată Europa căutăm interpreți pentru toate limbile și dialectele.',
     requirementsTitle: 'Cerințe',
     requirements: [
-      'Certificat de limba germană nivel C1, Abitur / Fachabitur german, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, certificat Studienkolleg sau o diplomă universitară',
+      'Dovada competenței lingvistice la nivelul C1 sau superior în limbile dumneavoastră de lucru — sau o calificare echivalentă recunoscută în țara de reședință',
       'Fără înscrieri în cazierul judiciar',
       'Este necesar dreptul de a desfășura activitate lucrativă',
     ],
     offerTitle: 'Ce vă așteaptă',
     offer: [
-      'Intervenții în toată Germania — inclusiv în regiunea dumneavoastră',
+      'Intervenții în toată Europa — inclusiv în regiunea dumneavoastră',
       'Comenzi variate pentru autorități, instanțe, companii și persoane fizice',
       'O echipă care pune preț pe o mediere lingvistică exactă și neutră',
     ],
@@ -552,7 +553,7 @@ const ro: Dictionary = {
       },
       {
         title: 'Proiecte la nivel european',
-        text: 'Pe lângă intervențiile din toată Germania, cresc solicitările din alte țări europene.',
+        text: 'Solicitările ne ajung din toată Europa — nevoia de mediere lingvistică crește dincolo de granițe.',
       },
       {
         title: 'Colaborare corectă',
@@ -636,7 +637,7 @@ const ro: Dictionary = {
     travelLabels: {
       local: 'Localitatea de domiciliu și împrejurimi',
       regional: 'Regional',
-      national: 'În toată Germania',
+      national: 'În toată țara de reședință',
       european: 'În toată Europa',
     },
 
@@ -878,6 +879,7 @@ const ro: Dictionary = {
         body: [
           'Dacă ne trimiteți o candidatură prin formularul dedicat, prelucrăm datele și documentele transmise exclusiv în scopul evaluării candidaturii dumneavoastră. Temeiul juridic este art. 6 alin. (1) lit. (b) din RGPD, respectiv art. 6 alin. (1) lit. (a) din RGPD pentru consimțământul acordat.',
           'Documentele sunt transmise în siguranță prin e-mail către biroul nostru și tratate confidențial. Puteți solicita oricând ștergerea lor.',
+          'Păstrăm documentele dumneavoastră doar atât timp cât este necesar pentru evaluarea candidaturii și pentru o eventuală colaborare. Ulterior le ștergem, cu excepția cazului în care există obligații legale de păstrare.',
         ],
       },
       {

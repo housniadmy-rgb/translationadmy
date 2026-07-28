@@ -38,6 +38,18 @@ const benefitIcons: IconName[] = [
         <ul class="card-list">
           {t.careers.requirements.map((item) => <li>{item}</li>)}
         </ul>
+
+        {/*
+          Die genauen Bezeichnungen der Nachweise unterscheiden sich je
+          Einsatzland. Statt sie hier zu wiederholen, führt der Weg zur
+          vollständigen Übersicht – dort ist jedes Land einzeln aufgeführt.
+        */}
+        <p class="mt-md">
+          <a class="requirement-link" href={localizedPath(locale, 'requirements')}>
+            {t.requirements.h1}
+            <Icon name="arrow-right" size={16} />
+          </a>
+        </p>
       </article>
 
       <article class="card card-accent">
@@ -96,7 +108,7 @@ const benefitIcons: IconName[] = [
         </a>
         <a class="btn btn-secondary" href={CONTACT.emailHref}>
           <Icon name="mail" size={18} />
-          {CONTACT.email}
+          <span dir="ltr">{CONTACT.email}</span>
         </a>
       </div>
     </div>

@@ -219,6 +219,46 @@ describe('Übersetzungen', () => {
     }
   });
 
+  it('die Datenschutzerklärung hat in jeder Fassung dieselben Abschnitte', () => {
+    /*
+      Der Strukturtest oben prüft bei Feldern nur den ersten Eintrag und merkt
+      deshalb nicht, wenn ein ganzer Abschnitt doppelt vorkommt oder fehlt. Die
+      ungarische Fassung führte den Abschnitt „Bewerbungen“ zweimal – auf der
+      Seite erschien er samt Rechtsgrundlage doppelt untereinander.
+    */
+    const expected = dictionaries[DEFAULT_LOCALE]!.privacy.sections.length;
+
+    for (const locale of LOCALES) {
+      const sections = dictionaries[locale]!.privacy.sections;
+      expect(sections.length, `Abschnittszahl in ${locale}`).toBe(expected);
+
+      const titles = sections.map((section) => section.title);
+      const duplicates = titles.filter((title, index) => titles.indexOf(title) !== index);
+      expect(duplicates, `doppelte Abschnitte in ${locale}: ${duplicates.join(', ')}`).toEqual([]);
+
+      for (const section of sections) {
+        expect(section.body.length, `leerer Abschnitt in ${locale}: ${section.title}`).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('nennt für Bewerbungsunterlagen eine Aufbewahrungsdauer', () => {
+    /*
+      Art. 13 Abs. 2 lit. a DSGVO verlangt die Speicherdauer oder – wenn keine
+      feste Frist besteht – die Kriterien für ihre Festlegung. Der Abschnitt zu
+      Bewerbungen nannte bislang weder das eine noch das andere.
+    */
+    for (const locale of LOCALES) {
+      const sections = dictionaries[locale]!.privacy.sections;
+      const applications = sections[4];
+      expect(applications, `Bewerbungsabschnitt fehlt in ${locale}`).toBeDefined();
+      expect(
+        applications!.body.length,
+        `keine Aufbewahrungsdauer in ${locale}`,
+      ).toBeGreaterThanOrEqual(3);
+    }
+  });
+
   it('nennt die Umsatzsteuer-ID mit dem Verweis auf § 27a UStG', () => {
     for (const locale of LOCALES) {
       expect(
@@ -226,6 +266,72 @@ describe('Übersetzungen', () => {
         `§ 27a UStG fehlt in ${locale}`,
       ).toContain('27a');
     }
+  });
+
+  it('übersetzt die Zeile unter dem Firmennamen in jede Sprache', () => {
+    /*
+      Der Logo-Untertitel stand fest auf Deutsch im Markup und war damit der
+      einzige unübersetzte sichtbare Text auf allen Fremdsprachfassungen.
+    */
+    const german = dictionaries[DEFAULT_LOCALE]!.ui.logoSubtitle;
+    for (const locale of LOCALES) {
+      const own = dictionaries[locale]!.ui.logoSubtitle;
+      expect(own?.trim(), `logoSubtitle fehlt in ${locale}`).toBeTruthy();
+      if (locale !== DEFAULT_LOCALE) {
+        expect(own, `logoSubtitle in ${locale} ist noch deutsch`).not.toBe(german);
+      }
+    }
+  });
+
+  it('die arabische Fassung enthält keine lateinischen Resttexte', () => {
+    /*
+      Erlaubt sind ausschließlich Eigennamen und Fachkürzel, die auch im
+      arabischen Sprachraum lateinisch geschrieben werden: der Firmenname, der
+      Bürositz, die Agenturkürzel, Dateiformate, Rechtsnormen und die
+      Niveaustufen des Europäischen Referenzrahmens.
+    */
+    const ALLOWED = [
+      'Translation Admy',
+      'Bingen am Rhein',
+      'Frontex',
+      'EUAA',
+      'DDG',
+      'UStG',
+      'TLS',
+      'PDF',
+      'JPG',
+      'PNG',
+      'localStorage',
+      'IP',
+      'C1',
+      'C2',
+      'f',
+      'b',
+      'a',
+      'ar',
+      '27a',
+    ];
+
+    /*
+      Ausgenommen: Der Suchplatzhalter nennt bewusst die deutschen
+      Sprachbezeichnungen aus src/data/languages.ts. Die Suche vergleicht genau
+      diese Zeichenfolgen; arabische Beispiele fänden dort keinen Treffer.
+    */
+    const EXEMPT = ['languages.searchPlaceholder'];
+
+    const leftovers: string[] = [];
+    for (const [path, value] of stringEntries(dictionaries.ar)) {
+      if (EXEMPT.includes(path)) continue;
+      // Platzhalter wie {count} sind Technik, kein Text.
+      let rest = value.replace(/\{\w+\}/g, ' ');
+      for (const allowed of ALLOWED) rest = rest.split(allowed).join(' ');
+      // Was jetzt noch an zusammenhängender lateinischer Schrift übrig ist,
+      // ist mit hoher Wahrscheinlichkeit ein unübersetzter Rest.
+      const hits = rest.match(/[A-Za-zÀ-ÿ]{2,}/g);
+      if (hits) leftovers.push(`${path}: ${hits.join(', ')}`);
+    }
+
+    expect(leftovers, `lateinische Reste in ar:\n${leftovers.join('\n')}`).toEqual([]);
   });
 
   it('gibt die Zahl der Sprachfassungen korrekt an', () => {

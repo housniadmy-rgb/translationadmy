@@ -20,6 +20,7 @@ const fr: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Interprétation & traduction',
     skipToContent: 'Aller au contenu',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
@@ -50,11 +51,11 @@ const fr: Dictionary = {
   home: {
     metaTitle: 'Interprètes et traducteurs pour administrations, tribunaux et entreprises',
     metaDescription:
-      'Bureau d’interprétation Translation Admy : interprétation consécutive et de conférence, traductions certifiées dans de nombreuses langues et dialectes. Pour les administrations, tribunaux, entreprises et particuliers, dans toute l’Allemagne.',
+      'Bureau d’interprétation Translation Admy : interprétation consécutive et de conférence, traductions certifiées dans de nombreuses langues et dialectes. Pour les administrations, tribunaux, entreprises et particuliers, partout en Europe.',
     heroKicker: 'Bureau d’interprétation Translation Admy',
     heroTitle: 'Se comprendre sans détour — dans la langue de votre interlocuteur',
     heroLead:
-      'Nous interprétons et traduisons pour les administrations, les tribunaux, les centres d’accueil, les entreprises et les particuliers. Interprètes de langue maternelle, plus de 10 ans d’expérience, présents dans toute la France et dans différents pays européens.',
+      'Nous interprétons et traduisons pour les administrations, les tribunaux, les centres d’accueil, les entreprises et les particuliers. Interprètes de langue maternelle, plus de 10 ans d’expérience, interventions en Allemagne et dans de nombreux pays européens.',
     heroPrimary: 'Demande sans engagement',
     heroSecondary: 'Voir nos prestations',
     heroBadges: [
@@ -62,7 +63,7 @@ const fr: Dictionary = {
       'Traductions certifiées',
       'Interventions à court terme',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Versions linguistiques du site',
     statYears: '10+',
     statYearsLabel: 'Plus de 10 ans d’expérience',
@@ -346,7 +347,7 @@ const fr: Dictionary = {
     ],
     tendersTitle: 'Appels d’offres et marchés publics en Europe',
     tendersText:
-      'Nous participons aux appels d’offres et aux procédures de passation de marchés publics en Allemagne et dans le reste de l’Europe. Si vous lancez un appel d’offres pour des services linguistiques, contactez-nous : nous réunissons les pièces nécessaires au dépôt d’une offre.',
+      'Nous participons aux appels d’offres et aux procédures de passation de marchés publics partout en Europe. Si vous lancez un appel d’offres pour des services linguistiques, contactez-nous : nous réunissons les pièces nécessaires au dépôt d’une offre.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const fr: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Zones d’intervention — Allemagne et Europe',
+    metaTitle: 'Zones d’intervention — partout en Europe',
     metaDescription:
-      'Translation Admy met à disposition des interprètes et des traducteurs dans toute l’Allemagne et dans certains pays européens — sur place, par téléphone ou par visioconférence, y compris pour les procédures d’asile et aux frontières.',
+      'Translation Admy met à disposition des interprètes et des traducteurs partout en Europe — sur place, par téléphone ou par visioconférence, y compris pour les procédures d’asile et aux frontières.',
     h1: 'Zones d’intervention',
     lead:
-      'Notre bureau est établi à Bingen am Rhein. Nos interprètes interviennent dans toute l’Allemagne.',
+      'Notre bureau est établi à Bingen am Rhein. Nos interprètes interviennent partout en Europe.',
     baseTitle: 'Implantation à Bingen am Rhein',
     baseText:
-      'Depuis Bingen am Rhein, nous rejoignons rapidement la région Rhin-Main, la Hesse rhénane et le Rhin moyen. Pour les rendez-vous dans cette région, nous sommes souvent disponibles à très court terme.',
-    europeTitle: 'Des interventions dans toute l’Allemagne et en Europe',
+      'Depuis Bingen am Rhein, nous coordonnons des interventions partout en Europe. Pour les rendez-vous à très court terme, nous nous appuyons sur un réseau qui dépasse les frontières nationales.',
+    europeTitle: 'Des interventions partout en Europe',
     europeText:
-      'Translation Admy met à disposition des interprètes et des traducteurs pour des interventions dans toute l’Allemagne et dans certains pays européens. Selon la mission, nous accompagnons les administrations, les établissements publics, les entreprises et les organisations internationales sur place, par téléphone ou par visioconférence.',
+      'Translation Admy met à disposition des interprètes et des traducteurs pour des interventions partout en Europe. Selon la mission, nous accompagnons les administrations, les établissements publics, les entreprises et les organisations internationales sur place, par téléphone ou par visioconférence.',
     capabilities: [
-      'Interventions dans toute l’Allemagne',
+      'Interventions à l’échelle européenne',
       'Interprétation sur place',
       'Interprétation par téléphone et par visioconférence',
       'Missions à court terme et planifiées de longue date',
-      'Projets transfrontaliers et à l’échelle européenne',
+      'Projets transfrontaliers dans plusieurs pays',
       'Accompagnement des procédures d’asile, de migration et d’accueil',
       'Constitution d’un réseau d’interprètes à l’échelle européenne',
     ],
@@ -440,12 +441,12 @@ const fr: Dictionary = {
     countriesNote:
       'La disponibilité effective dépend de la langue, de la qualification, du lieu et de la date.',
 
-    nationwideTitle: 'Dans toute l’Allemagne',
+    nationwideTitle: 'Partout en Europe',
     nationwideText:
-      'Nous collaborons avec des interprètes sur l’ensemble du territoire allemand. Indiquez-nous le lieu et la date : nous vérifions les disponibilités sur place.',
-    internationalTitle: 'Interventions ailleurs en Europe',
+      'Nous collaborons avec des interprètes dans de nombreux pays européens. Indiquez-nous le lieu et la date : nous vérifions les disponibilités sur place.',
+    internationalTitle: 'Interventions transfrontalières',
     internationalText:
-      'Pour les interventions hors d’Allemagne, contactez-nous. Nous examinons au cas par cas si et comment nous pouvons couvrir votre besoin.',
+      'Pour les interventions dans plusieurs pays ou en dehors de nos zones habituelles, contactez-nous. Nous examinons au cas par cas si et comment nous pouvons couvrir votre besoin.',
     remoteTitle: 'Rendez-vous par téléphone et visioconférence',
     remoteText:
       'Lorsqu’un rendez-vous sur place n’est pas possible ou pas nécessaire, l’accompagnement linguistique peut aussi se faire par téléphone ou par visioconférence, sur accord.',
@@ -459,7 +460,7 @@ const fr: Dictionary = {
     lead:
       'Notre couverture linguistique est particulièrement étendue et nous pouvons vous accompagner dans de nombreuses langues. Nous interprétons et traduisons pour vous dans les langues suivantes.',
     searchLabel: 'Rechercher une langue',
-    searchPlaceholder: 'p. ex. arabe, tigrinya, sorani …',
+    searchPlaceholder: 'p. ex. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Effacer la recherche',
     resultsOne: '1 langue trouvée',
     resultsMany: '{count} langues trouvées',
@@ -523,19 +524,19 @@ const fr: Dictionary = {
   careers: {
     metaTitle: 'Carrières — interprètes recherchés pour toutes langues et dialectes',
     metaDescription:
-      'Nous recherchons, pour renforcer notre équipe dans toute l’Allemagne, des interprètes pour toutes les langues et tous les dialectes. Postulez dès maintenant chez Translation Admy.',
+      'Nous recherchons, pour renforcer notre équipe partout en Europe, des interprètes pour toutes les langues et tous les dialectes. Postulez dès maintenant chez Translation Admy.',
     h1: 'Carrières',
     lead:
-      'Pour renforcer notre équipe dans toute l’Allemagne, nous recherchons des interprètes pour toutes les langues et tous les dialectes.',
+      'Pour renforcer notre équipe partout en Europe, nous recherchons des interprètes pour toutes les langues et tous les dialectes.',
     requirementsTitle: 'Conditions requises',
     requirements: [
-      'Certificat d’allemand niveau C1, Abitur / Fachabitur allemand, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, certificat de Studienkolleg ou diplôme universitaire',
+      'Attestation de niveau C1 ou supérieur dans vos langues de travail — ou un diplôme équivalent reconnu dans votre pays de résidence',
       'Aucune inscription au casier judiciaire',
       'Autorisation de travail requise',
     ],
     offerTitle: 'Ce qui vous attend',
     offer: [
-      'Des interventions dans toute l’Allemagne — y compris dans votre région',
+      'Des interventions à l’échelle européenne — y compris dans votre région',
       'Des missions variées pour des administrations, tribunaux, entreprises et particuliers',
       'Une équipe attachée à un accompagnement linguistique exact et neutre',
     ],
@@ -553,7 +554,7 @@ const fr: Dictionary = {
       },
       {
         title: 'Projets à l’échelle européenne',
-        text: 'Aux missions dans toute l’Allemagne s’ajoutent de plus en plus de demandes venues d’autres pays européens.',
+        text: 'Les demandes nous parviennent de toute l’Europe : le besoin d’interprétation croît au-delà des frontières.',
       },
       {
         title: 'Collaboration équitable',
@@ -637,7 +638,7 @@ const fr: Dictionary = {
     travelLabels: {
       local: 'Lieu de résidence et environs',
       regional: 'Régional',
-      national: 'Toute l’Allemagne',
+      national: 'Tout le pays de résidence',
       european: 'Toute l’Europe',
     },
 
@@ -879,6 +880,7 @@ const fr: Dictionary = {
         body: [
           'Si vous nous adressez une candidature via le formulaire dédié, nous traitons les informations et documents transmis exclusivement pour l’examen de votre candidature. La base juridique est l’art. 6, § 1, point b) du RGPD ainsi que, pour le consentement donné, l’art. 6, § 1, point a) du RGPD.',
           'Les documents sont transmis par e-mail à notre bureau et traités de manière confidentielle. Vous pouvez en demander la suppression à tout moment.',
+          'Nous ne conservons vos documents que le temps nécessaire à l’examen de votre candidature et à une éventuelle collaboration. Nous les supprimons ensuite, sauf obligation légale de conservation.',
         ],
       },
       {

@@ -1,4 +1,5 @@
 import { COUNTRY_REQUIREMENTS_BY_CODE } from '../../data/countries';
+import { DEFAULT_LOCALE, LOCALES } from '../../i18n/config';
 import {
   APPLICATION_FIELDS,
   AVAILABILITY_OPTIONS,
@@ -10,7 +11,6 @@ import {
   SERVICE_MODES,
   TRAVEL_RANGES,
   UPLOAD_LIMITS,
-  type Application,
   type ApplicationField,
   type Availability,
   type DeliveryMode,
@@ -115,7 +115,14 @@ export async function validateApplication(form: FormData): Promise<ValidationRes
   const spokenLanguages = text(form.get('spokenLanguages'), 1000);
   const workingLanguages = text(form.get('workingLanguages'), 1000);
   const message = text(form.get('message'), 5000);
-  const locale = text(form.get('locale'), 5) || 'de';
+
+  /*
+    Die Sprachangabe stammt aus einem versteckten Feld und ist damit frei
+    manipulierbar. Sie landet in der Benachrichtigung an das Büro, deshalb
+    wird sie gegen die tatsächlich vorhandenen Fassungen geprüft statt nur
+    auf fünf Zeichen gekürzt.
+  */
+  const locale = pickOne(form.get('locale'), LOCALES) ?? DEFAULT_LOCALE;
 
   if (!firstName) errors.firstName = 'required';
   if (!lastName) errors.lastName = 'required';

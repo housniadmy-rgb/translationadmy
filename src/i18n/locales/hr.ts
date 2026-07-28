@@ -20,6 +20,7 @@ const hr: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Usmeno i pisano prevođenje',
     skipToContent: 'Prijeđi na sadržaj',
     openMenu: 'Otvori izbornik',
     closeMenu: 'Zatvori izbornik',
@@ -50,11 +51,11 @@ const hr: Dictionary = {
   home: {
     metaTitle: 'Usmeni i pisani prevoditelji za tijela, sudove i tvrtke',
     metaDescription:
-      'Prevoditeljski ured Translation Admy: konsekutivno i konferencijsko prevođenje te ovjereni prijevodi na brojnim jezicima i dijalektima. Za tijela, sudove, tvrtke i privatne osobe u cijeloj Njemačkoj i Europi.',
+      'Prevoditeljski ured Translation Admy: konsekutivno i konferencijsko prevođenje te ovjereni prijevodi na brojnim jezicima i dijalektima. Za tijela, sudove, tvrtke i privatne osobe u cijeloj Europi.',
     heroKicker: 'Prevoditeljski ured Translation Admy',
     heroTitle: 'Razumijevanje bez zapreka — na jeziku vašeg sugovornika',
     heroLead:
-      'Prevodimo usmeno i pisano za tijela, sudove, prihvatne centre, tvrtke i privatne osobe. Prevoditelji izvorni govornici, više od 10 godina iskustva, djelujemo u cijeloj Hrvatskoj i u različitim europskim zemljama.',
+      'Prevodimo usmeno i pisano za tijela, sudove, prihvatne centre, tvrtke i privatne osobe. Prevoditelji izvorni govornici, više od 10 godina iskustva, djelujemo u Njemačkoj i u brojnim europskim zemljama.',
     heroPrimary: 'Neobvezujući upit',
     heroSecondary: 'Pogledajte usluge',
     heroBadges: [
@@ -62,7 +63,7 @@ const hr: Dictionary = {
       'Ovjereni prijevodi',
       'Angažmani u kratkom roku',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Jezične verzije stranice',
     statYears: '10+',
     statYearsLabel: 'Više od 10 godina iskustva',
@@ -346,7 +347,7 @@ const hr: Dictionary = {
     ],
     tendersTitle: 'Javna nadmetanja i postupci nabave u Europi',
     tendersText:
-      'Sudjelujemo u javnim nadmetanjima i postupcima nabave javnih naručitelja u Njemačkoj i u ostatku Europe. Ako raspisujete nadmetanje za jezične usluge, javite nam se — pripremit ćemo dokumentaciju potrebnu za predaju ponude.',
+      'Sudjelujemo u javnim nadmetanjima i postupcima nabave javnih naručitelja u cijeloj Europi. Ako raspisujete nadmetanje za jezične usluge, javite nam se — pripremit ćemo dokumentaciju potrebnu za predaju ponude.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const hr: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Područja djelovanja — Njemačka i Europa',
+    metaTitle: 'Područja djelovanja — u cijeloj Europi',
     metaDescription:
-      'Translation Admy posreduje usmene i pisane prevoditelje u cijeloj Njemačkoj i u odabranim europskim zemljama — na licu mjesta, telefonom ili putem videoveze, uključujući azilne i granične postupke.',
+      'Translation Admy posreduje usmene i pisane prevoditelje u cijeloj Europi — na licu mjesta, telefonom ili putem videoveze, uključujući azilne i granične postupke.',
     h1: 'Područja djelovanja',
     lead:
-      'Naš ured ima sjedište u Bingenu na Rajni. Naši prevoditelji djeluju u cijeloj Njemačkoj.',
+      'Naš ured ima sjedište u Bingenu na Rajni. Naši prevoditelji djeluju u cijeloj Europi.',
     baseTitle: 'Sjedište u Bingenu na Rajni',
     baseText:
-      'Iz Bingena na Rajni u kratkom vremenu dosežemo područje Rajne i Majne, Rajnski Hessen i Srednju Rajnu. Za termine u toj regiji često smo raspoloživi i u vrlo kratkom roku.',
-    europeTitle: 'Djelujemo u cijeloj Njemačkoj i u Europi',
+      'Iz Bingena na Rajni koordiniramo angažmane u cijeloj Europi. Za termine u vrlo kratkom roku oslanjamo se na mrežu koja nadilazi državne granice.',
+    europeTitle: 'Djelujemo u cijeloj Europi',
     europeText:
-      'Translation Admy posreduje usmene i pisane prevoditelje za angažmane u cijeloj Njemačkoj i u odabranim europskim zemljama. Ovisno o nalogu podupiremo tijela, javne ustanove, tvrtke i međunarodne organizacije na licu mjesta, telefonom ili putem videoveze.',
+      'Translation Admy posreduje usmene i pisane prevoditelje za angažmane u cijeloj Europi. Ovisno o nalogu podupiremo tijela, javne ustanove, tvrtke i međunarodne organizacije na licu mjesta, telefonom ili putem videoveze.',
     capabilities: [
-      'Angažmani u cijeloj Njemačkoj',
+      'Angažmani u cijeloj Europi',
       'Prevođenje na licu mjesta',
       'Telefonsko i videoprevođenje',
       'Angažmani u kratkom roku i dugoročno planirani',
-      'Prekogranični i europski projekti',
+      'Prekogranični projekti u više zemalja',
       'Podrška u postupcima azila, migracija i prihvata',
       'Izgradnja europske mreže prevoditelja',
     ],
@@ -440,12 +441,12 @@ const hr: Dictionary = {
     countriesNote:
       'Konkretna raspoloživost ovisi o jeziku, kvalifikaciji, mjestu i terminu.',
 
-    nationwideTitle: 'U cijeloj Njemačkoj',
+    nationwideTitle: 'U cijeloj Europi',
     nationwideText:
-      'Surađujemo s prevoditeljima na cijelom području Njemačke. Javite nam mjesto i termin — provjerit ćemo raspoloživost na licu mjesta.',
-    internationalTitle: 'Angažmani u drugim europskim zemljama',
+      'Surađujemo s prevoditeljima u brojnim europskim zemljama. Javite nam mjesto i termin — provjerit ćemo raspoloživost na licu mjesta.',
+    internationalTitle: 'Prekogranični angažmani',
     internationalText:
-      'Za angažmane izvan Njemačke obratite nam se. U svakom pojedinom slučaju procjenjujemo možemo li i na koji način pokriti vašu potrebu.',
+      'Za angažmane u više zemalja ili izvan naših uobičajenih područja obratite nam se. U svakom pojedinom slučaju procjenjujemo možemo li i na koji način pokriti vašu potrebu.',
     remoteTitle: 'Telefonski i videotermini',
     remoteText:
       'Kada termin na licu mjesta nije moguć ili potreban, jezično posredovanje može se prema dogovoru odvijati i telefonom ili videovezom.',
@@ -459,7 +460,7 @@ const hr: Dictionary = {
     lead:
       'Naša je jezična ponuda iznimno široka i možemo vas podržati na mnogim jezicima. Za vas prevodimo usmeno i pisano na sljedeće jezike.',
     searchLabel: 'Pretraži jezik',
-    searchPlaceholder: 'npr. arapski, tigrinja, sorani …',
+    searchPlaceholder: 'npr. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Poništi pretragu',
     resultsOne: 'Pronađen 1 jezik',
     resultsMany: 'Pronađeno jezika: {count}',
@@ -522,19 +523,19 @@ const hr: Dictionary = {
   careers: {
     metaTitle: 'Karijera — tražimo prevoditelje za sve jezike i dijalekte',
     metaDescription:
-      'Za jačanje našega tima u cijeloj Njemačkoj tražimo prevoditelje za sve jezike i dijalekte. Prijavite se odmah u Translation Admy.',
+      'Za jačanje našega tima u cijeloj Europi tražimo prevoditelje za sve jezike i dijalekte. Prijavite se odmah u Translation Admy.',
     h1: 'Za usmene i pisane prevoditelje',
     lead:
-      'Za jačanje našega tima u cijeloj Njemačkoj tražimo prevoditelje za sve jezike i dijalekte.',
+      'Za jačanje našega tima u cijeloj Europi tražimo prevoditelje za sve jezike i dijalekte.',
     requirementsTitle: 'Uvjeti',
     requirements: [
-      'Potvrda o znanju njemačkoga na razini C1, njemačka matura Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, svjedodžba Studienkollega ili visokoškolska diploma',
+      'Dokaz o poznavanju radnih jezika na razini C1 ili višoj — ili istovrijedna kvalifikacija priznata u zemlji stanovanja',
       'Bez upisa u kaznenu evidenciju',
       'Potrebna je dozvola za rad',
     ],
     offerTitle: 'Što vas očekuje',
     offer: [
-      'Angažmani u cijeloj Njemačkoj — i u vašoj regiji',
+      'Angažmani u cijeloj Europi — i u vašoj regiji',
       'Raznoliki nalozi za tijela, sudove, tvrtke i privatne osobe',
       'Tim koji drži do točnog i nepristranog jezičnog posredovanja',
     ],
@@ -552,7 +553,7 @@ const hr: Dictionary = {
       },
       {
         title: 'Projekti diljem Europe',
-        text: 'Uz angažmane u cijeloj Njemačkoj sve je više upita iz drugih europskih zemalja.',
+        text: 'Upiti nam dolaze iz cijele Europe — potreba za jezičnim posredovanjem raste preko granica.',
       },
       {
         title: 'Poštena suradnja',
@@ -636,7 +637,7 @@ const hr: Dictionary = {
     travelLabels: {
       local: 'Mjesto stanovanja i okolica',
       regional: 'Regionalno',
-      national: 'U cijeloj Njemačkoj',
+      national: 'U cijeloj zemlji stanovanja',
       european: 'U cijeloj Europi',
     },
 
@@ -878,6 +879,7 @@ const hr: Dictionary = {
         body: [
           'Ako nam prijavu pošaljete putem obrasca za prijavu, prenesene podatke i dokumente obrađujemo isključivo radi ocjene vaše prijave. Pravna je osnova čl. 6. st. 1. t. (b) OUZP-a, odnosno čl. 6. st. 1. t. (a) OUZP-a za dani pristanak.',
           'Dokumenti se e-poštom prosljeđuju našem uredu i tretiraju povjerljivo. Njihovo brisanje možete zatražiti u svakom trenutku.',
+          'Vaše dokumente čuvamo samo onoliko dugo koliko je potrebno za razmatranje vaše prijave i moguću suradnju. Nakon toga ih brišemo, osim ako tome ne stoje na putu zakonske obveze čuvanja.',
         ],
       },
       {

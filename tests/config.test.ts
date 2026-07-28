@@ -11,6 +11,8 @@ import {
   SLUGS,
   HEADER_NAV,
   FOOTER_NAV,
+  RTL_LOCALES,
+  localeDirection,
 } from '../src/i18n/config';
 
 describe('Site-Konfiguration', () => {
@@ -44,8 +46,24 @@ describe('Sprachkonfiguration', () => {
     }
   });
 
-  it('führt kein Arabisch mehr (auf Wunsch entfernt)', () => {
-    expect(LOCALES).not.toContain('ar' as never);
+  /*
+    Arabisch war zwischenzeitlich entfernt und wurde auf Wunsch wieder
+    aufgenommen – als einzige Fassung mit Textrichtung von rechts nach links.
+    Der frühere Test hat genau das Gegenteil geprüft; er ist hier ersetzt.
+  */
+  it('führt Arabisch als Fassung von rechts nach links', () => {
+    expect(LOCALES).toContain('ar');
+    expect(RTL_LOCALES).toContain('ar');
+    expect(localeDirection('ar')).toBe('rtl');
+    expect(LOCALE_NAMES.ar).toBe('العربية');
+    expect(LOCALE_TAGS.ar).toBe('ar');
+  });
+
+  it('setzt für alle anderen Sprachen die Richtung von links nach rechts', () => {
+    for (const locale of LOCALES) {
+      if (locale === 'ar') continue;
+      expect(localeDirection(locale), `Richtung von ${locale}`).toBe('ltr');
+    }
   });
 });
 

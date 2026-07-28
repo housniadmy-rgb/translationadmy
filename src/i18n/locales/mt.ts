@@ -20,6 +20,7 @@ const mt: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Interpretazzjoni u traduzzjoni',
     skipToContent: 'Aqbeż għall-kontenut',
     openMenu: 'Iftaħ il-menu',
     closeMenu: 'Agħlaq il-menu',
@@ -50,11 +51,11 @@ const mt: Dictionary = {
   home: {
     metaTitle: 'Interpreti u tradutturi għal awtoritajiet, qrati u negozji',
     metaDescription:
-      'Uffiċċju tal-interpretazzjoni Translation Admy: interpretazzjoni konsekuttiva u ta’ konferenzi kif ukoll traduzzjonijiet iċċertifikati f’ħafna lingwi u djaletti. Għal awtoritajiet, qrati, kumpaniji u klijenti privati fil-Ġermanja kollha u fl-Ewropa.',
+      'Uffiċċju tal-interpretazzjoni Translation Admy: interpretazzjoni konsekuttiva u ta’ konferenzi kif ukoll traduzzjonijiet iċċertifikati f’ħafna lingwi u djaletti. Għal awtoritajiet, qrati, kumpaniji u klijenti privati fl-Ewropa kollha.',
     heroKicker: 'Uffiċċju tal-interpretazzjoni Translation Admy',
     heroTitle: 'Ftehim mingħajr ostakli — fil-lingwa ta’ min qiegħed quddiemek',
     heroLead:
-      'Ninterpretaw u nittraduċu għal awtoritajiet, qrati, ċentri ta’ akkoljenza, kumpaniji u klijenti privati. Interpreti kelliema nattivi, aktar minn 10 snin esperjenza, noperaw f’Malta kollha u f’diversi pajjiżi Ewropej.',
+      'Ninterpretaw u nittraduċu għal awtoritajiet, qrati, ċentri ta’ akkoljenza, kumpaniji u klijenti privati. Interpreti kelliema nattivi, aktar minn 10 snin esperjenza, noperaw fil-Ġermanja u f’bosta pajjiżi Ewropej.',
     heroPrimary: 'Mistoqsija mingħajr obbligu',
     heroSecondary: 'Ara s-servizzi',
     heroBadges: [
@@ -62,7 +63,7 @@ const mt: Dictionary = {
       'Traduzzjonijiet iċċertifikati',
       'Inkarigi fi żmien qasir',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Verżjonijiet lingwistiċi tas-sit',
     statYears: '10+',
     statYearsLabel: 'Aktar minn 10 snin esperjenza',
@@ -346,7 +347,7 @@ const mt: Dictionary = {
     ],
     tendersTitle: 'Sejħiet għall-offerti u proċeduri ta’ akkwist fl-Ewropa',
     tendersText:
-      'Nipparteċipaw f’sejħiet għall-offerti u proċeduri ta’ akkwist ta’ klijenti tas-settur pubbliku fil-Ġermanja u fil-bqija tal-Ewropa. Jekk qed toħroġ sejħa għal servizzi lingwistiċi, ikkuntattjana — inħejju d-dokumenti meħtieġa għall-preżentazzjoni tal-offerta.',
+      'Nipparteċipaw f’sejħiet għall-offerti u proċeduri ta’ akkwist ta’ klijenti tas-settur pubbliku fl-Ewropa kollha. Jekk qed toħroġ sejħa għal servizzi lingwistiċi, ikkuntattjana — inħejju d-dokumenti meħtieġa għall-preżentazzjoni tal-offerta.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const mt: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Żoni ta’ operazzjoni — il-Ġermanja u l-Ewropa',
+    metaTitle: 'Żoni ta’ operazzjoni — fl-Ewropa kollha',
     metaDescription:
-      'Translation Admy jipprovdi interpreti u tradutturi għal inkarigi fil-Ġermanja kollha u f’pajjiżi Ewropej magħżula — fuq il-post, bit-telefown jew bil-vidjo, anke fi proċeduri ta’ ażil u ta’ fruntiera.',
+      'Translation Admy jipprovdi interpreti u tradutturi għal inkarigi fl-Ewropa kollha — fuq il-post, bit-telefown jew bil-vidjo, anke fi proċeduri ta’ ażil u ta’ fruntiera.',
     h1: 'Żoni ta’ operazzjoni',
     lead:
-      'L-uffiċċju tagħna jinsab f’Bingen am Rhein. L-interpreti tagħna joperaw fil-Ġermanja kollha.',
+      'L-uffiċċju tagħna jinsab f’Bingen am Rhein. L-interpreti tagħna joperaw fl-Ewropa kollha.',
     baseTitle: 'Sede f’Bingen am Rhein',
     baseText:
-      'Minn Bingen am Rhein naslu fi żmien qasir fir-reġjun tar-Rhein-Main, f’Rheinhessen u fir-Rhein tan-Nofs. Għal appuntamenti f’dan ir-reġjun spiss inkunu disponibbli anke b’avviż qasir ħafna.',
-    europeTitle: 'Noperaw fil-Ġermanja kollha u fl-Ewropa',
+      'Minn Bingen am Rhein nikkoordinaw inkarigi fl-Ewropa kollha. Għal appuntamenti b’avviż qasir ħafna niddependu fuq netwerk li jmur lil hinn mill-fruntieri nazzjonali.',
+    europeTitle: 'Noperaw fl-Ewropa kollha',
     europeText:
-      'Translation Admy jipprovdi interpreti u tradutturi għal inkarigi fil-Ġermanja kollha u f’pajjiżi Ewropej magħżula. Skont l-inkarigu, insostnu awtoritajiet, istituzzjonijiet pubbliċi, kumpaniji u organizzazzjonijiet internazzjonali fuq il-post, bit-telefown jew bil-vidjo.',
+      'Translation Admy jipprovdi interpreti u tradutturi għal inkarigi fl-Ewropa kollha. Skont l-inkarigu, insostnu awtoritajiet, istituzzjonijiet pubbliċi, kumpaniji u organizzazzjonijiet internazzjonali fuq il-post, bit-telefown jew bil-vidjo.',
     capabilities: [
-      'Inkarigi fil-Ġermanja kollha',
+      'Inkarigi fl-Ewropa kollha',
       'Interpretazzjoni fuq il-post',
       'Interpretazzjoni bit-telefown u bil-vidjo',
       'Inkarigi f’qasir żmien u ppjanati minn qabel',
-      'Proġetti transkonfinali u fl-Ewropa kollha',
+      'Proġetti transkonfinali f’diversi pajjiżi',
       'Appoġġ fi proċeduri ta’ ażil, migrazzjoni u akkoljenza',
       'Bini ta’ netwerk ta’ interpreti fl-Ewropa kollha',
     ],
@@ -440,12 +441,12 @@ const mt: Dictionary = {
     countriesNote:
       'Id-disponibbiltà konkreta tiddependi mil-lingwa, mill-kwalifika, mill-post u mid-data.',
 
-    nationwideTitle: 'Fil-Ġermanja kollha',
+    nationwideTitle: 'Fl-Ewropa kollha',
     nationwideText:
-      'Naħdmu ma’ interpreti fit-territorju Ġermaniż kollu. Għidilna l-post u d-data — niċċekkjaw id-disponibbiltà fuq il-post.',
-    internationalTitle: 'Inkarigi f’pajjiżi Ewropej oħra',
+      'Naħdmu ma’ interpreti f’ħafna pajjiżi Ewropej. Għidilna l-post u d-data — niċċekkjaw id-disponibbiltà fuq il-post.',
+    internationalTitle: 'Inkarigi transkonfinali',
     internationalText:
-      'Għal inkarigi barra l-Ġermanja jekk jogħġbok ikkuntattjana. Nevalwaw każ b’każ jekk u kif nistgħu nkopru l-bżonn tiegħek.',
+      'Għal inkarigi fi diversi pajjiżi jew barra ż-żoni tas-soltu tagħna jekk jogħġbok ikkuntattjana. Nevalwaw każ b’każ jekk u kif nistgħu nkopru l-bżonn tiegħek.',
     remoteTitle: 'Appuntamenti bit-telefown u bil-vidjo',
     remoteText:
       'Meta appuntament fuq il-post ma jkunx possibbli jew meħtieġ, il-medjazzjoni lingwistika tista’ ssir bi ftehim anke bit-telefown jew b’konnessjoni bil-vidjo.',
@@ -459,7 +460,7 @@ const mt: Dictionary = {
     lead:
       'Il-firxa lingwistika tagħna hija partikolarment wiesgħa u nistgħu ngħinuk f’ħafna lingwi. Ninterpretaw u nittraduċu għalik fil-lingwi li ġejjin.',
     searchLabel: 'Fittex lingwa',
-    searchPlaceholder: 'pereż. Għarbi, Tigrinja, Sorani …',
+    searchPlaceholder: 'pereż. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Ħassar it-tfittxija',
     resultsOne: 'Instabet lingwa waħda',
     resultsMany: 'Instabu {count} lingwi',
@@ -522,19 +523,19 @@ const mt: Dictionary = {
   careers: {
     metaTitle: 'Karriera — qed infittxu interpreti għal-lingwi u d-djaletti kollha',
     metaDescription:
-      'Biex insaħħu t-tim tagħna fil-Ġermanja kollha qed infittxu interpreti għal-lingwi u d-djaletti kollha. Applika issa ma’ Translation Admy.',
+      'Biex insaħħu t-tim tagħna fl-Ewropa kollha qed infittxu interpreti għal-lingwi u d-djaletti kollha. Applika issa ma’ Translation Admy.',
     h1: 'Għall-interpreti u t-tradutturi',
     lead:
-      'Biex insaħħu t-tim tagħna fil-Ġermanja kollha qed infittxu interpreti għal-lingwi u d-djaletti kollha.',
+      'Biex insaħħu t-tim tagħna fl-Ewropa kollha qed infittxu interpreti għal-lingwi u d-djaletti kollha.',
     requirementsTitle: 'Rekwiżiti',
     requirements: [
-      'Ċertifikat tal-lingwa Ġermaniża livell C1, Abitur / Fachabitur Ġermaniż, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, ċertifikat tal-Studienkolleg jew lawrja universitarja',
+      'Prova ta’ kompetenza lingwistika fil-livell C1 jew ogħla fil-lingwi tax-xogħol tiegħek — jew kwalifika ekwivalenti rikonoxxuta fil-pajjiż ta’ residenza tiegħek',
       'L-ebda entrata fir-reġistru kriminali',
       'Trid tkun tippermetti l-attività ta’ xogħol',
     ],
     offerTitle: 'X’jistenniek',
     offer: [
-      'Inkarigi fil-Ġermanja kollha — anke fir-reġjun tiegħek',
+      'Inkarigi fl-Ewropa kollha — anke fir-reġjun tiegħek',
       'Inkarigi varjati għal awtoritajiet, qrati, kumpaniji u individwi privati',
       'Tim li jagħti importanza lil medjazzjoni lingwistika preċiża u newtrali',
     ],
@@ -552,7 +553,7 @@ const mt: Dictionary = {
       },
       {
         title: 'Proġetti fl-Ewropa kollha',
-        text: 'Minbarra inkarigi fil-Ġermanja kollha, qed jiżdiedu l-mistoqsijiet minn pajjiżi Ewropej oħra.',
+        text: 'Il-mistoqsijiet jaslulna minn madwar l-Ewropa kollha — id-domanda għal medjazzjoni lingwistika qed tikber lil hinn mill-fruntieri.',
       },
       {
         title: 'Kooperazzjoni ġusta',
@@ -636,7 +637,7 @@ const mt: Dictionary = {
     travelLabels: {
       local: 'Post ta’ residenza u nħawi',
       regional: 'Reġjonali',
-      national: 'Fil-Ġermanja kollha',
+      national: 'Fil-pajjiż ta’ residenza kollu',
       european: 'Fl-Ewropa kollha',
     },
 
@@ -878,6 +879,7 @@ const mt: Dictionary = {
         body: [
           'Jekk tibgħatilna applikazzjoni permezz tal-formola tal-applikazzjoni, nipproċessaw id-data u d-dokumenti trażmessi esklużivament għall-evalwazzjoni tal-applikazzjoni tiegħek. Il-bażi legali hija l-Artikolu 6(1)(b) tal-GDPR u, fir-rigward tal-kunsens mogħti, l-Artikolu 6(1)(a) tal-GDPR.',
           'Id-dokumenti jintbagħtu bl-email lill-uffiċċju tagħna u jiġu ttrattati b’mod kunfidenzjali. Tista’ titlob it-tħassir tagħhom f’kull ħin.',
+          'Inżommu d-dokumenti tiegħek biss sakemm ikun meħtieġ għall-eżami tal-applikazzjoni tiegħek u għal kollaborazzjoni possibbli. Wara nħassruhom, sakemm ma jkunx hemm obbligi legali ta’ żamma.',
         ],
       },
       {

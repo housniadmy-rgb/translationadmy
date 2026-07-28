@@ -20,6 +20,7 @@ const en: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Interpreting & translation',
     skipToContent: 'Skip to content',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
@@ -50,11 +51,11 @@ const en: Dictionary = {
   home: {
     metaTitle: 'Interpreters & translators for authorities, courts and business',
     metaDescription:
-      'Translation Admy interpreting agency: consecutive and conference interpreting plus certified translations in a wide range of languages and dialects. For public authorities, courts, companies and private clients across Germany.',
+      'Translation Admy interpreting agency: consecutive and conference interpreting plus certified translations in a wide range of languages and dialects. For public authorities, courts, companies and private clients across Europe.',
     heroKicker: 'Translation Admy interpreting agency',
     heroTitle: 'Clear understanding — in the language of the person opposite',
     heroLead:
-      'We interpret and translate for public authorities, courts, reception centres, companies and private clients. Native-speaker interpreters, more than 10 years of experience, available throughout the country and in several European countries.',
+      'We interpret and translate for public authorities, courts, reception centres, companies and private clients. Native-speaker interpreters, more than 10 years of experience, operating across Germany and numerous European countries.',
     heroPrimary: 'Make an enquiry',
     heroSecondary: 'View our services',
     heroBadges: [
@@ -62,7 +63,7 @@ const en: Dictionary = {
       'Certified translations',
       'Short-notice assignments',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Language versions of this site',
     statYears: '10+',
     statYearsLabel: 'Over 10 years of experience',
@@ -346,7 +347,7 @@ const en: Dictionary = {
     ],
     tendersTitle: 'Tenders and procurement procedures across Europe',
     tendersText:
-      'We take part in tenders and procurement procedures run by public sector clients in Germany and elsewhere in Europe. If you are tendering for language services, get in touch — we will compile the documents required for submitting a bid.',
+      'We take part in tenders and procurement procedures run by public sector clients across Europe. If you are tendering for language services, get in touch — we will compile the documents required for submitting a bid.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const en: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Coverage — throughout Germany and across Europe',
+    metaTitle: 'Coverage — assignments across Europe',
     metaDescription:
-      'Translation Admy places interpreters and translators for assignments throughout Germany and in selected European countries — on site, by telephone or by video, including asylum and border procedures.',
+      'Translation Admy places interpreters and translators for assignments across Europe — on site, by telephone or by video, including asylum and border procedures.',
     h1: 'Coverage',
     lead:
-      'Our office is based in Bingen am Rhein. Our interpreters work throughout Germany.',
+      'Our office is based in Bingen am Rhein. Our interpreters work across Europe.',
     baseTitle: 'Based in Bingen am Rhein',
     baseText:
-      'From Bingen am Rhein we quickly reach the Rhine-Main area, Rhenish Hesse and the Middle Rhine. For appointments in this region we are often available at very short notice.',
-    europeTitle: 'Working throughout Germany and across Europe',
+      'From Bingen am Rhein we coordinate assignments across Europe. For appointments at short notice we draw on a network that reaches beyond national borders.',
+    europeTitle: 'Working across Europe',
     europeText:
-      'Translation Admy places interpreters and translators for assignments throughout Germany and in selected European countries. Depending on the assignment, we support public authorities, public institutions, companies and international organisations on site, by telephone or by video.',
+      'Translation Admy places interpreters and translators for assignments across Europe. Depending on the assignment, we support public authorities, public institutions, companies and international organisations on site, by telephone or by video.',
     capabilities: [
-      'Assignments throughout Germany',
+      'Europe-wide assignments',
       'On-site interpreting',
       'Telephone and video interpreting',
       'Short-notice and long-planned assignments',
-      'Cross-border and Europe-wide projects',
+      'Cross-border projects spanning several countries',
       'Support in asylum, migration and reception procedures',
       'Building a Europe-wide interpreter network',
     ],
@@ -440,12 +441,12 @@ const en: Dictionary = {
     countriesNote:
       'Actual availability depends on language, qualification, location and date.',
 
-    nationwideTitle: 'Throughout Germany',
+    nationwideTitle: 'Across Europe',
     nationwideText:
-      'We work with interpreters across the whole of Germany. Tell us the location and date — we will check local availability.',
-    internationalTitle: 'Assignments elsewhere in Europe',
+      'We work with interpreters in many European countries. Tell us the location and date — we will check local availability.',
+    internationalTitle: 'Cross-border assignments',
     internationalText:
-      'For assignments outside Germany, please get in touch. We assess on a case-by-case basis whether and how we can meet your requirements.',
+      'For assignments spanning several countries or outside our usual coverage areas, please get in touch. We assess on a case-by-case basis whether and how we can meet your requirements.',
     remoteTitle: 'Telephone and video appointments',
     remoteText:
       'Where an on-site appointment is not possible or not necessary, language support can also be provided by telephone or video link by arrangement.',
@@ -459,7 +460,7 @@ const en: Dictionary = {
     lead:
       'Our language coverage is exceptionally broad and we can support you in many languages. We interpret and translate in the following languages for you.',
     searchLabel: 'Search for a language',
-    searchPlaceholder: 'e.g. Arabic, Tigrinya, Sorani …',
+    searchPlaceholder: 'e.g. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Clear search',
     resultsOne: '1 language found',
     resultsMany: '{count} languages found',
@@ -522,19 +523,19 @@ const en: Dictionary = {
   careers: {
     metaTitle: 'Careers — interpreters wanted for all languages and dialects',
     metaDescription:
-      'We are looking for interpreters for all languages and dialects to strengthen our team throughout Germany. Apply to Translation Admy today.',
+      'We are looking for interpreters for all languages and dialects to strengthen our team across Europe. Apply to Translation Admy today.',
     h1: 'Careers',
     lead:
-      'We are looking for interpreters for all languages and dialects to strengthen our team throughout Germany.',
+      'We are looking for interpreters for all languages and dialects to strengthen our team across Europe.',
     requirementsTitle: 'Requirements',
     requirements: [
-      'German language certificate at C1 level, German Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkolleg certificate or a university degree',
+      'Proof of language proficiency at level C1 or above in your working languages — or an equivalent qualification recognised in your country of residence',
       'No entries in the criminal record',
       'Permission to work must be in place',
     ],
     offerTitle: 'What to expect',
     offer: [
-      'Assignments across Germany — including in your region',
+      'Europe-wide assignments — including in your region',
       'Varied work for authorities, courts, companies and private clients',
       'A team that values accurate and neutral language support',
     ],
@@ -552,7 +553,7 @@ const en: Dictionary = {
       },
       {
         title: 'Projects across Europe',
-        text: 'Alongside assignments throughout Germany, enquiries from elsewhere in Europe are increasing.',
+        text: 'Enquiries reach us from all over Europe — demand for language services is growing across borders.',
       },
       {
         title: 'Fair cooperation',
@@ -636,7 +637,7 @@ const en: Dictionary = {
     travelLabels: {
       local: 'Home town and surroundings',
       regional: 'Regional',
-      national: 'Throughout Germany',
+      national: 'Nationwide in my country of residence',
       european: 'Across Europe',
     },
 
@@ -890,6 +891,7 @@ const en: Dictionary = {
         body: [
           'If you send us an application via the application form, we process the details and documents submitted solely in order to assess your application. The legal basis is Art. 6(1)(b) GDPR and, with regard to the consent given, Art. 6(1)(a) GDPR.',
           'The documents are transmitted by email to our office and treated confidentially. You may request their deletion at any time.',
+          'We keep your documents only for as long as is necessary to assess your application and for any resulting cooperation. After that we delete them, unless statutory retention obligations apply.',
         ],
       },
       {

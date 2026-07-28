@@ -84,7 +84,7 @@ const requirementsPath = localizedPath(locale, 'requirements');
             {/* Zertifikatsnamen bleiben in der Originalbezeichnung. */}
             <ul class="original-names">
               {entry.languageCertificates.map((name) => (
-                <li lang="und">{name}</li>
+                <li lang="und" dir="ltr">{name}</li>
               ))}
             </ul>
           </div>
@@ -103,7 +103,7 @@ const requirementsPath = localizedPath(locale, 'requirements');
               <dd>
                 <ul class="original-names">
                   {entry.entranceQualification.map((name) => (
-                    <li lang="und">{name}</li>
+                    <li lang="und" dir="ltr">{name}</li>
                   ))}
                 </ul>
               </dd>
@@ -112,7 +112,7 @@ const requirementsPath = localizedPath(locale, 'requirements');
               <dd>
                 <ul class="original-names">
                   {entry.vocationalQualification.map((name) => (
-                    <li lang="und">{name}</li>
+                    <li lang="und" dir="ltr">{name}</li>
                   ))}
                 </ul>
               </dd>
@@ -121,7 +121,7 @@ const requirementsPath = localizedPath(locale, 'requirements');
               <dd>
                 <ul class="original-names">
                   {entry.higherEducation.map((name) => (
-                    <li lang="und">{name}</li>
+                    <li lang="und" dir="ltr">{name}</li>
                   ))}
                 </ul>
               </dd>
@@ -139,7 +139,7 @@ const requirementsPath = localizedPath(locale, 'requirements');
             <p class="requirement-label">{r.criminalLabel}</p>
             <ul class="original-names">
               {entry.criminalRecord.map((name) => (
-                <li lang="und">{name}</li>
+                <li lang="und" dir="ltr">{name}</li>
               ))}
             </ul>
           </div>
@@ -236,7 +236,7 @@ const requirementsPath = localizedPath(locale, 'requirements');
     padding: var(--space-sm) var(--space-md);
     margin-bottom: var(--space-lg);
     background: var(--accent-soft);
-    border-left: 3px solid var(--accent);
+    border-inline-start: 3px solid var(--accent);
     border-radius: var(--radius-sm);
     font-size: var(--step--1);
     color: var(--text-muted);
@@ -246,6 +246,16 @@ const requirementsPath = localizedPath(locale, 'requirements');
     flex-shrink: 0;
     margin-top: 0.15rem;
     color: var(--accent);
+  }
+
+  .review-pending > span {
+    min-width: 0;
+  }
+
+  @media (max-width: 30rem) {
+    .country-panel {
+      padding: var(--space-md);
+    }
   }
 
   .requirement-grid {
@@ -331,16 +341,15 @@ const requirementsPath = localizedPath(locale, 'requirements');
     gap: var(--space-sm);
   }
 
+  /* Als Flex-Element behielte der Text sonst die Breite seines längsten Wortes. */
+  .notice-important > span {
+    min-width: 0;
+  }
+
   .notice-important svg {
     flex-shrink: 0;
     margin-top: 0.15rem;
     color: var(--accent);
   }
 
-  .requirement-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-weight: 600;
-  }
 </style>

@@ -60,12 +60,12 @@ const hasEndpoint = Boolean(import.meta.env.SMTP_HOST);
     <div class="form-row-2">
       <div class="field">
         <label for="ap-email">{a.email} *</label>
-        <input type="email" id="ap-email" name="email" required autocomplete="email" />
+        <input type="email" id="ap-email" name="email" required autocomplete="email" dir="ltr" inputmode="email" />
         <p class="field-error" data-error-for="email"></p>
       </div>
       <div class="field">
         <label for="ap-phone">{a.phone} *</label>
-        <input type="tel" id="ap-phone" name="phone" required autocomplete="tel" />
+        <input type="tel" id="ap-phone" name="phone" required autocomplete="tel" dir="ltr" inputmode="tel" />
         <p class="field-error" data-error-for="phone"></p>
       </div>
     </div>
@@ -310,7 +310,7 @@ const hasEndpoint = Boolean(import.meta.env.SMTP_HOST);
     <strong>{a.errorTitle}</strong>
     <p data-error-text>{a.errorText}</p>
     <p>
-      <a href={CONTACT.emailHref}>{CONTACT.email}</a>
+      <a href={CONTACT.emailHref} dir="ltr">{CONTACT.email}</a>
     </p>
   </div>
 </form>
@@ -455,47 +455,49 @@ const hasEndpoint = Boolean(import.meta.env.SMTP_HOST);
       submitButton.disabled = true;
       submitButton.textContent = labels.sending;
 
-      fetch(form.action, { method: 'POST', body: new FormData(form) })
-        .then(function (response) {
-          return response.json().then(function (data) {
-            return { status: response.status, data: data };
-          });
-        })
-        .then(function (result) {
-          if (result.data && result.data.ok) {
-            form.reset();
-            clearErrors();
-            successBox.hidden = false;
-            if (result.data.reference) {
-              referenceValue.textContent = result.data.reference;
-              referenceLine.hidden = false;
-            }
-            successBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            return;
-          }
-
-          // Serverseitige Feldfehler anzeigen.
-          if (result.data && result.data.errors) {
-            clearErrors();
-            Object.keys(result.data.errors).forEach(function (field) {
-              showError(field, result.data.errors[field]);
-            });
-          }
-
-          errorText.textContent =
-            result.data && result.data.error === 'notDelivered'
-              ? labels.notDelivered
-              : labels.genericError;
-          errorBox.hidden = false;
-        })
-        .catch(function () {
-          errorText.textContent = labels.genericError;
-          errorBox.hidden = false;
-        })
-        .finally(function () {
-          submitButton.disabled = false;
-          submitButton.textContent = labels.submit;
-        });
+      send();
     });
+
+    /** Versand der Bewerbung samt Anhängen und Auswertung der Antwort. */
+    async function send() {
+      try {
+        var response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        var data = await response.json();
+
+        if (data && data.ok) {
+          form.reset();
+          clearErrors();
+          successBox.hidden = false;
+          if (data.reference) {
+            referenceValue.textContent = data.reference;
+            referenceLine.hidden = false;
+          }
+          successBox.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          return;
+        }
+
+        // Serverseitige Feldfehler anzeigen.
+        if (data && data.errors) {
+          clearErrors();
+          Object.keys(data.errors).forEach(function (field) {
+            showError(field, data.errors[field]);
+          });
+        }
+
+        errorText.textContent =
+          data && data.error === 'notDelivered' ? labels.notDelivered : labels.genericError;
+        errorBox.hidden = false;
+      } catch (error) {
+        // Netzwerkfehler oder unlesbare Antwort – in beiden Fällen dasselbe.
+        errorText.textContent = labels.genericError;
+        errorBox.hidden = false;
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = labels.submit;
+      }
+    }
   })();
 </script>

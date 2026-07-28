@@ -20,6 +20,7 @@ const lv: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Mutiskā un rakstiskā tulkošana',
     skipToContent: 'Pāriet uz saturu',
     openMenu: 'Atvērt izvēlni',
     closeMenu: 'Aizvērt izvēlni',
@@ -50,11 +51,11 @@ const lv: Dictionary = {
   home: {
     metaTitle: 'Mutiskie un rakstiskie tulki iestādēm, tiesām un uzņēmumiem',
     metaDescription:
-      'Tulkošanas birojs Translation Admy: secīgā un konferenču tulkošana, kā arī apliecināti tulkojumi daudzās valodās un dialektos. Iestādēm, tiesām, uzņēmumiem un privātpersonām visā Vācijā un Eiropā.',
+      'Tulkošanas birojs Translation Admy: secīgā un konferenču tulkošana, kā arī apliecināti tulkojumi daudzās valodās un dialektos. Iestādēm, tiesām, uzņēmumiem un privātpersonām visā Eiropā.',
     heroKicker: 'Tulkošanas birojs Translation Admy',
     heroTitle: 'Saprašanās bez šķēršļiem — jūsu sarunbiedra valodā',
     heroLead:
-      'Mēs tulkojam mutiski un rakstiski iestādēm, tiesām, uzņemšanas centriem, uzņēmumiem un privātpersonām. Tulki dzimtās valodas runātāji, vairāk nekā 10 gadu pieredze, strādājam visā Latvijā un dažādās Eiropas valstīs.',
+      'Mēs tulkojam mutiski un rakstiski iestādēm, tiesām, uzņemšanas centriem, uzņēmumiem un privātpersonām. Tulki dzimtās valodas runātāji, vairāk nekā 10 gadu pieredze, strādājam Vācijā un daudzās Eiropas valstīs.',
     heroPrimary: 'Nesaistošs pieprasījums',
     heroSecondary: 'Skatīt pakalpojumus',
     heroBadges: [
@@ -62,7 +63,7 @@ const lv: Dictionary = {
       'Apliecināti tulkojumi',
       'Uzdevumi īsā termiņā',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Vietnes valodu versijas',
     statYears: '10+',
     statYearsLabel: 'Vairāk nekā 10 gadu pieredze',
@@ -346,7 +347,7 @@ const lv: Dictionary = {
     ],
     tendersTitle: 'Iepirkumi un konkursi Eiropā',
     tendersText:
-      'Mēs piedalāmies publiskā sektora pasūtītāju iepirkumos un konkursos Vācijā un citviet Eiropā. Ja izsludināt konkursu par valodas pakalpojumiem, sazinieties ar mums — sagatavosim piedāvājuma iesniegšanai nepieciešamos dokumentus.',
+      'Mēs piedalāmies publiskā sektora pasūtītāju iepirkumos un konkursos visā Eiropā. Ja izsludināt konkursu par valodas pakalpojumiem, sazinieties ar mums — sagatavosim piedāvājuma iesniegšanai nepieciešamos dokumentus.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const lv: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Darbības teritorijas — Vācija un Eiropa',
+    metaTitle: 'Darbības teritorijas — visā Eiropā',
     metaDescription:
-      'Translation Admy nodrošina tulkus uzdevumiem visā Vācijā un atsevišķās Eiropas valstīs — klātienē, pa tālruni vai videosakariem, tostarp patvēruma un robežu procedūrās.',
+      'Translation Admy nodrošina tulkus uzdevumiem visā Eiropā — klātienē, pa tālruni vai videosakariem, tostarp patvēruma un robežu procedūrās.',
     h1: 'Darbības teritorijas',
     lead:
-      'Mūsu birojs atrodas Bingenā pie Reinas. Mūsu tulki strādā visā Vācijā.',
+      'Mūsu birojs atrodas Bingenā pie Reinas. Mūsu tulki strādā visā Eiropā.',
     baseTitle: 'Atrašanās vieta Bingenā pie Reinas',
     baseText:
-      'No Bingenas pie Reinas īsā laikā sasniedzam Reinas–Mainas reģionu, Reinas Hesi un Vidusreinu. Šī reģiona tikšanās reizēm bieži esam pieejami arī ļoti īsā termiņā.',
-    europeTitle: 'Strādājam visā Vācijā un Eiropā',
+      'No Bingenas pie Reinas koordinējam uzdevumus visā Eiropā. Ļoti īsa termiņa tikšanās reizēs paļaujamies uz tīklu, kas pārsniedz valstu robežas.',
+    europeTitle: 'Strādājam visā Eiropā',
     europeText:
-      'Translation Admy nodrošina mutiskos un rakstiskos tulkus uzdevumiem visā Vācijā un atsevišķās Eiropas valstīs. Atkarībā no uzdevuma atbalstām iestādes, publiskās institūcijas, uzņēmumus un starptautiskas organizācijas klātienē, pa tālruni vai videosakariem.',
+      'Translation Admy nodrošina mutiskos un rakstiskos tulkus uzdevumiem visā Eiropā. Atkarībā no uzdevuma atbalstām iestādes, publiskās institūcijas, uzņēmumus un starptautiskas organizācijas klātienē, pa tālruni vai videosakariem.',
     capabilities: [
-      'Uzdevumi visā Vācijā',
+      'Uzdevumi visā Eiropā',
       'Mutiskā tulkošana klātienē',
       'Tulkošana pa tālruni un videosakariem',
       'Uzdevumi īsā termiņā un ilgtermiņā plānoti',
-      'Pārrobežu un Eiropas mēroga projekti',
+      'Pārrobežu projekti vairākās valstīs',
       'Atbalsts patvēruma, migrācijas un uzņemšanas procedūrās',
       'Eiropas mēroga tulku tīkla veidošana',
     ],
@@ -440,12 +441,12 @@ const lv: Dictionary = {
     countriesNote:
       'Konkrētā pieejamība ir atkarīga no valodas, kvalifikācijas, vietas un datuma.',
 
-    nationwideTitle: 'Visā Vācijā',
+    nationwideTitle: 'Visā Eiropā',
     nationwideText:
-      'Sadarbojamies ar tulkiem visā Vācijas teritorijā. Norādiet vietu un datumu — pārbaudīsim pieejamību uz vietas.',
-    internationalTitle: 'Uzdevumi citviet Eiropā',
+      'Sadarbojamies ar tulkiem daudzās Eiropas valstīs. Norādiet vietu un datumu — pārbaudīsim pieejamību uz vietas.',
+    internationalTitle: 'Pārrobežu uzdevumi',
     internationalText:
-      'Par uzdevumiem ārpus Vācijas, lūdzu, sazinieties ar mums. Katrā gadījumā atsevišķi izvērtējam, vai un kā varam nodrošināt jūsu vajadzību.',
+      'Par uzdevumiem vairākās valstīs vai ārpus mūsu parastajām teritorijām, lūdzu, sazinieties ar mums. Katrā gadījumā atsevišķi izvērtējam, vai un kā varam nodrošināt jūsu vajadzību.',
     remoteTitle: 'Tikšanās pa tālruni un videosakariem',
     remoteText:
       'Ja klātienes tikšanās nav iespējama vai nav nepieciešama, valodas starpniecība pēc vienošanās var notikt arī pa tālruni vai videosakariem.',
@@ -459,7 +460,7 @@ const lv: Dictionary = {
     lead:
       'Mūsu valodu piedāvājums ir īpaši plašs, un mēs varam jums palīdzēt daudzās valodās. Jums tulkojam mutiski un rakstiski šādās valodās.',
     searchLabel: 'Meklēt valodu',
-    searchPlaceholder: 'piem., arābu, tigrinja, sorani …',
+    searchPlaceholder: 'piem., Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Notīrīt meklēšanu',
     resultsOne: 'Atrasta 1 valoda',
     resultsMany: 'Atrastas {count} valodas',
@@ -522,19 +523,19 @@ const lv: Dictionary = {
   careers: {
     metaTitle: 'Karjera — meklējam tulkus visām valodām un dialektiem',
     metaDescription:
-      'Lai stiprinātu savu komandu visā Vācijā, meklējam tulkus visām valodām un dialektiem. Piesakieties Translation Admy jau tagad.',
+      'Lai stiprinātu savu komandu visā Eiropā, meklējam tulkus visām valodām un dialektiem. Piesakieties Translation Admy jau tagad.',
     h1: 'Tulkiem un tulkotājiem',
     lead:
-      'Lai stiprinātu savu komandu visā Vācijā, meklējam tulkus visām valodām un dialektiem.',
+      'Lai stiprinātu savu komandu visā Eiropā, meklējam tulkus visām valodām un dialektiem.',
     requirementsTitle: 'Prasības',
     requirements: [
-      'Vācu valodas C1 līmeņa sertifikāts, vācu Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkolleg apliecība vai augstskolas diploms',
+      'Apliecinājums par darba valodu prasmi C1 vai augstākā līmenī — vai līdzvērtīga kvalifikācija, kas atzīta dzīvesvietas valstī',
       'Nav ierakstu sodāmības reģistrā',
       'Nepieciešama darba atļauja',
     ],
     offerTitle: 'Kas jūs sagaida',
     offer: [
-      'Uzdevumi visā Vācijā — arī jūsu reģionā',
+      'Uzdevumi visā Eiropā — arī jūsu reģionā',
       'Daudzveidīgi pasūtījumi iestādēm, tiesām, uzņēmumiem un privātpersonām',
       'Komanda, kas novērtē precīzu un neitrālu valodas starpniecību',
     ],
@@ -552,7 +553,7 @@ const lv: Dictionary = {
       },
       {
         title: 'Projekti visā Eiropā',
-        text: 'Līdzās uzdevumiem visā Vācijā arvien vairāk pieprasījumu saņemam arī no citām Eiropas valstīm.',
+        text: 'Pieprasījumi mūs sasniedz no visas Eiropas — vajadzība pēc valodas starpniecības aug pāri robežām.',
       },
       {
         title: 'Godīga sadarbība',
@@ -636,7 +637,7 @@ const lv: Dictionary = {
     travelLabels: {
       local: 'Dzīvesvieta un apkārtne',
       regional: 'Reģionāli',
-      national: 'Visā Vācijā',
+      national: 'Visā dzīvesvietas valstī',
       european: 'Visā Eiropā',
     },
 
@@ -878,6 +879,7 @@ const lv: Dictionary = {
         body: [
           'Ja nosūtāt mums pieteikumu, izmantojot pieteikuma veidlapu, pārsūtītos datus un dokumentus apstrādājam tikai jūsu pieteikuma izvērtēšanai. Tiesiskais pamats ir VDAR 6. panta 1. punkta b) apakšpunkts, attiecībā uz doto piekrišanu — 6. panta 1. punkta a) apakšpunkts.',
           'Dokumenti pa e-pastu tiek nosūtīti mūsu birojam un apstrādāti konfidenciāli. To dzēšanu varat pieprasīt jebkurā laikā.',
+          'Jūsu dokumentus glabājam tikai tik ilgi, cik nepieciešams pieteikuma izvērtēšanai un iespējamai sadarbībai. Pēc tam tos dzēšam, ja vien to neliedz normatīvajos aktos noteiktie glabāšanas pienākumi.',
         ],
       },
       {

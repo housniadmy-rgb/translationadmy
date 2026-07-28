@@ -11,6 +11,23 @@ interface Props {
 
 const { name, size = 24, class: className, title } = Astro.props;
 const isDecorative = !title;
+
+/**
+ * Symbole, deren Richtung eine Bedeutung trägt und die in der arabischen
+ * Fassung gespiegelt werden müssen.
+ *
+ * Bewusst nur diese zwei: der Weiter-Pfeil (zeigt auf das Ziel) und das
+ * Migrationssymbol (Pfeil über dem Globus, zeigt die Bewegungsrichtung). Alle
+ * anderen Symbole – Telefon, Waage, Uhr, Schloss, Gebäude, Kamera – haben
+ * keine Leserichtung; ihr Spiegelbild wäre bedeutungslos oder irritierend.
+ *
+ * Gespiegelt wird in global.css über html[dir='rtl'] .icon-directional.
+ */
+const DIRECTIONAL: IconName[] = ['arrow-right', 'migration'];
+
+const classes = [className, DIRECTIONAL.includes(name) ? 'icon-directional' : null]
+  .filter(Boolean)
+  .join(' ');
 ---
 
 <svg
@@ -23,7 +40,7 @@ const isDecorative = !title;
   stroke-width="1.6"
   stroke-linecap="round"
   stroke-linejoin="round"
-  class={className}
+  class={classes || undefined}
   aria-hidden={isDecorative ? 'true' : undefined}
   role={isDecorative ? undefined : 'img'}
   focusable="false"

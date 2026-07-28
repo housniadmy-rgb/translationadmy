@@ -20,6 +20,7 @@ const it: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Interpretariato & traduzione',
     skipToContent: 'Vai al contenuto',
     openMenu: 'Apri il menu',
     closeMenu: 'Chiudi il menu',
@@ -50,11 +51,11 @@ const it: Dictionary = {
   home: {
     metaTitle: 'Interpreti e traduttori per autorità, tribunali e imprese',
     metaDescription:
-      'Studio di interpretariato Translation Admy: interpretazione consecutiva e di conferenza e traduzioni giurate in numerose lingue e dialetti. Per autorità, tribunali, imprese e privati in tutta la Germania.',
+      'Studio di interpretariato Translation Admy: interpretazione consecutiva e di conferenza e traduzioni giurate in numerose lingue e dialetti. Per autorità, tribunali, imprese e privati in tutta Europa.',
     heroKicker: 'Studio di interpretariato Translation Admy',
     heroTitle: 'Capirsi senza ostacoli — nella lingua del vostro interlocutore',
     heroLead:
-      'Interpretiamo e traduciamo per autorità, tribunali, centri di accoglienza, imprese e privati. Interpreti madrelingua, oltre 10 anni di esperienza, operativi in tutta Italia e in diversi Paesi europei.',
+      'Interpretiamo e traduciamo per autorità, tribunali, centri di accoglienza, imprese e privati. Interpreti madrelingua, oltre 10 anni di esperienza, operativi in Germania e in numerosi Paesi europei.',
     heroPrimary: 'Richiesta senza impegno',
     heroSecondary: 'Vedi i servizi',
     heroBadges: [
@@ -62,7 +63,7 @@ const it: Dictionary = {
       'Traduzioni giurate',
       'Interventi a breve termine',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Versioni linguistiche del sito',
     statYears: '10+',
     statYearsLabel: 'Oltre 10 anni di esperienza',
@@ -346,7 +347,7 @@ const it: Dictionary = {
     ],
     tendersTitle: 'Bandi di gara e procedure di appalto in Europa',
     tendersText:
-      'Partecipiamo a bandi di gara e procedure di appalto di committenti pubblici in Germania e nel resto d’Europa. Se indite una gara per servizi linguistici, contattateci: predisponiamo la documentazione necessaria alla presentazione dell’offerta.',
+      'Partecipiamo a bandi di gara e procedure di appalto di committenti pubblici in tutta Europa. Se indite una gara per servizi linguistici, contattateci: predisponiamo la documentazione necessaria alla presentazione dell’offerta.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const it: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Aree di intervento — Germania ed Europa',
+    metaTitle: 'Aree di intervento — in tutta Europa',
     metaDescription:
-      'Translation Admy seleziona interpreti e traduttori per incarichi in tutta la Germania e in Paesi europei selezionati — in presenza, per telefono o in video, anche nelle procedure di asilo e di frontiera.',
+      'Translation Admy seleziona interpreti e traduttori per incarichi in tutta Europa — in presenza, per telefono o in video, anche nelle procedure di asilo e di frontiera.',
     h1: 'Aree di intervento',
     lead:
-      'Il nostro studio ha sede a Bingen am Rhein. I nostri interpreti operano in tutta la Germania.',
+      'Il nostro studio ha sede a Bingen am Rhein. I nostri interpreti operano in tutta Europa.',
     baseTitle: 'Sede di Bingen am Rhein',
     baseText:
-      'Da Bingen am Rhein raggiungiamo rapidamente l’area Reno-Meno, l’Assia renana e il Medio Reno. Per gli appuntamenti in questa regione siamo spesso disponibili anche con brevissimo preavviso.',
-    europeTitle: 'Operativi in tutta la Germania e in Europa',
+      'Da Bingen am Rhein coordiniamo incarichi in tutta Europa. Per gli appuntamenti a brevissimo preavviso ci avvaliamo di una rete che va oltre i confini nazionali.',
+    europeTitle: 'Operativi in tutta Europa',
     europeText:
-      'Translation Admy seleziona interpreti e traduttori per incarichi in tutta la Germania e in Paesi europei selezionati. A seconda dell’incarico assistiamo autorità, enti pubblici, imprese e organizzazioni internazionali in presenza, per telefono o in videoconferenza.',
+      'Translation Admy seleziona interpreti e traduttori per incarichi in tutta Europa. A seconda dell’incarico assistiamo autorità, enti pubblici, imprese e organizzazioni internazionali in presenza, per telefono o in videoconferenza.',
     capabilities: [
-      'Incarichi in tutta la Germania',
+      'Incarichi in tutta Europa',
       'Interpretariato in presenza',
       'Interpretariato telefonico e in video',
       'Incarichi a breve termine e pianificati con anticipo',
-      'Progetti transfrontalieri ed europei',
+      'Progetti transfrontalieri in più Paesi',
       'Supporto nelle procedure di asilo, migrazione e accoglienza',
       'Costruzione di una rete di interpreti a livello europeo',
     ],
@@ -440,12 +441,12 @@ const it: Dictionary = {
     countriesNote:
       'La disponibilità effettiva dipende da lingua, qualifica, luogo e data dell’incarico.',
 
-    nationwideTitle: 'In tutta la Germania',
+    nationwideTitle: 'In tutta Europa',
     nationwideText:
-      'Collaboriamo con interpreti su tutto il territorio tedesco. Indicateci luogo e data: verificheremo la disponibilità in loco.',
-    internationalTitle: 'Interventi in altri Paesi europei',
+      'Collaboriamo con interpreti in numerosi Paesi europei. Indicateci luogo e data: verificheremo la disponibilità in loco.',
+    internationalTitle: 'Interventi transfrontalieri',
     internationalText:
-      'Per gli interventi fuori dalla Germania vi invitiamo a contattarci. Valutiamo caso per caso se e come possiamo coprire la vostra esigenza.',
+      'Per gli interventi in più Paesi o al di fuori delle nostre aree consuete vi invitiamo a contattarci. Valutiamo caso per caso se e come possiamo coprire la vostra esigenza.',
     remoteTitle: 'Appuntamenti telefonici e in videoconferenza',
     remoteText:
       'Quando un appuntamento in presenza non è possibile o non è necessario, previo accordo la mediazione linguistica può avvenire anche per telefono o in videoconferenza.',
@@ -459,7 +460,7 @@ const it: Dictionary = {
     lead:
       'La nostra copertura linguistica è particolarmente ampia e possiamo assistervi in molte lingue. Interpretiamo e traduciamo per voi nelle lingue seguenti.',
     searchLabel: 'Cerca una lingua',
-    searchPlaceholder: 'ad es. arabo, tigrino, sorani …',
+    searchPlaceholder: 'ad es. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Cancella la ricerca',
     resultsOne: '1 lingua trovata',
     resultsMany: '{count} lingue trovate',
@@ -522,19 +523,19 @@ const it: Dictionary = {
   careers: {
     metaTitle: 'Lavora con noi — cercasi interpreti per tutte le lingue e i dialetti',
     metaDescription:
-      'Per rafforzare il nostro team in tutta la Germania cerchiamo interpreti per tutte le lingue e i dialetti. Candidati ora presso Translation Admy.',
+      'Per rafforzare il nostro team in tutta Europa cerchiamo interpreti per tutte le lingue e i dialetti. Candidati ora presso Translation Admy.',
     h1: 'Lavora con noi',
     lead:
-      'Per rafforzare il nostro team in tutta la Germania cerchiamo interpreti per tutte le lingue e i dialetti.',
+      'Per rafforzare il nostro team in tutta Europa cerchiamo interpreti per tutte le lingue e i dialetti.',
     requirementsTitle: 'Requisiti',
     requirements: [
-      'Certificato di lingua tedesca livello C1, Abitur / Fachabitur tedesco, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, diploma di Studienkolleg o titolo universitario',
+      'Attestazione di competenza linguistica di livello C1 o superiore nelle vostre lingue di lavoro — oppure un titolo equivalente riconosciuto nel Paese di residenza',
       'Nessuna iscrizione nel casellario giudiziale',
       'Deve sussistere l’autorizzazione al lavoro',
     ],
     offerTitle: 'Cosa vi aspetta',
     offer: [
-      'Incarichi in tutta la Germania — anche nella vostra regione',
+      'Incarichi in tutta Europa — anche nella vostra regione',
       'Incarichi variegati per autorità, tribunali, imprese e privati',
       'Un team che tiene a una mediazione linguistica precisa e neutrale',
     ],
@@ -552,7 +553,7 @@ const it: Dictionary = {
       },
       {
         title: 'Progetti in tutta Europa',
-        text: 'Oltre agli incarichi in tutta la Germania, aumentano le richieste da altri Paesi europei.',
+        text: 'Le richieste ci arrivano da tutta Europa: la domanda di mediazione linguistica cresce oltre i confini.',
       },
       {
         title: 'Collaborazione equa',
@@ -636,7 +637,7 @@ const it: Dictionary = {
     travelLabels: {
       local: 'Luogo di residenza e dintorni',
       regional: 'Regionale',
-      national: 'In tutta la Germania',
+      national: 'In tutto il Paese di residenza',
       european: 'In tutta Europa',
     },
 
@@ -878,6 +879,7 @@ const it: Dictionary = {
         body: [
           'Se ci inviate una candidatura tramite l’apposito modulo, trattiamo i dati e i documenti trasmessi esclusivamente per la valutazione della vostra candidatura. La base giuridica è l’art. 6, par. 1, lett. b) del GDPR nonché, per il consenso prestato, l’art. 6, par. 1, lett. a) del GDPR.',
           'I documenti vengono trasmessi via e-mail al nostro studio e trattati in modo riservato. Potete richiederne la cancellazione in qualsiasi momento.',
+          'Conserviamo i vostri documenti solo per il tempo necessario alla valutazione della candidatura e a un’eventuale collaborazione. Successivamente li cancelliamo, salvo obblighi di conservazione previsti per legge.',
         ],
       },
       {

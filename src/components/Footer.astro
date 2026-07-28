@@ -8,6 +8,7 @@ import {
   LOCALE_TAGS,
   format,
   getDictionary,
+  localeDirection,
   localizedPath,
   type Locale,
   type PageId,
@@ -36,7 +37,7 @@ const columns = [
           <Logo class="logo-mark" variant="light" />
           <span class="logo-text">
             <span class="logo-name">{SITE.name}</span>
-            <span class="logo-sub">Dolmetschen &amp; Übersetzen</span>
+            <span class="logo-sub">{t.ui.logoSubtitle}</span>
           </span>
         </a>
         <p class="footer-tagline">{t.footer.tagline}</p>
@@ -59,26 +60,33 @@ const columns = [
 
       <div>
         <h2>{t.footer.contactHeading}</h2>
+        {/*
+          dir="ltr" an den Werten, nicht an der Liste: Rufnummern, E-Mail und
+          Anschrift sind lateinische Zeichenfolgen. Ohne die Auszeichnung
+          verschiebt der Bidi-Algorithmus in der arabischen Fassung führende
+          Zeichen an die falsche Seite – aus „+49 6721 9875872“ würde
+          „9875872 6721 49+“. Die Beschriftungen bleiben arabisch.
+        */}
         <ul class="footer-contact">
           <li>
             <span class="label">{t.ui.phone}</span>
-            <a href={CONTACT.phoneHref}>{CONTACT.phone}</a>
+            <a href={CONTACT.phoneHref} dir="ltr">{CONTACT.phone}</a>
           </li>
           <li>
             <span class="label">{t.ui.mobile}</span>
-            <a href={CONTACT.mobileHref}>{CONTACT.mobile}</a>
+            <a href={CONTACT.mobileHref} dir="ltr">{CONTACT.mobile}</a>
           </li>
           <li>
             <span class="label">{t.ui.fax}</span>
-            <span>{CONTACT.fax}</span>
+            <span dir="ltr">{CONTACT.fax}</span>
           </li>
           <li>
             <span class="label">{t.ui.email}</span>
-            <a href={CONTACT.emailHref}>{CONTACT.email}</a>
+            <a href={CONTACT.emailHref} dir="ltr">{CONTACT.email}</a>
           </li>
           <li>
             <span class="label">{t.ui.postalAddress}</span>
-            <address>
+            <address dir="ltr">
               {SITE.legalName}<br />
               {ADDRESS.street}<br />
               {ADDRESS.postalCode}&nbsp;{ADDRESS.city}
@@ -104,11 +112,18 @@ const columns = [
                 href={localizedPath(code, page)}
                 hreflang={LOCALE_TAGS[code]}
                 lang={LOCALE_TAGS[code]}
-                title={LOCALE_NAMES[code]}
+                dir={localeDirection(code)}
                 aria-current={code === locale ? 'true' : undefined}
                 rel="alternate"
               >
-                {code}
+                {/*
+                  Ausgeschrieben in der jeweiligen Sprache selbst, nicht als
+                  Kürzel. Vorher stand hier nur „de“, „el“, „ar“ – der Name
+                  steckte allein im title-Attribut und war damit auf
+                  Berührbildschirmen unerreichbar; Sprachausgaben lasen
+                  „de“ statt „Deutsch“ vor.
+                */}
+                {LOCALE_NAMES[code]}
               </a>
             </li>
           ))

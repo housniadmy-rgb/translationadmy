@@ -20,6 +20,7 @@ const et: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Suuline ja kirjalik tõlge',
     skipToContent: 'Liigu sisu juurde',
     openMenu: 'Ava menüü',
     closeMenu: 'Sulge menüü',
@@ -50,11 +51,11 @@ const et: Dictionary = {
   home: {
     metaTitle: 'Suulised ja kirjalikud tõlkijad ametiasutustele, kohtutele ja ettevõtetele',
     metaDescription:
-      'Tõlkebüroo Translation Admy: järeltõlge ja konverentsitõlge ning kinnitatud tõlked paljudes keeltes ja murretes. Ametiasutustele, kohtutele, ettevõtetele ja eraklientidele kogu Saksamaal ja Euroopas.',
+      'Tõlkebüroo Translation Admy: järeltõlge ja konverentsitõlge ning kinnitatud tõlked paljudes keeltes ja murretes. Ametiasutustele, kohtutele, ettevõtetele ja eraklientidele kogu Euroopas.',
     heroKicker: 'Tõlkebüroo Translation Admy',
     heroTitle: 'Mõistmine ilma takistusteta — vestluskaaslase keeles',
     heroLead:
-      'Tõlgime suuliselt ja kirjalikult ametiasutustele, kohtutele, vastuvõtukeskustele, ettevõtetele ja eraklientidele. Emakeelsed tõlgid, üle 10 aasta kogemust, tegutseme kogu Eestis ja mitmes Euroopa riigis.',
+      'Tõlgime suuliselt ja kirjalikult ametiasutustele, kohtutele, vastuvõtukeskustele, ettevõtetele ja eraklientidele. Emakeelsed tõlgid, üle 10 aasta kogemust, tegutseme Saksamaal ja paljudes Euroopa riikides.',
     heroPrimary: 'Mittesiduv päring',
     heroSecondary: 'Vaata teenuseid',
     heroBadges: [
@@ -62,7 +63,7 @@ const et: Dictionary = {
       'Kinnitatud tõlked',
       'Lühikese etteteatamisega tööd',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Veebilehe keeleversiooni',
     statYears: '10+',
     statYearsLabel: 'Üle 10 aasta kogemust',
@@ -346,7 +347,7 @@ const et: Dictionary = {
     ],
     tendersTitle: 'Hanked ja riigihankemenetlused Euroopas',
     tendersText:
-      'Osaleme avaliku sektori tellijate hangetes ja riigihankemenetlustes Saksamaal ja mujal Euroopas. Kui korraldate keeleteenuste hanke, võtke meiega ühendust — koostame pakkumuse esitamiseks vajalikud dokumendid.',
+      'Osaleme avaliku sektori tellijate hangetes ja riigihankemenetlustes kogu Euroopas. Kui korraldate keeleteenuste hanke, võtke meiega ühendust — koostame pakkumuse esitamiseks vajalikud dokumendid.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const et: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Tegevuspiirkonnad — Saksamaa ja Euroopa',
+    metaTitle: 'Tegevuspiirkonnad — kogu Euroopas',
     metaDescription:
-      'Translation Admy vahendab tõlkijaid töödeks kogu Saksamaal ja valitud Euroopa riikides — kohapeal, telefoni või video teel, sealhulgas varjupaiga- ja piirimenetlustes.',
+      'Translation Admy vahendab tõlkijaid töödeks kogu Euroopas — kohapeal, telefoni või video teel, sealhulgas varjupaiga- ja piirimenetlustes.',
     h1: 'Tegevuspiirkonnad',
     lead:
-      'Meie büroo asub Bingen am Rheinis. Meie tõlgid tegutsevad kogu Saksamaal.',
+      'Meie büroo asub Bingen am Rheinis. Meie tõlgid tegutsevad kogu Euroopas.',
     baseTitle: 'Asukoht Bingen am Rheinis',
     baseText:
-      'Bingen am Rheinist jõuame lühikese ajaga Rein-Maini piirkonda, Rheinhessenisse ja Kesk-Reini juurde. Selle piirkonna kohtumisteks oleme sageli kättesaadavad ka väga lühikese etteteatamisega.',
-    europeTitle: 'Tegutseme kogu Saksamaal ja Euroopas',
+      'Bingen am Rheinist koordineerime töid kogu Euroopas. Väga lühikese etteteatamisega kohtumisteks toetume võrgustikule, mis ulatub üle riigipiiride.',
+    europeTitle: 'Tegutseme kogu Euroopas',
     europeText:
-      'Translation Admy vahendab suulisi ja kirjalikke tõlkijaid töödeks kogu Saksamaal ja valitud Euroopa riikides. Olenevalt tellimusest toetame ametiasutusi, avalik-õiguslikke asutusi, ettevõtteid ja rahvusvahelisi organisatsioone kohapeal, telefoni või video teel.',
+      'Translation Admy vahendab suulisi ja kirjalikke tõlkijaid töödeks kogu Euroopas. Olenevalt tellimusest toetame ametiasutusi, avalik-õiguslikke asutusi, ettevõtteid ja rahvusvahelisi organisatsioone kohapeal, telefoni või video teel.',
     capabilities: [
-      'Tööd kogu Saksamaal',
+      'Tööd kogu Euroopas',
       'Kohapealne suuline tõlge',
       'Telefoni- ja videotõlge',
       'Lühikese etteteatamisega ja pikalt ette planeeritud tööd',
-      'Piiriülesed ja üleeuroopalised projektid',
+      'Piiriülesed projektid mitmes riigis',
       'Tugi varjupaiga-, rände- ja vastuvõtumenetlustes',
       'Üleeuroopalise tõlkijate võrgustiku ülesehitamine',
     ],
@@ -440,12 +441,12 @@ const et: Dictionary = {
     countriesNote:
       'Tegelik saadavus sõltub keelest, kvalifikatsioonist, asukohast ja kuupäevast.',
 
-    nationwideTitle: 'Kogu Saksamaal',
+    nationwideTitle: 'Kogu Euroopas',
     nationwideText:
-      'Teeme koostööd tõlkidega kogu Saksamaal. Andke meile teada koht ja kuupäev — kontrollime kohapealset saadavust.',
-    internationalTitle: 'Tööd mujal Euroopas',
+      'Teeme koostööd tõlkidega paljudes Euroopa riikides. Andke meile teada koht ja kuupäev — kontrollime kohapealset saadavust.',
+    internationalTitle: 'Piiriülesed tööd',
     internationalText:
-      'Väljaspool Saksamaad tehtavate tööde osas võtke meiega ühendust. Hindame igal üksikjuhul, kas ja kuidas saame teie vajaduse katta.',
+      'Mitut riiki hõlmavate või meie tavapärastest piirkondadest väljapoole jäävate tööde osas võtke meiega ühendust. Hindame igal üksikjuhul, kas ja kuidas saame teie vajaduse katta.',
     remoteTitle: 'Telefoni- ja videokohtumised',
     remoteText:
       'Kui kohapealne kohtumine ei ole võimalik või vajalik, võib keelevahendus kokkuleppel toimuda ka telefoni või videoühenduse teel.',
@@ -459,7 +460,7 @@ const et: Dictionary = {
     lead:
       'Meie keelevalik on eriti lai ja saame teid toetada paljudes keeltes. Tõlgime teile suuliselt ja kirjalikult järgmistes keeltes.',
     searchLabel: 'Otsi keelt',
-    searchPlaceholder: 'nt araabia, tigrinja, sorani …',
+    searchPlaceholder: 'nt Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Tühjenda otsing',
     resultsOne: 'Leiti 1 keel',
     resultsMany: 'Leiti {count} keelt',
@@ -522,19 +523,19 @@ const et: Dictionary = {
   careers: {
     metaTitle: 'Karjäär — otsime tõlke kõigile keeltele ja murretele',
     metaDescription:
-      'Meeskonna tugevdamiseks otsime kogu Saksamaal tõlke kõigile keeltele ja murretele. Kandideerige kohe Translation Admysse.',
+      'Meeskonna tugevdamiseks otsime kogu Euroopas tõlke kõigile keeltele ja murretele. Kandideerige kohe Translation Admysse.',
     h1: 'Tõlkidele ja tõlkijatele',
     lead:
-      'Meeskonna tugevdamiseks otsime kogu Saksamaal tõlke kõigile keeltele ja murretele.',
+      'Meeskonna tugevdamiseks otsime kogu Euroopas tõlke kõigile keeltele ja murretele.',
     requirementsTitle: 'Eeldused',
     requirements: [
-      'Saksa keele C1-taseme tunnistus, Saksa Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkollegi tunnistus või kõrgharidusdiplom',
+      'Tõend töökeelte oskuse kohta tasemel C1 või kõrgem — või elukohariigis tunnustatud samaväärne haridus',
       'Karistusregistris kandeid ei ole',
       'Töötamiseks peab olema luba',
     ],
     offerTitle: 'Mis teid ootab',
     offer: [
-      'Tööd kogu Saksamaal — ka teie piirkonnas',
+      'Tööd kogu Euroopas — ka teie piirkonnas',
       'Vaheldusrikkad tellimused ametiasutustele, kohtutele, ettevõtetele ja eraisikutele',
       'Meeskond, kes peab lugu täpsest ja erapooletust keelevahendusest',
     ],
@@ -552,7 +553,7 @@ const et: Dictionary = {
       },
       {
         title: 'Projektid kogu Euroopas',
-        text: 'Lisaks töödele kogu Saksamaal lisandub üha rohkem päringuid teistest Euroopa riikidest.',
+        text: 'Päringud jõuavad meieni kogu Euroopast — vajadus keelevahenduse järele kasvab üle riigipiiride.',
       },
       {
         title: 'Aus koostöö',
@@ -636,7 +637,7 @@ const et: Dictionary = {
     travelLabels: {
       local: 'Elukoht ja ümbrus',
       regional: 'Piirkondlik',
-      national: 'Kogu Saksamaa',
+      national: 'Kogu elukohariik',
       european: 'Kogu Euroopa',
     },
 
@@ -879,6 +880,7 @@ const et: Dictionary = {
         body: [
           'Kui saadate meile avalduse kandideerimisvormi kaudu, töötleme edastatud andmeid ja dokumente üksnes teie avalduse hindamiseks. Õiguslik alus on üldmääruse artikli 6 lõike 1 punkt b ning antud nõusoleku osas artikli 6 lõike 1 punkt a.',
           'Dokumendid edastatakse e-posti teel meie büroole ja neid käsitletakse konfidentsiaalselt. Võite igal ajal nõuda nende kustutamist.',
+          'Säilitame teie dokumente üksnes nii kaua, kui see on vajalik kandideerimise hindamiseks ja võimalikuks koostööks. Seejärel kustutame need, kui seadusest tulenevad säilitamiskohustused seda ei takista.',
         ],
       },
       {

@@ -20,6 +20,7 @@ const fi: Dictionary = {
   },
 
   ui: {
+    logoSubtitle: 'Tulkkaus ja käännökset',
     skipToContent: 'Siirry sisältöön',
     openMenu: 'Avaa valikko',
     closeMenu: 'Sulje valikko',
@@ -50,11 +51,11 @@ const fi: Dictionary = {
   home: {
     metaTitle: 'Tulkkeja ja kääntäjiä viranomaisille, tuomioistuimille ja yrityksille',
     metaDescription:
-      'Tulkkaustoimisto Translation Admy: konsekutiivi- ja konferenssitulkkaus sekä auktorisoidut käännökset lukuisilla kielillä ja murteilla. Viranomaisille, tuomioistuimille, yrityksille ja yksityisasiakkaille koko Saksassa ja Euroopassa.',
+      'Tulkkaustoimisto Translation Admy: konsekutiivi- ja konferenssitulkkaus sekä auktorisoidut käännökset lukuisilla kielillä ja murteilla. Viranomaisille, tuomioistuimille, yrityksille ja yksityisasiakkaille koko Euroopassa.',
     heroKicker: 'Tulkkaustoimisto Translation Admy',
     heroTitle: 'Ymmärrystä ilman esteitä — keskustelukumppanin kielellä',
     heroLead:
-      'Tulkkaamme ja käännämme viranomaisille, tuomioistuimille, vastaanottokeskuksille, yrityksille ja yksityisasiakkaille. Äidinkieliset tulkit, yli 10 vuoden kokemus, toimimme koko Suomessa ja useissa Euroopan maissa.',
+      'Tulkkaamme ja käännämme viranomaisille, tuomioistuimille, vastaanottokeskuksille, yrityksille ja yksityisasiakkaille. Äidinkieliset tulkit, yli 10 vuoden kokemus, toimimme Saksassa ja monissa Euroopan maissa.',
     heroPrimary: 'Sitoumukseton tiedustelu',
     heroSecondary: 'Katso palvelut',
     heroBadges: [
@@ -62,7 +63,7 @@ const fi: Dictionary = {
       'Auktorisoidut käännökset',
       'Toimeksiannot lyhyellä varoitusajalla',
     ],
-    statLanguages: '17',
+    statLanguages: '18',
     statLanguagesLabel: 'Sivuston kieliversiota',
     statYears: '10+',
     statYearsLabel: 'Yli 10 vuoden kokemus',
@@ -346,7 +347,7 @@ const fi: Dictionary = {
     ],
     tendersTitle: 'Tarjouskilpailut ja hankintamenettelyt Euroopassa',
     tendersText:
-      'Osallistumme julkisen sektorin tilaajien tarjouskilpailuihin ja hankintamenettelyihin Saksassa ja muualla Euroopassa. Jos kilpailutatte kielipalveluja, ottakaa yhteyttä — kokoamme tarjouksen jättämiseen tarvittavat asiakirjat.',
+      'Osallistumme julkisen sektorin tilaajien tarjouskilpailuihin ja hankintamenettelyihin koko Euroopassa. Jos kilpailutatte kielipalveluja, ottakaa yhteyttä — kokoamme tarjouksen jättämiseen tarvittavat asiakirjat.',
   },
 
   business: {
@@ -408,24 +409,24 @@ const fi: Dictionary = {
   },
 
   coverage: {
-    metaTitle: 'Toiminta-alueet — Saksa ja Eurooppa',
+    metaTitle: 'Toiminta-alueet — koko Euroopassa',
     metaDescription:
-      'Translation Admy välittää tulkkeja ja kääntäjiä toimeksiantoihin koko Saksassa ja valituissa Euroopan maissa — paikan päällä, puhelimitse tai videolla, myös turvapaikka- ja rajamenettelyissä.',
+      'Translation Admy välittää tulkkeja ja kääntäjiä toimeksiantoihin koko Euroopassa — paikan päällä, puhelimitse tai videolla, myös turvapaikka- ja rajamenettelyissä.',
     h1: 'Toiminta-alueet',
     lead:
-      'Toimistomme sijaitsee Bingen am Rheinissä. Tulkkimme toimivat koko Saksassa.',
+      'Toimistomme sijaitsee Bingen am Rheinissä. Tulkkimme toimivat koko Euroopassa.',
     baseTitle: 'Toimipaikka Bingen am Rhein',
     baseText:
-      'Bingen am Rheinistä saavutamme lyhyessä ajassa Rein–Main-alueen, Rheinhessenin ja Keski-Reinin. Tämän alueen tapaamisiin olemme usein käytettävissä hyvinkin lyhyellä varoitusajalla.',
-    europeTitle: 'Toimimme koko Saksassa ja Euroopassa',
+      'Bingen am Rheinistä koordinoimme toimeksiantoja koko Euroopassa. Hyvin lyhyellä varoitusajalla järjestettäviin tapaamisiin tukeudumme verkostoon, joka ulottuu valtioiden rajojen yli.',
+    europeTitle: 'Toimimme koko Euroopassa',
     europeText:
-      'Translation Admy välittää tulkkeja ja kääntäjiä toimeksiantoihin koko Saksassa ja valituissa Euroopan maissa. Toimeksiannosta riippuen tuemme viranomaisia, julkisia laitoksia, yrityksiä ja kansainvälisiä organisaatioita paikan päällä, puhelimitse tai videoyhteydellä.',
+      'Translation Admy välittää tulkkeja ja kääntäjiä toimeksiantoihin koko Euroopassa. Toimeksiannosta riippuen tuemme viranomaisia, julkisia laitoksia, yrityksiä ja kansainvälisiä organisaatioita paikan päällä, puhelimitse tai videoyhteydellä.',
     capabilities: [
-      'Toimeksiannot koko Saksassa',
+      'Toimeksiannot koko Euroopassa',
       'Tulkkaus paikan päällä',
       'Puhelin- ja videotulkkaus',
       'Lyhyellä varoitusajalla ja pitkälle suunnitellut toimeksiannot',
-      'Rajat ylittävät ja Euroopan laajuiset hankkeet',
+      'Rajat ylittävät hankkeet useissa maissa',
       'Tuki turvapaikka-, maahanmuutto- ja vastaanottomenettelyissä',
       'Euroopan laajuisen tulkkiverkoston rakentaminen',
     ],
@@ -440,12 +441,12 @@ const fi: Dictionary = {
     countriesNote:
       'Todellinen saatavuus riippuu kielestä, pätevyydestä, paikasta ja ajankohdasta.',
 
-    nationwideTitle: 'Koko Saksassa',
+    nationwideTitle: 'Koko Euroopassa',
     nationwideText:
-      'Teemme yhteistyötä tulkkien kanssa koko Saksan alueella. Kertokaa paikka ja ajankohta — tarkistamme saatavuuden paikan päällä.',
-    internationalTitle: 'Toimeksiannot muualla Euroopassa',
+      'Teemme yhteistyötä tulkkien kanssa useissa Euroopan maissa. Kertokaa paikka ja ajankohta — tarkistamme saatavuuden paikan päällä.',
+    internationalTitle: 'Rajat ylittävät toimeksiannot',
     internationalText:
-      'Saksan ulkopuolisista toimeksiannoista pyydämme ottamaan yhteyttä. Arvioimme tapauskohtaisesti, voimmeko kattaa tarpeenne ja miten.',
+      'Useaa maata koskevista tai tavanomaisten toiminta-alueidemme ulkopuolisista toimeksiannoista pyydämme ottamaan yhteyttä. Arvioimme tapauskohtaisesti, voimmeko kattaa tarpeenne ja miten.',
     remoteTitle: 'Puhelin- ja videotapaamiset',
     remoteText:
       'Kun paikan päällä tapahtuva tapaaminen ei ole mahdollinen tai tarpeen, kielellinen välitys voi sopimuksen mukaan tapahtua myös puhelimitse tai videoyhteydellä.',
@@ -459,7 +460,7 @@ const fi: Dictionary = {
     lead:
       'Kielivalikoimamme on erityisen laaja ja voimme tukea teitä monilla kielillä. Tulkkaamme ja käännämme teille seuraavilla kielillä.',
     searchLabel: 'Hae kieltä',
-    searchPlaceholder: 'esim. arabia, tigrinja, sorani …',
+    searchPlaceholder: 'esim. Arabisch, ትግርኛ, Sorani …',
     clearSearch: 'Tyhjennä haku',
     resultsOne: 'Löytyi 1 kieli',
     resultsMany: 'Löytyi {count} kieltä',
@@ -522,19 +523,19 @@ const fi: Dictionary = {
   careers: {
     metaTitle: 'Ura — etsimme tulkkeja kaikille kielille ja murteille',
     metaDescription:
-      'Tiimimme vahvistamiseksi etsimme koko Saksan alueella tulkkeja kaikille kielille ja murteille. Hae nyt Translation Admyyn.',
+      'Tiimimme vahvistamiseksi etsimme koko Euroopassa tulkkeja kaikille kielille ja murteille. Hae nyt Translation Admyyn.',
     h1: 'Tulkeille ja kääntäjille',
     lead:
-      'Tiimimme vahvistamiseksi etsimme koko Saksan alueella tulkkeja kaikille kielille ja murteille.',
+      'Tiimimme vahvistamiseksi etsimme koko Euroopassa tulkkeja kaikille kielille ja murteille.',
     requirementsTitle: 'Edellytykset',
     requirements: [
-      'Saksan kielen C1-tason todistus, saksalainen Abitur / Fachabitur, DSH 2/3, Allgemeine Fachhochschulreife, Fachoberschulreife, Studienkolleg-todistus tai korkeakoulututkinto',
+      'Osoitus työkielten taidosta tasolla C1 tai korkeampi — tai asuinmaassa tunnustettu vastaava tutkinto',
       'Ei merkintöjä rikosrekisterissä',
       'Työnteko-oikeus on oltava',
     ],
     offerTitle: 'Mitä odottaa',
     offer: [
-      'Toimeksiantoja koko Saksassa — myös omalla alueellanne',
+      'Toimeksiantoja koko Euroopassa — myös omalla alueellanne',
       'Vaihtelevia toimeksiantoja viranomaisille, tuomioistuimille, yrityksille ja yksityishenkilöille',
       'Tiimi, joka arvostaa tarkkaa ja puolueetonta kielellistä välitystä',
     ],
@@ -552,7 +553,7 @@ const fi: Dictionary = {
       },
       {
         title: 'Hankkeita koko Euroopassa',
-        text: 'Koko Saksan toimeksiantojen ohella tiedusteluja tulee yhä enemmän muista Euroopan maista.',
+        text: 'Tiedusteluja saapuu meille koko Euroopasta — kielenvälityksen tarve kasvaa yli valtioiden rajojen.',
       },
       {
         title: 'Reilu yhteistyö',
@@ -636,7 +637,7 @@ const fi: Dictionary = {
     travelLabels: {
       local: 'Asuinpaikka ja lähiseutu',
       regional: 'Alueellinen',
-      national: 'Koko Saksa',
+      national: 'Koko asuinmaa',
       european: 'Koko Eurooppa',
     },
 
@@ -878,6 +879,7 @@ const fi: Dictionary = {
         body: [
           'Jos lähetätte meille hakemuksen hakemuslomakkeen kautta, käsittelemme välitettyjä tietoja ja asiakirjoja yksinomaan hakemuksenne arvioimiseksi. Oikeusperuste on tietosuoja-asetuksen 6 artiklan 1 kohdan b alakohta ja annetun suostumuksen osalta 6 artiklan 1 kohdan a alakohta.',
           'Asiakirjat välitetään sähköpostitse toimistollemme ja käsitellään luottamuksellisesti. Voitte pyytää niiden poistamista milloin tahansa.',
+          'Säilytämme asiakirjojanne vain niin kauan kuin se on tarpeen hakemuksenne arvioimiseksi ja mahdollista yhteistyötä varten. Sen jälkeen poistamme ne, ellei lakisääteisiä säilytysvelvoitteita ole.',
         ],
       },
       {

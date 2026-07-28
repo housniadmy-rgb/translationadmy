@@ -4,7 +4,7 @@ import type { PageId } from './config';
  * Nachsichtiger Typ für den Fall, dass eine Sprachfassung vorübergehend
  * unvollständig ist – etwa während ein neuer Abschnitt übersetzt wird.
  *
- * Derzeit nutzt ihn keine Datei: Alle 17 Fassungen sind vollständig und
+ * Derzeit nutzt ihn keine Datei: Alle 18 Fassungen sind vollständig und
  * annotieren `Dictionary`, damit TypeScript fehlende Schlüssel meldet.
  * getDictionary() ergänzt Lücken zusätzlich zur Laufzeit aus dem Deutschen
  * und warnt beim Build, falls doch einmal eine entsteht.
@@ -43,6 +43,12 @@ export interface Dictionary {
   nav: Record<PageId, string>;
 
   ui: {
+    /**
+     * Zeile unter dem Firmennamen im Kopf und im Fuß.
+     * Stand vorher fest auf Deutsch im Markup und war damit der einzige
+     * unübersetzte sichtbare Text auf allen Fremdsprachfassungen.
+     */
+    logoSubtitle: string;
     skipToContent: string;
     openMenu: string;
     closeMenu: string;

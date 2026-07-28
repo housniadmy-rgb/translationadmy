@@ -33,7 +33,7 @@ const capabilityIcons: IconName[] = [
 /**
  * Ländernamen in der Sprache der jeweiligen Seitenfassung.
  * Intl.DisplayNames liefert die amtlichen Bezeichnungen – dadurch stimmen sie
- * in allen 17 Fassungen, ohne dass Namen doppelt gepflegt werden müssen.
+ * in allen 18 Fassungen, ohne dass Namen doppelt gepflegt werden müssen.
  */
 const regionNames = new Intl.DisplayNames([LOCALE_TAGS[locale]], { type: 'region' });
 const countries = COVERAGE_COUNTRIES.map((code) => regionNames.of(code) ?? code).sort((a, b) =>

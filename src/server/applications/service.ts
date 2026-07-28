@@ -33,10 +33,16 @@ const LABELS = {
     phone: 'Telefonisch',
     video: 'Videodolmetschen',
   },
+  /*
+    Muss zu apply.travelLabels in den Sprachdateien passen – sonst steht in
+    der Benachrichtigung etwas anderes, als die bewerbende Person angeklickt
+    hat. „national“ meint seit der Umstellung auf europaweite Bewerbungen das
+    Wohnsitzland der bewerbenden Person, nicht mehr Deutschland.
+  */
   travelRange: {
     local: 'Wohnort und Umgebung',
     regional: 'Regional',
-    national: 'Bundesweit',
+    national: 'Landesweit im Wohnsitzland',
     european: 'Europaweit',
   },
   availability: {

@@ -33,8 +33,13 @@ const contactRows = [
     <div class="prose">
       <h2>{t.imprint.providerTitle}</h2>
 
-      {/* Firmenname, Anschrift und Namen bleiben in jeder Sprachfassung unübersetzt. */}
-      <address class="imprint-address">
+      {/*
+        Firmenname, Anschrift und Namen bleiben in jeder Sprachfassung
+        unübersetzt – und mit dir="ltr" auch in der arabischen Fassung in
+        lateinischer Leserichtung, damit Hausnummer und Postleitzahl nicht auf
+        die falsche Seite rutschen.
+      */}
+      <address class="imprint-address" dir="ltr">
         <strong>{SITE.legalName}</strong><br />
         {ADDRESS.street}<br />
         {ADDRESS.postalCode}&nbsp;{ADDRESS.city}<br />
@@ -56,7 +61,15 @@ const contactRows = [
             <li>
               <Icon name={row.icon} size={18} />
               <span class="imprint-contact-label">{row.label}</span>
-              {row.href ? <a href={row.href}>{row.value}</a> : <span>{row.value}</span>}
+              {
+                row.href ? (
+                  <a href={row.href} dir="ltr">
+                    {row.value}
+                  </a>
+                ) : (
+                  <span dir="ltr">{row.value}</span>
+                )
+              }
             </li>
           ))
         }
@@ -65,13 +78,13 @@ const contactRows = [
       <h2>{t.imprint.taxNumberLabel}</h2>
       <dl class="definition-list">
         <div>
-          {/* Pflichtangabe nach § 27a UStG. */}
+          {/* Pflichtangabe nach § 27a UStG – der Wert bleibt LTR lesbar. */}
           <dt>{t.imprint.vatIdLabel}</dt>
-          <dd>{LEGAL.vatId}</dd>
+          <dd dir="ltr">{LEGAL.vatId}</dd>
         </div>
         <div>
           <dt>{t.imprint.taxNumberLabel}</dt>
-          <dd>{LEGAL.taxNumber}</dd>
+          <dd dir="ltr">{LEGAL.taxNumber}</dd>
         </div>
       </dl>
 

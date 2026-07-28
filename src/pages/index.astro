@@ -19,6 +19,7 @@ import {
   LOCALE_TAGS,
   absoluteUrl,
   getDictionary,
+  localeDirection,
   localizedPath,
 } from '../i18n';
 
@@ -30,6 +31,8 @@ const options = AVAILABLE_LOCALES.map((code) => ({
   code,
   name: LOCALE_NAMES[code],
   tag: LOCALE_TAGS[code],
+  // „العربية“ braucht die eigene Textrichtung, sonst rückt der Artikel um.
+  dir: localeDirection(code),
   href: localizedPath(code, 'home'),
 }));
 ---
@@ -131,7 +134,7 @@ const options = AVAILABLE_LOCALES.map((code) => ({
         {
           options.map((option) => (
             <li>
-              <a href={option.href} hreflang={option.tag} lang={option.tag}>
+              <a href={option.href} hreflang={option.tag} lang={option.tag} dir={option.dir}>
                 {option.name}
               </a>
             </li>

@@ -26,6 +26,9 @@ export const LOCALES = [
   'et',
   'fi',
   'nl',
+  // Arabisch: keine EU-Amtssprache, im Asyl- und Grenzkontext aber die am
+  // häufigsten benötigte Sprache. Läuft von rechts nach links – siehe RTL_LOCALES.
+  'ar',
 ] as const;
 
 export type Locale = (typeof LOCALES)[number];
@@ -51,6 +54,7 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   et: 'Eesti',
   fi: 'Suomi',
   nl: 'Nederlands',
+  ar: 'العربية',
 };
 
 /** BCP-47-Tags für das lang-Attribut und hreflang. */
@@ -72,7 +76,21 @@ export const LOCALE_TAGS: Record<Locale, string> = {
   et: 'et',
   fi: 'fi',
   nl: 'nl',
+  ar: 'ar',
 };
+
+/**
+ * Sprachen, die von rechts nach links gesetzt werden.
+ *
+ * Bewusst als Liste und nicht als Eigenschaft je Sprache: So bleibt an einer
+ * Stelle sichtbar, welche Fassungen RTL sind, und ein Vergessen fällt auf.
+ */
+export const RTL_LOCALES: readonly Locale[] = ['ar'];
+
+/** Textrichtung einer Sprache – für das dir-Attribut am <html>-Element. */
+export function localeDirection(locale: Locale): 'ltr' | 'rtl' {
+  return RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr';
+}
 
 /** Alle Seitentypen der Website. */
 export const PAGE_IDS = [
@@ -101,7 +119,7 @@ export type PageId = (typeof PAGE_IDS)[number];
 export const SLUGS: Record<PageId, Record<Locale, string>> = {
   home: {
     de: '', en: '', fr: '', it: '', es: '', el: '', bg: '', ro: '', pl: '',
-    hu: '', hr: '', mt: '', lt: '', lv: '', et: '', fi: '', nl: '',
+    hu: '', hr: '', mt: '', lt: '', lv: '', et: '', fi: '', nl: '', ar: '',
   },
   services: {
     de: 'leistungen',
@@ -121,6 +139,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'teenused',
     fi: 'palvelut',
     nl: 'diensten',
+    ar: 'khadamat',
   },
   expertise: {
     de: 'fachgebiete',
@@ -140,6 +159,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'erialavaldkonnad',
     fi: 'erikoisalat',
     nl: 'vakgebieden',
+    ar: 'majalat-al-takhassus',
   },
   authorities: {
     de: 'behoerden-und-institutionen',
@@ -159,6 +179,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'ametiasutused-ja-institutsioonid',
     fi: 'viranomaiset-ja-instituutiot',
     nl: 'overheid-en-instellingen',
+    ar: 'al-jihat-al-rasmiya',
   },
   business: {
     de: 'fuer-unternehmen',
@@ -178,6 +199,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'ettevotetele',
     fi: 'yrityksille',
     nl: 'voor-bedrijven',
+    ar: 'lil-sharikat',
   },
   coverage: {
     de: 'einsatzgebiete',
@@ -197,6 +219,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'tegevuspiirkonnad',
     fi: 'toiminta-alueet',
     nl: 'inzetgebieden',
+    ar: 'manatiq-al-amal',
   },
   languages: {
     de: 'sprachen',
@@ -216,6 +239,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'keeled',
     fi: 'kielet',
     nl: 'talen',
+    ar: 'al-lughat',
   },
   about: {
     de: 'ueber-uns',
@@ -235,6 +259,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'meist',
     fi: 'tietoa-meista',
     nl: 'over-ons',
+    ar: 'man-nahnu',
   },
   careers: {
     de: 'karriere',
@@ -254,6 +279,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'karjaar',
     fi: 'ura',
     nl: 'werken-bij',
+    ar: 'wazaif',
   },
   apply: {
     de: 'bewerbung',
@@ -273,6 +299,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'kandideerimine',
     fi: 'hakemus',
     nl: 'sollicitatie',
+    ar: 'taqdim-talab',
   },
   requirements: {
     de: 'voraussetzungen',
@@ -292,6 +319,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'nouded',
     fi: 'edellytykset',
     nl: 'voorwaarden',
+    ar: 'al-mutatalabat',
   },
   contact: {
     de: 'kontakt',
@@ -311,6 +339,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'kontakt',
     fi: 'yhteystiedot',
     nl: 'contact',
+    ar: 'ittisal',
   },
   imprint: {
     de: 'impressum',
@@ -330,6 +359,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'oiguslik-teave',
     fi: 'oikeudellinen-huomautus',
     nl: 'colofon',
+    ar: 'bayanat-qanuniya',
   },
   privacy: {
     de: 'datenschutz',
@@ -349,6 +379,7 @@ export const SLUGS: Record<PageId, Record<Locale, string>> = {
     et: 'andmekaitse',
     fi: 'tietosuoja',
     nl: 'privacybeleid',
+    ar: 'himayat-al-bayanat',
   },
 };
 
