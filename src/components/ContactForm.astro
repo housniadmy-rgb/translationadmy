@@ -174,7 +174,7 @@ const hasSmtp = Boolean(import.meta.env.SMTP_HOST);
     /** Versand und Auswertung der Antwort. */
     async function send() {
       try {
-        var response = await fetch(form.action, {
+        var response = await fetch(form.getAttribute('action'), {
           method: 'POST',
           body: new FormData(form),
         });

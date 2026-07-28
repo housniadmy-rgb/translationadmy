@@ -28,6 +28,42 @@ export default defineConfig({
   trailingSlash: 'ignore',
   adapter: vercel(),
 
+  security: {
+    /*
+      URSACHE DES 403 AUF VERCEL – bitte nicht ohne Prüfung zurückdrehen.
+
+      Astros eingebaute Prüfung vergleicht den Origin-Kopf strikt mit
+      url.origin der Anfrage. Seit Astro 5.14 verwirft NodeApp.createRequest
+      jedoch den Host- und X-Forwarded-Host-Kopf, solange allowedDomains leer
+      ist – eine Härtung gegen Host-Header-Injection. Übrig bleibt die
+      Ersatzkette
+
+          validated.host ?? validatedHostname ?? 'localhost'
+
+      und damit die Anfrage-URL https://localhost/api/contact, während der
+      Browser Origin: https://www.translationadmy.de sendet. Die Prüfung
+      scheiterte also nicht an der Herkunft, sondern an der rekonstruierten
+      URL – und zwar bei jeder Absendung.
+
+      allowedDomains unten behebt genau das. Die Prüfung selbst bleibt
+      trotzdem abgeschaltet, weil sie mit reinem Text antwortet: Das Formular
+      ruft response.json() auf und landete dadurch in der Fehlerbehandlung mit
+      einer nichtssagenden Meldung. An ihre Stelle tritt eine eigene, in
+      src/server/http/origin.ts, die JSON liefert und geprüft wird.
+    */
+    checkOrigin: false,
+
+    /*
+      Vertrauenswürdige Hosts für X-Forwarded-Host. Ohne diese Liste ersetzt
+      Astro den Host durch 'localhost', wodurch Astro.url in serverseitig
+      gerenderten Routen falsch wäre.
+    */
+    allowedDomains: [
+      { hostname: 'www.translationadmy.de', protocol: 'https' },
+      { hostname: 'translationadmy.de', protocol: 'https' },
+    ],
+  },
+
   /*
     Bildverarbeitung abschalten.
 

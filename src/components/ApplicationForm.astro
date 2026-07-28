@@ -461,7 +461,7 @@ const hasEndpoint = Boolean(import.meta.env.SMTP_HOST);
     /** Versand der Bewerbung samt Anhängen und Auswertung der Antwort. */
     async function send() {
       try {
-        var response = await fetch(form.action, {
+        var response = await fetch(form.getAttribute('action'), {
           method: 'POST',
           body: new FormData(form),
         });

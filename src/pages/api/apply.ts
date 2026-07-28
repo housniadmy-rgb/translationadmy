@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 
 import { validateApplication } from '../../server/applications/validate';
 import { submitApplication } from '../../server/applications/service';
+import { forbiddenOriginResponse, isAllowedOrigin } from '../../server/http/origin';
 
 /** Diese Route wird zur Laufzeit ausgeführt, nicht vorgerendert. */
 export const prerender = false;
@@ -20,6 +21,17 @@ function json(body: unknown, status: number): Response {
  * später eine Datenbank oder ein Bewerber-Dashboard ergänzt wird.
  */
 export const POST: APIRoute = async ({ request }) => {
+  /*
+    Herkunft zuerst prüfen – vor dem Lesen des Körpers.
+
+    Bewerbungen bringen bis zu sechs Dateien mit je 8 MB mit. Würde erst
+    gelesen und dann geprüft, nähme der Server die gesamte Last entgegen,
+    bevor er die Anfrage verwirft.
+  */
+  if (!isAllowedOrigin(request)) {
+    return forbiddenOriginResponse();
+  }
+
   let form: FormData;
   try {
     form = await request.formData();

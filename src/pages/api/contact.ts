@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 
 import { submitContact, validateContact } from '../../server/contact/service';
+import { forbiddenOriginResponse, isAllowedOrigin } from '../../server/http/origin';
 
 /** Diese Route wird zur Laufzeit ausgeführt, nicht vorgerendert. */
 export const prerender = false;
@@ -17,6 +18,11 @@ function json(body: unknown, status: number): Response {
  * Bewusst dünn gehalten: Prüfung und Versand liegen in src/server/contact.
  */
 export const POST: APIRoute = async ({ request }) => {
+  // Herkunft zuerst prüfen – vor dem Lesen und Auswerten des Formulars.
+  if (!isAllowedOrigin(request)) {
+    return forbiddenOriginResponse();
+  }
+
   let form: FormData;
   try {
     form = await request.formData();
