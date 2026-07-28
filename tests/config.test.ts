@@ -70,6 +70,32 @@ describe('Site-Konfiguration', () => {
     }
   });
 
+  it('legt die Node-Version für die Zielumgebung fest', () => {
+    /*
+      Ohne engines.node wählt Vercel die Version nach eigenem Standard, und
+      der ändert sich mit der Zeit. Fiele er unter Astros Mindestanforderung,
+      schlüge der Build dort fehl, obwohl er lokal durchläuft.
+
+      Bewusst als Bereich und nicht als feste Hauptversion: So bleibt die
+      Angabe auch bei einem Hosterwechsel gültig und muss nicht gepflegt
+      werden, sobald eine Laufzeit ausläuft.
+    */
+    const paket = JSON.parse(
+      readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
+    ) as { engines?: { node?: string } };
+
+    expect(paket.engines?.node, 'engines.node fehlt in package.json').toBeTruthy();
+
+    // Muss die Anforderung von Astro erfüllen (18.20.8 || ^20.3.0 || >=22).
+    const astro = JSON.parse(
+      readFileSync(new URL('../node_modules/astro/package.json', import.meta.url), 'utf8'),
+    ) as { engines?: { node?: string } };
+    expect(astro.engines?.node, 'Astro nennt keine Node-Anforderung').toBeTruthy();
+
+    const untergrenze = Number(paket.engines!.node!.replace(/[^\d.]/g, '').split('.')[0]);
+    expect(untergrenze, 'Node-Untergrenze zu niedrig für Astro 5').toBeGreaterThanOrEqual(20);
+  });
+
   it('bündelt keine Bildverarbeitung in die Serverfunktion', () => {
     /*
       Astro packt sonst sharp samt libvips in die Funktion – rund 19 MB

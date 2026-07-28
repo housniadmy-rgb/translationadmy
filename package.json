@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "Website des Dolmetscherbüros Translation Admy, Bingen am Rhein",
+  "engines": {
+    "node": ">=20.3.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
