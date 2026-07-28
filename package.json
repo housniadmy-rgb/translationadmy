@@ -18,8 +18,8 @@
     "smtp:test": "node scripts/check-smtp.mjs --send"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.5",
     "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/vercel": "^9.0.5",
     "@fontsource-variable/inter": "^5.1.1",
     "astro": "^5.1.1",
     "nodemailer": "^9.0.3"

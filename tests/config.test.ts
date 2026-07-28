@@ -27,6 +27,59 @@ describe('Site-Konfiguration', () => {
     const robots = readFileSync(new URL('../public/robots.txt', import.meta.url), 'utf8');
     expect(robots).toContain(`${SITE_URL}/sitemap-index.xml`);
   });
+
+  it('nutzt den Vercel-Adapter und keinen anderen', () => {
+    const config = readFileSync(new URL('../astro.config.mjs', import.meta.url), 'utf8');
+    const paket = JSON.parse(
+      readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
+    ) as { dependencies: Record<string, string>; devDependencies?: Record<string, string> };
+    const alle = { ...paket.dependencies, ...paket.devDependencies };
+
+    expect(config, 'Vercel-Adapter wird nicht importiert').toMatch(
+      /^import .* from '@astrojs\/vercel';$/m,
+    );
+    expect(alle['@astrojs/vercel'], 'Vercel-Adapter fehlt in package.json').toBeTruthy();
+
+    /*
+      Ein zweiter Adapter im Baum führt zu schwer auffindbaren Build-Fehlern.
+      Geprüft wird die Import-Zeile, nicht jede Erwähnung: Die Kommentare in
+      der Konfiguration nennen die anderen Adapter bewusst als Hinweis für
+      einen späteren Hoster-Wechsel.
+    */
+    for (const anderer of ['@astrojs/node', '@astrojs/netlify', '@astrojs/cloudflare']) {
+      expect(alle[anderer], `${anderer} ist noch installiert`).toBeUndefined();
+      const importZeile = new RegExp(`^import .* from '${anderer.replace('/', '\\/')}';$`, 'm');
+      expect(config, `${anderer} wird noch importiert`).not.toMatch(importZeile);
+    }
+  });
+
+  it('braucht den Adapter für die beiden Formularrouten', () => {
+    /*
+      Erklärt, warum die Website trotz statischer Ausrichtung einen Adapter
+      hat: Ohne ihn fielen diese Routen beim Build weg und beide Formulare
+      liefen ins Leere. Alle übrigen Seiten werden vorgerendert.
+    */
+    for (const route of ['apply', 'contact']) {
+      const quelle = readFileSync(
+        new URL(`../src/pages/api/${route}.ts`, import.meta.url),
+        'utf8',
+      );
+      expect(quelle, `prerender-Schalter fehlt in api/${route}.ts`).toContain(
+        'export const prerender = false',
+      );
+    }
+  });
+
+  it('bündelt keine Bildverarbeitung in die Serverfunktion', () => {
+    /*
+      Astro packt sonst sharp samt libvips in die Funktion – rund 19 MB
+      plattformabhängiger Binärdateien, die unter Windows erzeugt auf Vercels
+      Linux-Laufzeit unbrauchbar wären. Die Website nutzt ausschließlich
+      Inline-SVGs; ein Wechsel auf <Image> müsste diese Zeile bewusst entfernen.
+    */
+    const config = readFileSync(new URL('../astro.config.mjs', import.meta.url), 'utf8');
+    expect(config, 'Bilddienst nicht abgeschaltet').toContain('astro/assets/services/noop');
+  });
 });
 
 describe('Sprachkonfiguration', () => {

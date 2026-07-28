@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# Vercel: Build-Ergebnis und lokale Projektverknüpfung
+.vercel/
+
 # Abhängigkeiten
 node_modules/
 
