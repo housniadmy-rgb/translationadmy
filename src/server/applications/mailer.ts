@@ -1,3 +1,4 @@
+import { getSecret } from 'astro:env/server';
 import nodemailer from 'nodemailer';
 
 export interface MailAttachment {
@@ -75,10 +76,21 @@ class LoggingMailer implements Mailer {
   readonly isConfigured = false;
 
   async send(message: MailMessage): Promise<void> {
+    /*
+      Bewusst ohne den Inhalt der Nachricht.
+
+      Zuvor stand hier der vollständige Text – bei einer Bewerbung also Name,
+      Anschrift, Rufnummer, Sprachen und Nachricht. Solange SMTP nicht
+      eingerichtet ist, läuft jede Absendung durch diesen Zweig; auf einer
+      gehosteten Umgebung wären die Angaben damit ins Protokoll geschrieben
+      worden, das häufig breiter einsehbar ist als das Postfach.
+
+      Für den Zweck der Meldung – „hier wäre etwas rausgegangen“ – genügen
+      Betreff und Zahl der Anhänge.
+    */
     console.warn(
-      '[mailer] SMTP ist nicht konfiguriert – E-Mail wurde nicht versendet.\n' +
-        `An: ${message.to}\nBetreff: ${message.subject}\n` +
-        `Anhänge: ${message.attachments?.length ?? 0}\n\n${message.text}`,
+      '[mailer] SMTP ist nicht konfiguriert – es wurde nichts versendet. ' +
+        `Betreff: ${message.subject} · Anhänge: ${message.attachments?.length ?? 0}`,
     );
   }
 
@@ -92,10 +104,39 @@ class LoggingMailer implements Mailer {
 
 let cached: Mailer | null = null;
 
-/** Liest eine Umgebungsvariable und entfernt versehentliche Leerzeichen. */
+/**
+ * Liest eine serverseitige Umgebungsvariable und entfernt versehentliche
+ * Leerzeichen – etwa den Zeilenumbruch, der beim Einfügen leicht mitkommt.
+ *
+ * Bewusst über Astros Adapter-Schnittstelle statt direkt über process.env:
+ * Der jeweilige Adapter bestimmt, woher Werte zur Laufzeit stammen. Beim
+ * Vercel-Adapter ist das derzeit process.env, bei Cloudflare oder Deno wären
+ * es die Bindings der Plattform. Der Zugriff bleibt dadurch beim Hosterwechsel
+ * unverändert.
+ */
 function env(name: string): string | undefined {
-  const value = process.env[name];
+  const value = getSecret(name);
   return value?.trim() || undefined;
+}
+
+/**
+ * Für den Versand zwingend erforderliche Variablen.
+ *
+ * MAIL_FROM steht bewusst mit in der Liste, ist aber nicht zwingend: Fehlt es,
+ * dient SMTP_USER als Absender. Die Meldung nennt es trotzdem, damit beim
+ * Nachsehen in den Projekteinstellungen nichts übersehen wird.
+ */
+const SMTP_VARIABLES = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASSWORD', 'MAIL_FROM'] as const;
+
+/**
+ * Namen der Variablen, die zur Laufzeit nicht gesetzt sind.
+ *
+ * Gibt ausschließlich Namen zurück, niemals Werte. Ein Protokoll ist auf vielen
+ * Plattformen breiter einsehbar als die Projekteinstellungen; ein dorthin
+ * geschriebenes Passwort gilt als offengelegt und müsste gewechselt werden.
+ */
+export function missingSmtpVariables(): string[] {
+  return SMTP_VARIABLES.filter((name) => env(name) === undefined);
 }
 
 /**
@@ -115,6 +156,24 @@ export function getMailer(): Mailer {
   const from = env('MAIL_FROM') ?? user;
 
   if (!host || !user || !password || !from) {
+    /*
+      Diagnose für den Fall, dass auf der Zielumgebung nichts versendet wird.
+
+      Ohne diese Meldung sieht man im Protokoll nur, dass keine Verbindung
+      aufgebaut wurde – aber nicht, welche Angabe fehlt. Ausgegeben werden
+      ausschließlich die NAMEN der fehlenden Variablen. Werte, und erst recht
+      das Passwort, gehören unter keinen Umständen in ein Protokoll.
+    */
+    const missing = missingSmtpVariables();
+    console.error('[mailer] Fehlende SMTP-Variablen:', missing.join(', ') || '(keine)');
+
+    if (!missing.includes('MAIL_FROM') || missing.length > 1) {
+      console.error(
+        '[mailer] Ohne SMTP_HOST, SMTP_USER und SMTP_PASSWORD wird nichts versendet. ' +
+          'MAIL_FROM ist entbehrlich – fehlt es, dient SMTP_USER als Absender.',
+      );
+    }
+
     cached = new LoggingMailer();
     return cached;
   }
