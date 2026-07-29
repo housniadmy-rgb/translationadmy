@@ -21,6 +21,20 @@ pnpm-debug.log*
 .env.local
 .env.*.local
 
+# Zugangsdaten und Notizen, die versehentlich im Projektordner landen.
+# Anlass: Eine Datei "Vercel Anendungspasswort Web.docx" lag im Wurzelverzeichnis
+# und wurde von "git add ." mit erfasst. Zugangsdaten gehören in den
+# Passwortspeicher und in die Projekteinstellungen des Hosters, nie ins Repository.
+*.docx
+*.xlsx
+*.pptx
+*.odt
+*.pdf
+*passwort*
+*password*
+*zugangsdaten*
+*credentials*
+
 # Editor / OS
 .DS_Store
 Thumbs.db

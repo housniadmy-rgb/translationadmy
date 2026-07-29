@@ -28,6 +28,52 @@ export default defineConfig({
   trailingSlash: 'ignore',
   adapter: vercel(),
 
+  /*
+    Dauerhafte Weiterleitungen der alten Adressen ohne Sprachpräfix.
+
+    Die Vorgängerwebsite lag unter www.translationadmy.de/leistungen,
+    /kontakt und so fort. Diese Adressen stehen im Google-Index und in
+    fremden Verlinkungen; seit der Umstellung auf Sprachpräfixe liefen sie
+    ins Leere. 301 statt 302, damit Suchmaschinen die Bewertung der alten
+    Adresse auf die neue übertragen, statt beide zu führen.
+
+    Ziel ist jeweils die deutsche Fassung: Wer eine deutschsprachige Adresse
+    aufruft, erwartet Deutsch – nicht die Sprachweiche.
+
+    Die Startseite / bleibt unberührt. Dort liegt die Sprachweiche, die nach
+    gespeicherter Wahl oder Browsersprache verzweigt und ohne JavaScript per
+    Meta-Refresh auf /de/ geht.
+
+    Ein Test in tests/redirects.test.ts stellt sicher, dass jeder deutsche
+    Slug hier vertreten ist und jedes Ziel tatsächlich existiert.
+  */
+  redirects: {
+    '/leistungen': { status: 301, destination: '/de/leistungen/' },
+    '/fachgebiete': { status: 301, destination: '/de/fachgebiete/' },
+    '/behoerden-und-institutionen': {
+      status: 301,
+      destination: '/de/behoerden-und-institutionen/',
+    },
+    '/fuer-unternehmen': { status: 301, destination: '/de/fuer-unternehmen/' },
+    '/einsatzgebiete': { status: 301, destination: '/de/einsatzgebiete/' },
+    '/sprachen': { status: 301, destination: '/de/sprachen/' },
+    '/ueber-uns': { status: 301, destination: '/de/ueber-uns/' },
+    '/karriere': { status: 301, destination: '/de/karriere/' },
+    '/bewerbung': { status: 301, destination: '/de/bewerbung/' },
+    '/voraussetzungen': { status: 301, destination: '/de/voraussetzungen/' },
+    '/kontakt': { status: 301, destination: '/de/kontakt/' },
+    '/impressum': { status: 301, destination: '/de/impressum/' },
+    '/datenschutz': { status: 301, destination: '/de/datenschutz/' },
+
+    /*
+      Adressen der Vorgängerwebsite, die es als Slug nie gab.
+      „/unsere-leistung“ ist in src/data/languages.ts als Quelle des
+      Sprachangebots vermerkt und dürfte im Index stehen.
+    */
+    '/bewerben': { status: 301, destination: '/de/bewerbung/' },
+    '/unsere-leistung': { status: 301, destination: '/de/leistungen/' },
+  },
+
   security: {
     /*
       URSACHE DES 403 AUF VERCEL – bitte nicht ohne Prüfung zurückdrehen.
