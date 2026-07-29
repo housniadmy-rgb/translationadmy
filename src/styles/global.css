@@ -783,6 +783,39 @@ html[dir='rtl'] .logo-name-accent {
   letter-spacing: normal;
 }
 
+/*
+  Sehr schmale Geräte.
+
+  Die Bildmarke steht auf flex-shrink: 0 und der Schriftzug auf
+  white-space: nowrap. Zusammen belegten beide unter etwa 360 px mehr Platz,
+  als die Kopfzeile hat; der Hamburger-Schalter wurde dadurch nach rechts
+  hinausgeschoben und von overflow-x: clip abgeschnitten – bei 320 px fehlten
+  30 seiner 46 Pixel. Der Schriftzug wird hier deshalb kleiner und enger
+  gesetzt, damit der Schalter vollständig stehen bleibt.
+
+  Die Grenze liegt bei 360 px und nicht erst bei 340 px: Bei 360 px blieben
+  nur 10 px Rest, und die Breite des Schriftzugs hängt davon ab, ob Georgia
+  oder eine Ersatzschrift geladen ist. Der Abstand ist die Reserve dafür.
+*/
+@media (max-width: 22.5rem) {
+  .logo {
+    gap: 0.4rem;
+  }
+
+  .logo-name {
+    font-size: 0.8rem;
+    gap: 0.3em;
+  }
+
+  .logo-name-main {
+    letter-spacing: 0.03em;
+  }
+
+  .logo-name-accent {
+    letter-spacing: 0.1em;
+  }
+}
+
 .logo-sub {
   font-size: 0.66rem;
   white-space: nowrap;
