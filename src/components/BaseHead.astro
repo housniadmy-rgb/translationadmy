@@ -129,7 +129,17 @@ const websiteSchema = {
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
-{/* Favicons und Farben */}
+{/*
+  Favicons und Farben.
+
+  Reihenfolge ist Absicht: Browser, die SVG als Symbol beherrschen, wählen die
+  SVG-Zeile; die übrigen greifen auf die ICO zurück. Ohne die ICO blieb der Tab
+  in älteren Safari-Fassungen leer.
+
+  Die ICO enthält dieselbe vereinfachte Zeichnung in 16, 32 und 48 Pixeln –
+  erzeugt aus favicon.svg, damit beide nicht auseinanderlaufen können.
+*/}
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="theme-color" content="#0f2c47" />
