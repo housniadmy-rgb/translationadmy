@@ -27,6 +27,10 @@ const columns = [
   { heading: t.footer.servicesHeading, items: FOOTER_NAV.services },
   { heading: t.footer.companyHeading, items: FOOTER_NAV.company },
 ];
+/** Der Name wird zweifarbig gesetzt wie in der Vorlage. */
+const [markeErst, ...markeRest] = SITE.name.split(' ');
+const markeZweit = markeRest.join(' ');
+
 ---
 
 <footer class="site-footer">
@@ -36,7 +40,10 @@ const columns = [
         <a class="logo" href={localizedPath(locale, 'home')}>
           <Logo class="logo-mark" variant="light" />
           <span class="logo-text">
-            <span class="logo-name">{SITE.name}</span>
+            <span class="logo-name">
+              <span class="logo-name-main">{markeErst}</span>
+              <span class="logo-name-accent">{markeZweit}</span>
+            </span>
             <span class="logo-sub">{t.ui.logoSubtitle}</span>
           </span>
         </a>

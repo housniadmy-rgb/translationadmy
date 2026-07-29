@@ -1,35 +1,43 @@
 ---
 /**
- * Wortmarke: stilisiertes Sprechblasen-Paar als Sinnbild für Verdolmetschung.
- * Reines SVG, damit das Logo in jeder Größe und in beiden Farbschemata sitzt.
+ * Bildmarke aus der Vorlage in public/branding/.
+ *
+ * Freigestellt aus translation-admy-logo-reference.png. Der Hintergrund ist
+ * dort keine Transparenz, sondern eine fotografierte Wand – lösbar war das nur
+ * über eine Maske aus drei gemessenen Kreisen: Goldring (Mitte 632/404,
+ * Radius 285), vordere Sprechblase (790/450, 132) und hintere Goldblase
+ * (881/561, 112). Ein Farbschlüssel schied aus, weil die Wand von rgb(19,27,34)
+ * bis rgb(90,91,93) verläuft und die dunklen Stellen des Logos im selben
+ * Bereich liegen.
+ *
+ * Globus, Sprechblasen und Farben bleiben unverändert – es wurde ausschließlich
+ * freigestellt und verkleinert. Der Schriftzug steht daneben als Text; im
+ * Kopfzeilenmaßstab wäre er als Bild unlesbar.
+ *
+ * WebP mit PNG-Rückfallebene: Als Foto komprimiert die Vorlage in PNG deutlich
+ * schlechter.
  */
 interface Props {
   class?: string;
   variant?: 'default' | 'light';
 }
 
-const { class: className, variant = 'default' } = Astro.props;
-
-const outer = variant === 'light' ? '#efc87a' : '#14395c';
-const inner = variant === 'light' ? '#ffffff' : '#c98f22';
+const { class: className } = Astro.props;
 ---
 
-<svg
-  class={className}
-  viewBox="0 0 40 40"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
-  aria-hidden="true"
-  focusable="false"
->
-  <rect width="40" height="40" rx="10" fill={outer} />
-  <path
-    d="M9 14.5A3.5 3.5 0 0 1 12.5 11h9a3.5 3.5 0 0 1 3.5 3.5v5a3.5 3.5 0 0 1-3.5 3.5h-5.6L11 26.8V23h-.5A1.5 1.5 0 0 1 9 21.5Z"
-    fill="#ffffff"
-    fill-opacity={variant === 'light' ? '0.22' : '0.95'}
+<picture class={className}>
+  <source
+    srcset="/branding/translation-admy-emblem.webp 280w, /branding/translation-admy-emblem@2x.webp 560w"
+    sizes="44px"
+    type="image/webp"
   />
-  <path
-    d="M19 20.5a3.5 3.5 0 0 1 3.5-3.5H28a3.5 3.5 0 0 1 3.5 3.5v4A3.5 3.5 0 0 1 28 28h-.7v3.4L23.5 28h-1a3.5 3.5 0 0 1-3.5-3.5Z"
-    fill={inner}
+  <img
+    src="/branding/translation-admy-emblem.png"
+    width="280"
+    height="247"
+    alt=""
+    aria-hidden="true"
+    decoding="async"
+    loading="eager"
   />
-</svg>
+</picture>

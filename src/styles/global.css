@@ -718,21 +718,69 @@ a:hover {
   color: var(--text);
 }
 
+/*
+  Freigestellte Bildmarke aus der Vorlage. Feste Höhe, die Breite folgt dem
+  Seitenverhältnis. width und height am Bild reservieren den Platz vorab,
+  damit beim Laden nichts springt.
+*/
 .logo-mark {
-  width: 2rem;
-  height: 2rem;
+  display: block;
   flex-shrink: 0;
+}
+
+.logo-mark img {
+  display: block;
+  height: 2.9rem;
+  width: auto;
+}
+
+@media (max-width: 30rem) {
+  .logo-mark img {
+    height: 2.4rem;
+  }
 }
 
 .logo-text {
   display: flex;
   flex-direction: column;
   line-height: 1.15;
+  min-width: 0;
 }
 
+/*
+  Schriftzug nach dem Vorbild der Vorlage: Serifenschrift in Versalien,
+  „Translation“ in Stahlblau, „Admy“ in Gold und weiter gesperrt.
+
+  Bewusst als Text und nicht als Bild: Im Kopfzeilenmaßstab wäre der Schriftzug
+  der Vorlage unlesbar (bei 55 px verschwimmt er). Als Text bleibt er in jeder
+  Größe scharf, lässt sich markieren und wird von Suchmaschinen und
+  Sprachausgaben gelesen.
+*/
 .logo-name {
-  font-size: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.42em;
+  font-family: Georgia, 'Times New Roman', 'Liberation Serif', serif;
+  font-size: 1.06rem;
+  font-weight: 700;
+  text-transform: uppercase;
   white-space: nowrap;
+}
+
+.logo-name-main {
+  color: var(--brand);
+  letter-spacing: 0.05em;
+}
+
+.logo-name-accent {
+  color: var(--accent);
+  letter-spacing: 0.17em;
+}
+
+/* Arabisch ist eine Verbindungsschrift – Sperrung reißt sie auf. */
+html[dir='rtl'] .logo-name-main,
+html[dir='rtl'] .logo-name-accent {
+  letter-spacing: normal;
 }
 
 .logo-sub {
@@ -2241,6 +2289,19 @@ a.contact-tile:hover {
 
 .footer-brand .logo-sub {
   color: var(--navy-300);
+}
+
+/*
+  Auf dem dunklen Grund der Fußzeile trägt das Marineblau der Kopfzeile nicht.
+  „Translation“ wird deshalb hell gesetzt, „Admy“ bleibt golden – das Gold der
+  Vorlage steht auf beiden Untergründen.
+*/
+.footer-brand .logo-name-main {
+  color: var(--white);
+}
+
+.footer-brand .logo-name-accent {
+  color: var(--gold-300);
 }
 
 .footer-tagline {

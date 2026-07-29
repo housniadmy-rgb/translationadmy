@@ -40,6 +40,10 @@ const navItems = HEADER_NAV.map((id) => ({
  * hervorgehobener Handlungsaufruf.
  */
 const mobileItems: PageId[] = PAGE_IDS.filter((id) => id !== 'apply');
+/** Der Name wird zweifarbig gesetzt wie in der Vorlage. */
+const [markeErst, ...markeRest] = SITE.name.split(' ');
+const markeZweit = markeRest.join(' ');
+
 ---
 
 <a class="skip-link" href="#main">{t.ui.skipToContent}</a>
@@ -49,7 +53,10 @@ const mobileItems: PageId[] = PAGE_IDS.filter((id) => id !== 'apply');
     <a class="logo" href={localizedPath(locale, 'home')}>
       <Logo class="logo-mark" />
       <span class="logo-text">
-        <span class="logo-name">{SITE.name}</span>
+        <span class="logo-name">
+          <span class="logo-name-main">{markeErst}</span>
+          <span class="logo-name-accent">{markeZweit}</span>
+        </span>
         <span class="logo-sub">{t.ui.logoSubtitle}</span>
       </span>
     </a>
